@@ -13,7 +13,7 @@ const faqs = [
 ] as const;
 
 export default function MembershipFaqPreview() {
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState<number | null>(0);
 
   return (
     <section className="border-b border-bazooka-border/70 bg-bazooka-soft-black py-14">
@@ -29,9 +29,9 @@ export default function MembershipFaqPreview() {
             {faqs.map(([question, answer], index) => {
               const isOpen = open === index;
               return (
-                <motion.div key={question} {...reveal} transition={{ duration: .45, delay: index * .04 }} className="overflow-hidden rounded-[5px] border border-bazooka-border-strong bg-bazooka-surface">
+                <motion.div key={question} {...reveal} transition={{ duration: .45, delay: index * .04 }} className={`overflow-hidden rounded-[5px] border bg-bazooka-surface transition-colors ${isOpen ? "border-bazooka-lime/70" : "border-bazooka-border-strong"}`}>
                   <button type="button" onClick={() => setOpen(isOpen ? null : index)} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-[10px] font-bold text-white transition hover:text-bazooka-lime" aria-expanded={isOpen}>
-                    {question}{isOpen ? <Minus className="size-4 shrink-0" /> : <Plus className="size-4 shrink-0" />}
+                    {question}{isOpen ? <Minus className="size-4 shrink-0 text-bazooka-lime" /> : <Plus className="size-4 shrink-0" />}
                   </button>
                   <AnimatePresence initial={false}>{isOpen && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden"><p className="border-t border-bazooka-border px-5 py-4 text-[9px] leading-5 text-bazooka-text-secondary">{answer}</p></motion.div>}</AnimatePresence>
                 </motion.div>
