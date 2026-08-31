@@ -56,7 +56,7 @@ export default function SiteFooter() {
       <div className="border-t border-bazooka-border">
         <div className={`${shell} flex flex-col gap-2 py-5 pr-[62px] text-[9px] leading-4 text-bazooka-muted sm:pr-[76px] md:flex-row md:items-center md:justify-between lg:pr-24 xl:pr-28`}>
           <span>© 2026 Bazooka Fitness. All rights reserved.</span>
-          <a href="https://builtbyshahzad.vercel.app" target="_blank" rel="noreferrer" className="w-fit max-w-full transition hover:text-bazooka-lime">Designed &amp; Developed by Shahzad Khan <b className="text-bazooka-lime">♥</b></a>
+          <a href="https://builtbyshahzad.vercel.app" target="_blank" rel="noreferrer" className="group w-fit max-w-full transition-all duration-300 hover:text-white">Designed &amp; Developed by <span className="font-black text-bazooka-lime transition-all duration-300 group-hover:text-bazooka-lime-hover group-hover:drop-shadow-[0_0_8px_rgba(182,240,0,.55)]">Shahzad Khan</span> <b className="text-bazooka-lime">♥</b></a>
         </div>
       </div>
     </footer>
