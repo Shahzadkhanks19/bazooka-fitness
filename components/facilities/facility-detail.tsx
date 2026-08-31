@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import type { FacilityDetail } from "./facility-data";
-import { limeButton, outlineButton, reveal, shell } from "./facilities-shared";
+import { outlineButton, primaryButton, reveal, shell } from "./facilities-shared";
 
 export default function FacilityDetailPage({ facility }: { facility: FacilityDetail }) {
   return (
@@ -23,7 +23,7 @@ export default function FacilityDetailPage({ facility }: { facility: FacilityDet
             <h1 className="font-display mt-3 text-[52px] font-black uppercase leading-[.9] sm:text-[66px] lg:text-[78px]">{facility.title}</h1>
             <p className="mt-5 max-w-[520px] text-[12px] leading-6 text-bazooka-text-secondary">{facility.summary}</p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/book-free-trial" className={limeButton}>Book Free Trial <ArrowRight className="size-4" /></Link>
+              <Link href="/book-free-trial" className={primaryButton}>Book Free Trial <ArrowRight className="size-4" /></Link>
               <Link href="/contact" className={outlineButton}>Schedule A Tour <ArrowRight className="size-4" /></Link>
             </div>
           </motion.div>
@@ -59,7 +59,7 @@ export default function FacilityDetailPage({ facility }: { facility: FacilityDet
               <h2 className="font-display text-[34px] font-black uppercase leading-[.95]">Experience The <span className="text-bazooka-lime">Zone Yourself.</span></h2>
               <p className="mt-3 text-[10px] text-bazooka-text-secondary">Visit Bazooka, explore the facility and see how it fits your training goals.</p>
             </div>
-            <Link href="/book-free-trial" className={limeButton}>Book Free Trial <ArrowRight className="size-4" /></Link>
+            <Link href="/book-free-trial" className={primaryButton}>Book Free Trial <ArrowRight className="size-4" /></Link>
           </motion.div>
         </div>
       </section>
