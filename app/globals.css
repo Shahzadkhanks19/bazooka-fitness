@@ -21,3 +21,75 @@
   --color-bazooka-success: #22C55E;
   --font-display: "Arial Narrow", Impact, sans-serif;
 }
+
+html {
+  width: 100%;
+  max-width: 100%;
+  scroll-behavior: auto;
+  overflow-x: clip;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+main,
+section,
+article,
+header,
+footer,
+nav,
+div,
+form {
+  min-width: 0;
+}
+
+img,
+picture,
+video,
+canvas,
+svg,
+iframe {
+  max-width: 100%;
+}
+
+img,
+picture,
+video,
+canvas {
+  height: auto;
+}
+
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+}
+
+p,
+a,
+span,
+strong,
+small,
+label,
+h1,
+h2,
+h3,
+h4 {
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 639px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  table {
+    font-size: 0.75rem;
+  }
+}
