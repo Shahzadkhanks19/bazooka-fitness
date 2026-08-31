@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Check, Clock3, IndianRupee, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Clock3, IndianRupee, Minus, Sparkles } from "lucide-react";
 import { reveal, shell } from "./memberships-shared";
 
 const plans = [
@@ -11,21 +11,44 @@ const plans = [
   { name: "3 Months", price: "₹7,990", duration: "3 Months", bestValue: false },
 ] as const;
 
-const inclusions = [
-  "Gym Access",
-  "Cardio Training",
-  "Weight Training",
-  "Steam & Shower",
-  "Free Fitness Assessment",
-  "Group Classes",
-  "Locker Facility",
-  "Nutrition Guidance",
-  "Body Composition Analysis",
-  "Clean & Hygienic Environment",
-  "Parking Available",
-  "Member Events",
-  "Wi-Fi Access",
+const comparisonRows = [
+  { label: "Gym Access", values: [true, true, true] },
+  { label: "Cardio Training", values: [true, true, true] },
+  { label: "Weight Training", values: [true, true, true] },
+  { label: "Steam & Shower", values: [true, true, true] },
+  { label: "Free Fitness Assessment", values: [true, true, true] },
+  { label: "Locker Facility", values: [true, true, true] },
+  { label: "Body Composition Analysis", values: [true, true, false] },
+  { label: "Group Classes", values: [true, true, false] },
+  { label: "Basic Nutrition Guidance", values: [true, true, false] },
+  { label: "Advanced Nutrition Guidance", values: [true, false, false] },
+  { label: "Monthly Progress Review", values: [true, true, false] },
+  { label: "Priority Trainer Consultation", values: [true, false, false] },
+  { label: "Complimentary PT Sessions", values: ["2 Sessions", "1 Session", false] },
+  { label: "Member Events", values: [true, true, true] },
+  { label: "Parking Available", values: [true, true, true] },
+  { label: "Wi-Fi Access", values: [true, true, true] },
 ] as const;
+
+function ValueCell({ value }: { value: boolean | string }) {
+  if (typeof value === "string") {
+    return <span className="text-[9px] font-black uppercase text-bazooka-lime">{value}</span>;
+  }
+
+  if (value) {
+    return (
+      <span className="mx-auto grid size-6 place-items-center rounded-full border border-bazooka-lime/50 bg-bazooka-lime/10 text-bazooka-lime">
+        <Check className="size-3.5 stroke-[3]" />
+      </span>
+    );
+  }
+
+  return (
+    <span className="mx-auto grid size-6 place-items-center rounded-full border border-bazooka-border-strong bg-black/20 text-bazooka-text-muted">
+      <Minus className="size-3.5" />
+    </span>
+  );
+}
 
 export default function PlanComparisonSection() {
   return (
@@ -35,13 +58,13 @@ export default function PlanComparisonSection() {
           <div>
             <span className="text-[10px] font-black uppercase text-bazooka-lime">Compare Memberships</span>
             <h2 className="font-display mt-2 text-[38px] font-black uppercase leading-[.95] sm:text-[46px]">
-              Same Access.
+              Find The Right
               <br />
-              <span className="text-bazooka-lime">Choose Your Term.</span>
+              <span className="text-bazooka-lime">Membership.</span>
             </h2>
           </div>
           <p className="max-w-[560px] text-[11px] leading-5 text-bazooka-text-secondary lg:justify-self-end">
-            Every membership gives you the same Bazooka experience. Compare the duration and total price, then choose the commitment that works best for you.
+            Compare access, coaching support and added benefits across all three membership durations. These benefit differences are temporary placeholders and can be replaced when the final Bazooka plan inclusions are confirmed.
           </p>
         </motion.div>
 
@@ -72,14 +95,12 @@ export default function PlanComparisonSection() {
                   <td className="px-5 py-4 text-[10px] font-bold text-white"><span className="inline-flex items-center gap-2"><IndianRupee className="size-4 text-bazooka-lime" /> Total Price</span></td>
                   {plans.map((plan) => <td key={plan.name} className={`font-display px-5 py-4 text-center text-[19px] font-black text-bazooka-lime ${plan.bestValue ? "bg-bazooka-lime/[0.035]" : ""}`}>{plan.price}</td>)}
                 </tr>
-                {inclusions.map((feature, index) => (
-                  <tr key={feature} className={index < inclusions.length - 1 ? "border-b border-bazooka-border/60" : ""}>
-                    <td className="px-5 py-4 text-[10px] font-semibold text-bazooka-text-secondary">{feature}</td>
-                    {plans.map((plan) => (
+                {comparisonRows.map((row, index) => (
+                  <tr key={row.label} className={index < comparisonRows.length - 1 ? "border-b border-bazooka-border/60" : ""}>
+                    <td className="px-5 py-4 text-[10px] font-semibold text-bazooka-text-secondary">{row.label}</td>
+                    {plans.map((plan, planIndex) => (
                       <td key={plan.name} className={`px-5 py-4 text-center ${plan.bestValue ? "bg-bazooka-lime/[0.025]" : ""}`}>
-                        <span className="mx-auto grid size-6 place-items-center rounded-full border border-bazooka-lime/50 bg-bazooka-lime/10 text-bazooka-lime">
-                          <Check className="size-3.5 stroke-[3]" />
-                        </span>
+                        <ValueCell value={row.values[planIndex]} />
                       </td>
                     ))}
                   </tr>
@@ -103,7 +124,7 @@ export default function PlanComparisonSection() {
         </motion.div>
 
         <p className="mt-4 text-center text-[9px] leading-4 text-bazooka-text-muted">
-          All three memberships include the same listed facilities and benefits. Only membership duration and total price differ.
+          Temporary comparison benefits for the redesign phase. Replace with final Bazooka membership inclusions before launch.
         </p>
       </div>
     </section>
