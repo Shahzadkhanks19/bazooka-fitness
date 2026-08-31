@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Activity, Dumbbell, Salad, ShieldCheck } from "lucide-react";
-import { reveal, shell } from "./about-shared";
+import { reveal } from "./about-shared";
 
 const methods = [
   [Dumbbell, "SMART TRAINING", "Structured programs designed by experts for maximum results."],
