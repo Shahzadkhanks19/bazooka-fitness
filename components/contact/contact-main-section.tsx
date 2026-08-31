@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight, Clock3, Mail, MapPin, Phone, Send } from "lucide-react";
+import { ArrowRight, Clock3, Coffee, Mail, MapPin, Phone, Send } from "lucide-react";
 import { buttonClass, fieldClass, shell, textareaClass } from "./contact-shared";
 
 const contactInfo = [
@@ -20,6 +20,11 @@ export default function ContactMainSection() {
       <div className={shell}>
         <div className="grid gap-3 rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface p-5 sm:grid-cols-2 lg:grid-cols-4">
           {contactInfo.map(([Icon, title, text], index) => <div key={title} className={`flex gap-3 px-2 py-2 ${index < contactInfo.length - 1 ? "lg:border-r lg:border-bazooka-border" : ""}`}><Icon className="size-6 shrink-0 text-bazooka-lime" /><div><h2 className="font-display text-[16px] font-black uppercase">{title}</h2><p className="mt-2 text-[9px] leading-4 text-bazooka-text-secondary">{text}</p></div></div>)}
+        </div>
+
+        <div className="mt-3 flex flex-col gap-3 rounded-[5px] border border-bazooka-lime/35 bg-bazooka-lime/[0.035] px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-3"><span className="grid size-9 place-items-center rounded-full border border-bazooka-lime text-bazooka-lime"><Coffee className="size-4" /></span><div><strong className="font-display text-[14px] uppercase">Cafe Bazooka</strong><p className="mt-1 text-[9px] text-bazooka-text-secondary">Our in-house cafe serves healthy meals, protein-focused options and refreshing post-workout fuel.</p></div></div>
+          <Link href="/facilities/nutrition-bar" className="inline-flex items-center gap-2 text-[9px] font-black uppercase text-bazooka-lime transition hover:text-bazooka-lime-hover">Explore Cafe Bazooka <ArrowRight className="size-3.5" /></Link>
         </div>
 
         <div className="mt-5 grid gap-5 rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface p-5 sm:p-7 lg:grid-cols-2">
