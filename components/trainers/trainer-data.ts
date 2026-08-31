@@ -74,7 +74,7 @@ export const trainers: readonly TrainerProfile[] = [
     certification: "Precision Nutrition",
     summary: "Practical nutrition guidance designed around your goals, routine and sustainable habits.",
     quote: "The best nutrition plan is the one that supports your goals and still fits your real life.",
-    image: "https://images.unsplash.com/photo-1594737625785-c6683fc0f7d9?auto=format&fit=crop&w=1200&q=90",
+    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=90",
     secondaryImage: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1200&q=90",
     expertise: ["Nutrition Planning", "Diet Management", "Fat Loss Nutrition", "Muscle Gain Nutrition", "Meal Structure", "Lifestyle Coaching"],
     certifications: ["Precision Nutrition Level 1", "Sports Nutrition Certification", "Weight Management Specialist", "Lifestyle Coaching"],
