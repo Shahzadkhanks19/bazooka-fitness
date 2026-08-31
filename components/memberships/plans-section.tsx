@@ -9,15 +9,36 @@ type MembershipPlan = {
   name: string;
   subtitle: string;
   price: string;
+  duration: string;
   popular: boolean;
   features: readonly string[];
 };
 
 const plans: readonly MembershipPlan[] = [
-  { name: "Basic", subtitle: "Start Your Journey", price: "₹1,499", popular: false, features: ["Gym Access (Day Time)", "Standard Equipment", "Locker Facility", "1 Group Class / Week"] },
-  { name: "Standard", subtitle: "Stay Consistent", price: "₹2,499", popular: true, features: ["Gym Access (All Time)", "Group Classes", "Locker Facility", "Body Composition Check", "Diet Guidance (Basic)"] },
-  { name: "Premium", subtitle: "Perform Better", price: "₹3,999", popular: false, features: ["All Standard Benefits", "Personal Training (2 Sessions/Month)", "Advanced Group Classes", "Body Composition Check", "Diet Guidance (Advanced)"] },
-  { name: "Transformation", subtitle: "Complete Transformation", price: "₹5,999", popular: false, features: ["All Premium Benefits", "Personal Training (Unlimited)", "Custom Diet Plan", "Weekly Progress Tracking", "Priority Support"] },
+  {
+    name: "Fitness Plan",
+    subtitle: "Best Value",
+    price: "₹15,990",
+    duration: "12 Months",
+    popular: true,
+    features: ["Cardio", "Weight Training", "Steam", "Shower"],
+  },
+  {
+    name: "Fitness Plan",
+    subtitle: "Stay Consistent",
+    price: "₹12,990",
+    duration: "6 Months",
+    popular: false,
+    features: ["Cardio", "Weight Training", "Steam", "Shower"],
+  },
+  {
+    name: "Fitness Plan",
+    subtitle: "Build Momentum",
+    price: "₹7,990",
+    duration: "3 Months",
+    popular: false,
+    features: ["Cardio", "Weight Training", "Steam", "Shower"],
+  },
 ] as const;
 
 export default function MembershipPlansSection() {
@@ -30,19 +51,19 @@ export default function MembershipPlansSection() {
           <span className="h-px w-20 bg-bazooka-border-strong" />
         </motion.div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mx-auto mt-8 grid max-w-[980px] gap-4 md:grid-cols-3">
           {plans.map((plan, index) => (
             <motion.article
-              key={plan.name}
+              key={plan.duration}
               {...reveal}
               transition={{ duration: .5, delay: index * .05 }}
               className={`relative flex min-h-[430px] flex-col rounded-[5px] border bg-bazooka-surface p-6 transition-all duration-300 hover:-translate-y-1 ${plan.popular ? "border-bazooka-lime shadow-[0_0_30px_rgba(182,240,0,.08)]" : "border-bazooka-border-strong hover:border-bazooka-lime"}`}
             >
-              {plan.popular && <span className="absolute inset-x-0 top-0 rounded-t-[4px] bg-bazooka-lime py-1.5 text-center text-[8px] font-black uppercase text-black">Most Popular</span>}
+              {plan.popular && <span className="absolute inset-x-0 top-0 rounded-t-[4px] bg-bazooka-lime py-1.5 text-center text-[8px] font-black uppercase text-black">Best Value</span>}
               <div className={plan.popular ? "pt-5" : ""}>
                 <h3 className="font-display text-[22px] font-black uppercase">{plan.name}</h3>
                 <p className="mt-1 text-[9px] font-bold uppercase text-bazooka-text-secondary">{plan.subtitle}</p>
-                <div className="mt-6 flex items-end gap-1.5"><strong className="font-display text-[34px] font-black leading-none text-bazooka-lime">{plan.price}</strong><span className="mb-1 text-[9px] uppercase text-bazooka-text-secondary">/Month</span></div>
+                <div className="mt-6"><strong className="font-display block text-[38px] font-black leading-none text-bazooka-lime">{plan.price}</strong><span className="mt-2 block text-[10px] font-bold uppercase text-white">{plan.duration}</span></div>
                 <ul className="mt-7 space-y-3">
                   {plan.features.map((feature) => <li key={feature} className="flex items-start gap-2.5 text-[9px] leading-4 text-bazooka-text-secondary"><CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-bazooka-lime" />{feature}</li>)}
                 </ul>
@@ -52,7 +73,7 @@ export default function MembershipPlansSection() {
           ))}
         </div>
 
-        <p className="mt-5 flex items-center justify-center gap-2 text-center text-[9px] text-bazooka-text-secondary"><Info className="size-3.5 text-bazooka-lime" /> All memberships are valid for 1 month. GST extra as applicable.</p>
+        <p className="mt-5 flex items-center justify-center gap-2 text-center text-[9px] text-bazooka-text-secondary"><Info className="size-3.5 text-bazooka-lime" /> Membership validity follows the selected plan duration. Taxes or applicable charges, if any, are confirmed before purchase.</p>
       </div>
     </section>
   );
