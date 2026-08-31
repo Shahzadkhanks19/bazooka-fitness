@@ -7,7 +7,7 @@ export const primaryButton = `${buttonBase} border-bazooka-lime bg-bazooka-lime 
 export const outlineButton = `${buttonBase} border-bazooka-border-strong bg-black/25 text-white hover:border-bazooka-lime hover:text-bazooka-lime`;
 
 export const reveal = {
-  initial: { opacity: 0, y: 22 },
+  initial: false as const,
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, amount: 0.14 },
   transition: { duration: 0.55, ease: "easeOut" as const },
