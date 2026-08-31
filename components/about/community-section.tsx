@@ -14,25 +14,47 @@ const communityStats = [
 
 export default function CommunitySection() {
   return (
-    <section className="border-b border-bazooka-border/70 bg-bazooka-black py-14">
-      <div className={`${shell} grid overflow-hidden rounded-[4px] border border-bazooka-border-strong lg:grid-cols-[260px_1fr_330px]`}>
-        <motion.div {...reveal} className="bg-bazooka-black p-7">
-          <h2 className="font-display text-[34px] font-black uppercase leading-[.96]">A Community<br /><span className="text-bazooka-lime">That Lifts You.</span></h2>
-          <p className="mt-4 text-[10px] leading-5 text-bazooka-text-secondary">Bazooka is a place where everyone belongs. We train together, celebrate together and become stronger together.</p>
-          <Link href="/memberships" className={`${outlineButton} mt-6 h-10`}>Join Our Community <ArrowRight className="size-4" /></Link>
+    <section className="border-b border-bazooka-border/70 bg-bazooka-black">
+      <div className={`${shell} grid items-stretch gap-0 py-8 lg:grid-cols-[245px_1fr_300px] lg:py-0`}>
+        <motion.div {...reveal} className="flex flex-col justify-center py-7 pr-8 lg:py-6">
+          <h2 className="font-display text-[30px] font-black uppercase leading-[.94]">
+            A Community
+            <br />
+            <span className="text-bazooka-lime">That Lifts You.</span>
+          </h2>
+          <p className="mt-3 max-w-[220px] text-[9px] leading-[1.65] text-bazooka-text-secondary">
+            Bazooka is a place where everyone belongs. We train together, celebrate together and become stronger together.
+          </p>
+          <Link href="/memberships" className={`${outlineButton} mt-5 h-9 w-fit px-5 text-[8px]`}>
+            Join Our Community <ArrowRight className="size-3.5" />
+          </Link>
         </motion.div>
-        <div className="grid grid-cols-2 sm:grid-cols-4">
+
+        <div className="grid grid-cols-2 gap-2 py-4 sm:grid-cols-4 lg:px-2">
           {communityStats.map(([Icon, value, label], index) => (
-            <motion.div key={String(value)} {...reveal} transition={{ duration: .45, delay: index * .06 }} className="flex min-h-[185px] flex-col items-center justify-center border-l border-bazooka-border p-4 text-center transition hover:bg-bazooka-lime/[0.04]">
-              <Icon className="size-6 text-bazooka-lime" />
-              <strong className="font-display mt-5 text-[22px]">{value}</strong>
-              <small className="mt-1 text-[8px] text-bazooka-text-secondary">{label}</small>
+            <motion.div
+              key={String(value)}
+              {...reveal}
+              transition={{ duration: .45, delay: index * .06 }}
+              className="group flex min-h-[138px] flex-col items-center justify-center rounded-[3px] border border-bazooka-border-strong bg-bazooka-surface/45 px-3 py-4 text-center transition-all duration-300 hover:-translate-y-1 hover:border-bazooka-lime hover:bg-bazooka-lime/[0.035]"
+            >
+              <Icon className="size-5 text-bazooka-lime transition-transform duration-300 group-hover:scale-110" />
+              <strong className="font-display mt-4 text-[20px] leading-none">{value}</strong>
+              <small className="mt-2 text-[7px] text-bazooka-text-secondary">{label}</small>
             </motion.div>
           ))}
         </div>
-        <motion.div {...reveal} className="relative min-h-[260px] bg-[url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=90')] bg-cover bg-center grayscale lg:min-h-0">
-          <div className="absolute inset-0 bg-black/20" />
-          <div className="font-display absolute left-6 top-6 text-[25px] font-black uppercase leading-[.9] text-white">Stronger<br /><span className="text-bazooka-lime">Together.</span></div>
+
+        <motion.div
+          {...reveal}
+          className="relative min-h-[210px] overflow-hidden bg-[url('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=90')] bg-cover bg-center grayscale lg:min-h-0"
+        >
+          <div className="absolute inset-0 bg-black/25" />
+          <div className="font-display absolute left-5 top-5 text-[23px] font-black uppercase leading-[.88] text-white">
+            Stronger
+            <br />
+            <span className="text-bazooka-lime">Together.</span>
+          </div>
         </motion.div>
       </div>
     </section>
