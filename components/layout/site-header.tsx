@@ -36,10 +36,6 @@ export default function SiteHeader() {
   const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
@@ -47,7 +43,7 @@ export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-[100] h-[68px] border-b border-white/10 bg-bazooka-black/95 backdrop-blur-xl sm:h-[76px]">
       <div className={`${shell} flex h-full min-w-0 items-center gap-4 sm:gap-7`}>
-        <Link href="/" aria-label="Bazooka Fitness home" className="min-w-0 shrink transition-transform duration-300 hover:scale-[1.025]"><Logo /></Link>
+        <Link href="/" onClick={() => setMenuOpen(false)} aria-label="Bazooka Fitness home" className="min-w-0 shrink transition-transform duration-300 hover:scale-[1.025]"><Logo /></Link>
         <nav className="hidden flex-1 items-center justify-center gap-5 xl:flex" aria-label="Primary navigation">
           {nav.map(([label, href]) => {
             const active = isActive(href);
