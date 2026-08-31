@@ -1,3 +1,4 @@
+import CafeBazookaHighlight from "@/components/cafe-bazooka-highlight";
 import ExperienceSection from "@/components/home/experience-section";
 import FacilitiesSection from "@/components/home/facilities-section";
 import HeroSection from "@/components/home/hero-section";
@@ -13,6 +14,7 @@ export default function HomePage() {
       <ExperienceSection />
       <ProgramsSection />
       <FacilitiesSection />
+      <CafeBazookaHighlight />
       <TransformationsSection />
       <SocialProofSection />
       <TrialCtaSection />
