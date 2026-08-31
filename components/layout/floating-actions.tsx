@@ -24,6 +24,7 @@ function FloatingAction({ label, children, className, href, onClick }: { label: 
 export default function FloatingActions() {
   const [chatOpen, setChatOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [footerVisible, setFooterVisible] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setShowScrollTop(window.scrollY > 520);
@@ -32,9 +33,30 @@ export default function FloatingActions() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const footer = document.getElementById("site-footer");
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting;
+        setFooterVisible(visible);
+        if (visible) setChatOpen(false);
+      },
+      { threshold: 0.02 },
+    );
+
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
-      <aside className="fixed bottom-5 right-5 z-[90] flex flex-col gap-3" aria-label="Quick actions">
+      <aside
+        className={`fixed bottom-5 right-5 z-[90] flex flex-col gap-3 transition-all duration-300 ${footerVisible ? "pointer-events-none translate-y-5 opacity-0" : "translate-y-0 opacity-100"}`}
+        aria-label="Quick actions"
+        aria-hidden={footerVisible}
+      >
         <FloatingAction label="Book Free Trial" href="/book-free-trial" className="border border-bazooka-lime bg-bazooka-lime text-bazooka-black shadow-[0_0_22px_rgba(182,240,0,.22)] hover:bg-bazooka-lime-hover"><CalendarCheck2 className="size-5" /></FloatingAction>
 
         <a href="https://wa.me/919116405151" target="_blank" rel="noreferrer" className="group relative grid size-13 place-items-center rounded-full bg-bazooka-whatsapp text-white shadow-lg transition-all duration-300 hover:scale-110" aria-label="WhatsApp">
@@ -51,7 +73,7 @@ export default function FloatingActions() {
         )}
       </aside>
 
-      {chatOpen && (
+      {chatOpen && !footerVisible && (
         <motion.section initial={{ opacity: 0, scale: 0.96, y: 15 }} animate={{ opacity: 1, scale: 1, y: 0 }} className="fixed bottom-[92px] right-[82px] z-[120] w-[min(calc(100%-32px),360px)] overflow-hidden rounded-xl border border-bazooka-border bg-bazooka-card shadow-2xl" aria-label="Bazooka chatbot">
           <div className="flex items-center justify-between border-b border-bazooka-border bg-bazooka-surface px-4 py-3">
             <div className="flex items-center gap-3"><span className="grid size-9 place-items-center rounded-full bg-bazooka-lime text-bazooka-black"><MessageCircleMore className="size-4" /></span><div><strong className="block text-[11px] text-bazooka-lime">ASK BAZOOKA</strong><small className="text-[9px] text-bazooka-text-secondary">Fitness &amp; membership help</small></div></div>
