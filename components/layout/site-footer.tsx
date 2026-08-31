@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Clock3, MapPinned, Phone, UtensilsCrossed } from "lucide-react";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 
-const shell = "mx-auto w-[min(calc(100%-40px),1180px)] md:w-[min(calc(100%-64px),1180px)]";
+const shell = "mx-auto w-[min(calc(100%-32px),1180px)] sm:w-[min(calc(100%-40px),1180px)] md:w-[min(calc(100%-64px),1180px)]";
 
 const footerCols = [
   { title: "Quick Links", links: [["Home", "/"], ["About Us", "/about"], ["Memberships", "/memberships"], ["Facilities", "/facilities"], ["Cafe Bazooka", "/facilities/nutrition-bar"], ["Trainers", "/trainers"], ["Transformations", "/transformations"], ["Gallery", "/gallery"], ["Contact", "/contact"]] },
@@ -14,9 +14,9 @@ const footerCols = [
 
 function FooterLogo() {
   return (
-    <span className="inline-flex min-w-[170px] flex-col leading-none">
-      <span className="text-[30px] font-black tracking-[-1.8px] text-bazooka-lime">BAZOOKA</span>
-      <span className="mt-1 text-[5px] tracking-[0.6px] text-bazooka-text-secondary">FITNESS • PERFORMANCE • COMMUNITY</span>
+    <span className="inline-flex min-w-0 flex-col leading-none">
+      <span className="text-[27px] font-black tracking-[-1.6px] text-bazooka-lime sm:text-[30px] sm:tracking-[-1.8px]">BAZOOKA</span>
+      <span className="mt-1 whitespace-nowrap text-[4px] tracking-[0.45px] text-bazooka-text-secondary sm:text-[5px] sm:tracking-[0.6px]">FITNESS • PERFORMANCE • COMMUNITY</span>
     </span>
   );
 }
@@ -24,12 +24,12 @@ function FooterLogo() {
 export default function SiteFooter() {
   return (
     <footer id="site-footer" className="bg-bazooka-soft-black">
-      <div className={`${shell} grid gap-10 py-16 lg:pr-24 xl:pr-28 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(5,1fr)_1.25fr]`}>
+      <div className={`${shell} grid gap-9 py-12 pr-[62px] sm:grid-cols-2 sm:gap-10 sm:py-16 sm:pr-[76px] lg:grid-cols-[1.4fr_repeat(5,1fr)_1.25fr] lg:pr-24 xl:pr-28`}>
         <div>
-          <Link href="/" className="inline-block transition-transform hover:scale-[1.025]"><FooterLogo /></Link>
-          <p className="mt-6 text-[12px] leading-6 text-bazooka-text-secondary">Stronger People.<br />A Healthier Jodhpur.</p>
-          <Link href="/facilities/nutrition-bar" className="mt-4 flex w-fit items-center gap-2 text-[10px] text-bazooka-text-secondary transition hover:text-bazooka-lime"><UtensilsCrossed className="size-4 text-bazooka-lime" /><span><b className="text-white">Cafe Bazooka</b><br />Healthy meals &amp; refreshments</span></Link>
-          <div className="mt-6 flex gap-3">
+          <Link href="/" className="inline-block max-w-full transition-transform hover:scale-[1.025]"><FooterLogo /></Link>
+          <p className="mt-5 text-[12px] leading-6 text-bazooka-text-secondary sm:mt-6">Stronger People.<br />A Healthier Jodhpur.</p>
+          <Link href="/facilities/nutrition-bar" className="mt-4 flex w-fit max-w-full items-start gap-2 text-[10px] text-bazooka-text-secondary transition hover:text-bazooka-lime"><UtensilsCrossed className="mt-0.5 size-4 shrink-0 text-bazooka-lime" /><span><b className="text-white">Cafe Bazooka</b><br />Healthy meals &amp; refreshments</span></Link>
+          <div className="mt-6 flex flex-wrap gap-3">
             {[[FaInstagram, "Instagram"], [FaFacebookF, "Facebook"], [FaYoutube, "YouTube"]].map(([Icon, label], index) => {
               const SocialIcon = Icon as typeof FaInstagram;
               return <a key={index} href="#" aria-label={String(label)} className="grid size-10 place-items-center rounded-full border border-bazooka-border text-bazooka-text-secondary transition-all duration-300 hover:-translate-y-1 hover:border-bazooka-lime hover:bg-bazooka-lime hover:text-bazooka-black"><SocialIcon className="size-4" /></a>;
@@ -38,25 +38,25 @@ export default function SiteFooter() {
         </div>
 
         {footerCols.map((column) => (
-          <div key={column.title}>
-            <h3 className="mb-5 text-[11px] font-black uppercase text-bazooka-text">{column.title}</h3>
+          <div key={column.title} className="min-w-0">
+            <h3 className="mb-4 text-[11px] font-black uppercase text-bazooka-text sm:mb-5">{column.title}</h3>
             <div className="space-y-3">
-              {column.links.map(([label, href]) => <Link key={label} href={href} className="group flex w-fit items-center gap-1 text-[10px] text-bazooka-text-secondary transition-all duration-300 hover:translate-x-1 hover:text-bazooka-lime"><span className="h-px w-0 bg-bazooka-lime transition-all duration-300 group-hover:w-2" />{label}</Link>)}
+              {column.links.map(([label, href]) => <Link key={label} href={href} className="group flex w-fit max-w-full items-center gap-1 text-[10px] text-bazooka-text-secondary transition-all duration-300 hover:translate-x-1 hover:text-bazooka-lime"><span className="h-px w-0 shrink-0 bg-bazooka-lime transition-all duration-300 group-hover:w-2" />{label}</Link>)}
             </div>
           </div>
         ))}
 
-        <div className="space-y-6 text-[10px] leading-5 text-bazooka-text-secondary">
-          <a href="https://maps.app.goo.gl/ArEb2YaGdZq5qF8x7" target="_blank" rel="noreferrer" className="flex gap-3 transition hover:text-bazooka-lime"><MapPinned className="size-4 shrink-0 text-bazooka-lime" /><span>Floor 6, Shanti One, Plot No. 39,<br />11th A Rd, Sardarpura, Jodhpur,<br />Rajasthan 342001</span></a>
+        <div className="min-w-0 space-y-5 text-[10px] leading-5 text-bazooka-text-secondary sm:space-y-6">
+          <a href="https://maps.app.goo.gl/ArEb2YaGdZq5qF8x7" target="_blank" rel="noreferrer" className="flex min-w-0 gap-3 transition hover:text-bazooka-lime"><MapPinned className="size-4 shrink-0 text-bazooka-lime" /><span className="min-w-0">Floor 6, Shanti One, Plot No. 39,<br />11th A Rd, Sardarpura, Jodhpur,<br />Rajasthan 342001</span></a>
           <a href="tel:+919116405151" className="flex gap-3 transition hover:text-bazooka-lime"><Phone className="size-4 shrink-0 text-bazooka-lime" /><span>+91 91164 05151</span></a>
           <div className="flex gap-3"><Clock3 className="size-4 shrink-0 text-bazooka-lime" /><span>Mon – Sat: 5:30 AM – 10:00 PM<br />Sunday: Closed</span></div>
         </div>
       </div>
 
       <div className="border-t border-bazooka-border">
-        <div className={`${shell} flex flex-col gap-2 py-5 lg:pr-24 xl:pr-28 text-[9px] text-bazooka-muted sm:flex-row sm:justify-between`}>
+        <div className={`${shell} flex flex-col gap-2 py-5 pr-[62px] text-[9px] leading-4 text-bazooka-muted sm:pr-[76px] md:flex-row md:items-center md:justify-between lg:pr-24 xl:pr-28`}>
           <span>© 2026 Bazooka Fitness. All rights reserved.</span>
-          <a href="https://builtbyshahzad.vercel.app" target="_blank" rel="noreferrer" className="transition hover:text-bazooka-lime">Designed &amp; Developed by Shahzad Khan <b className="text-bazooka-lime">♥</b></a>
+          <a href="https://builtbyshahzad.vercel.app" target="_blank" rel="noreferrer" className="w-fit max-w-full transition hover:text-bazooka-lime">Designed &amp; Developed by Shahzad Khan <b className="text-bazooka-lime">♥</b></a>
         </div>
       </div>
     </footer>
