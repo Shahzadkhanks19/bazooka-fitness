@@ -5,6 +5,7 @@ import FoundersSection from "@/components/about/founders-section";
 import JourneySection from "@/components/about/journey-section";
 import MethodologySection from "@/components/about/methodology-section";
 import WhyChooseSection from "@/components/about/why-choose-section";
+import CafeBazookaHighlight from "@/components/cafe-bazooka-highlight";
 
 export default function AboutPage() {
   return (
@@ -15,6 +16,7 @@ export default function AboutPage() {
       <CommunitySection />
       <WhyChooseSection />
       <FoundersSection />
+      <CafeBazookaHighlight compact />
       <AboutCtaSection />
     </main>
   );
