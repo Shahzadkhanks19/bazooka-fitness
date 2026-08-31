@@ -92,4 +92,16 @@ h4 {
   table {
     font-size: 0.75rem;
   }
+
+  /* Keep dynamic hero titles and long names inside narrow viewports. */
+  h1.font-display {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  /* Prevent long CTA labels from forcing horizontal overflow. */
+  a,
+  button {
+    min-width: 0;
+  }
 }
