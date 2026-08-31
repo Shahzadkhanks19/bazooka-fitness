@@ -5,11 +5,19 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Info } from "lucide-react";
 import { reveal, shell } from "./memberships-shared";
 
-const plans = [
-  { name: "Basic", subtitle: "Start Your Journey", price: "₹1,499", features: ["Gym Access (Day Time)", "Standard Equipment", "Locker Facility", "1 Group Class / Week"] },
+type MembershipPlan = {
+  name: string;
+  subtitle: string;
+  price: string;
+  popular: boolean;
+  features: readonly string[];
+};
+
+const plans: readonly MembershipPlan[] = [
+  { name: "Basic", subtitle: "Start Your Journey", price: "₹1,499", popular: false, features: ["Gym Access (Day Time)", "Standard Equipment", "Locker Facility", "1 Group Class / Week"] },
   { name: "Standard", subtitle: "Stay Consistent", price: "₹2,499", popular: true, features: ["Gym Access (All Time)", "Group Classes", "Locker Facility", "Body Composition Check", "Diet Guidance (Basic)"] },
-  { name: "Premium", subtitle: "Perform Better", price: "₹3,999", features: ["All Standard Benefits", "Personal Training (2 Sessions/Month)", "Advanced Group Classes", "Body Composition Check", "Diet Guidance (Advanced)"] },
-  { name: "Transformation", subtitle: "Complete Transformation", price: "₹5,999", features: ["All Premium Benefits", "Personal Training (Unlimited)", "Custom Diet Plan", "Weekly Progress Tracking", "Priority Support"] },
+  { name: "Premium", subtitle: "Perform Better", price: "₹3,999", popular: false, features: ["All Standard Benefits", "Personal Training (2 Sessions/Month)", "Advanced Group Classes", "Body Composition Check", "Diet Guidance (Advanced)"] },
+  { name: "Transformation", subtitle: "Complete Transformation", price: "₹5,999", popular: false, features: ["All Premium Benefits", "Personal Training (Unlimited)", "Custom Diet Plan", "Weekly Progress Tracking", "Priority Support"] },
 ] as const;
 
 export default function MembershipPlansSection() {
