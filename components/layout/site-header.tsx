@@ -1,10 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import type { MouseEvent } from "react";
 
 const nav = [
   ["Home", "/"],
@@ -31,40 +30,41 @@ function Logo() {
 }
 
 export default function SiteHeader() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
-
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [menuOpen]);
+  const closeMobileMenu = (event: MouseEvent<HTMLAnchorElement>) => event.currentTarget.closest("details")?.removeAttribute("open");
 
   return (
-    <header className="sticky top-0 z-[100] h-[68px] border-b border-white/10 bg-bazooka-black/95 backdrop-blur-xl sm:h-[76px]">
+    <header id="site-top" className="sticky top-0 z-[100] h-[68px] border-b border-white/10 bg-bazooka-black/95 backdrop-blur-xl sm:h-[76px]">
       <div className={`${shell} flex h-full min-w-0 items-center gap-4 sm:gap-7`}>
-        <Link href="/" onClick={() => setMenuOpen(false)} aria-label="Bazooka Fitness home" className="min-w-0 shrink transition-transform duration-300 hover:scale-[1.025]"><Logo /></Link>
+        <Link href="/" aria-label="Bazooka Fitness home" className="min-w-0 shrink transition-transform duration-300 hover:scale-[1.025]"><Logo /></Link>
+
         <nav className="hidden flex-1 items-center justify-center gap-5 xl:flex" aria-label="Primary navigation">
           {nav.map(([label, href]) => {
             const active = isActive(href);
             return <Link key={label} href={href} className={`group relative grid h-[76px] place-items-center text-[12px] font-bold transition-colors duration-300 ${active ? "text-bazooka-lime" : "text-bazooka-text hover:text-bazooka-lime"}`}>{label}<span className={`absolute bottom-4 h-[2px] bg-bazooka-lime shadow-[0_0_10px_rgba(182,240,0,.35)] transition-all duration-300 ${active ? "w-8" : "w-0 group-hover:w-8"}`} /></Link>;
           })}
         </nav>
-        <Link href="/book-free-trial" className={`${trialButton} ml-auto hidden min-w-[176px] xl:inline-flex`}>Book Free Trial <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></Link>
-        <button type="button" onClick={() => setMenuOpen((value) => !value)} className="ml-auto grid size-10 shrink-0 place-items-center rounded-md border border-bazooka-border text-white transition hover:border-bazooka-lime hover:text-bazooka-lime sm:size-11 xl:hidden" aria-label="Toggle navigation" aria-expanded={menuOpen} aria-controls="mobile-navigation">{menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}</button>
-      </div>
 
-      {menuOpen && (
-        <motion.nav id="mobile-navigation" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="absolute inset-x-0 top-[68px] z-[110] max-h-[calc(100dvh-68px)] overflow-y-auto overscroll-contain border-b border-bazooka-border bg-bazooka-black/98 px-4 py-4 shadow-2xl backdrop-blur-2xl sm:top-[76px] sm:max-h-[calc(100dvh-76px)] sm:px-5 sm:py-5 xl:hidden" aria-label="Mobile navigation">
-          <div className="mx-auto grid w-full max-w-xl gap-1">
-            {nav.map(([label, href]) => {
-              const active = isActive(href);
-              return <Link key={label} href={href} onClick={() => setMenuOpen(false)} className={`rounded-md px-4 py-3 text-[13px] font-bold transition sm:py-3.5 sm:text-sm ${active ? "bg-bazooka-lime/10 text-bazooka-lime" : "text-white hover:bg-bazooka-card hover:text-bazooka-lime"}`}>{label}</Link>;
-            })}
-            <Link href="/book-free-trial" onClick={() => setMenuOpen(false)} className={`${trialButton} mt-3 w-full`}>Book Free Trial <ArrowRight className="size-4" /></Link>
-          </div>
-        </motion.nav>
-      )}
+        <Link href="/book-free-trial" className={`${trialButton} ml-auto hidden min-w-[176px] xl:inline-flex`}>Book Free Trial <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></Link>
+
+        <details className="group ml-auto xl:hidden">
+          <summary className="grid size-10 cursor-pointer list-none place-items-center rounded-md border border-bazooka-border text-white transition hover:border-bazooka-lime hover:text-bazooka-lime sm:size-11 [&::-webkit-details-marker]:hidden" aria-label="Toggle navigation">
+            <Menu className="size-5 group-open:hidden" />
+            <X className="hidden size-5 group-open:block" />
+          </summary>
+
+          <nav className="absolute inset-x-0 top-[68px] z-[110] max-h-[calc(100dvh-68px)] overflow-y-auto overscroll-contain border-b border-bazooka-border bg-bazooka-black/98 px-4 py-4 shadow-2xl backdrop-blur-2xl sm:top-[76px] sm:max-h-[calc(100dvh-76px)] sm:px-5 sm:py-5" aria-label="Mobile navigation">
+            <div className="mx-auto grid w-full max-w-xl gap-1">
+              {nav.map(([label, href]) => {
+                const active = isActive(href);
+                return <Link key={label} href={href} onClick={closeMobileMenu} className={`rounded-md px-4 py-3 text-[13px] font-bold transition sm:py-3.5 sm:text-sm ${active ? "bg-bazooka-lime/10 text-bazooka-lime" : "text-white hover:bg-bazooka-card hover:text-bazooka-lime"}`}>{label}</Link>;
+              })}
+              <Link href="/book-free-trial" onClick={closeMobileMenu} className={`${trialButton} mt-3 w-full`}>Book Free Trial <ArrowRight className="size-4" /></Link>
+            </div>
+          </nav>
+        </details>
+      </div>
     </header>
   );
 }
