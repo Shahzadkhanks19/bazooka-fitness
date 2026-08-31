@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, CalendarCheck2, ChevronUp, MessageCircleMore, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
 function FloatingAction({ label, children, className, href, onClick }: { label: string; children: React.ReactNode; className: string; href?: string; onClick?: () => void }) {
@@ -21,14 +21,6 @@ function FloatingAction({ label, children, className, href, onClick }: { label: 
 
 export default function FloatingActions() {
   const [chatOpen, setChatOpen] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setShowScrollTop(window.scrollY > 520);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
     <>
@@ -42,11 +34,7 @@ export default function FloatingActions() {
 
         <FloatingAction label="Ask Bazooka" onClick={() => setChatOpen((value) => !value)} className="border border-bazooka-border bg-bazooka-card text-bazooka-lime shadow-lg hover:border-bazooka-lime hover:bg-bazooka-card-hover"><MessageCircleMore className="size-[18px] sm:size-5" /></FloatingAction>
 
-        {showScrollTop && (
-          <motion.div initial={{ opacity: 0, scale: 0.8, y: 8 }} animate={{ opacity: 1, scale: 1, y: 0 }}>
-            <FloatingAction label="Back To Top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="border border-bazooka-border bg-bazooka-card text-white hover:border-bazooka-lime hover:text-bazooka-lime"><ChevronUp className="size-[18px] sm:size-5" /></FloatingAction>
-          </motion.div>
-        )}
+        <FloatingAction label="Back To Top" href="#site-top" className="border border-bazooka-border bg-bazooka-card text-white hover:border-bazooka-lime hover:text-bazooka-lime"><ChevronUp className="size-[18px] sm:size-5" /></FloatingAction>
       </aside>
 
       {chatOpen && (
