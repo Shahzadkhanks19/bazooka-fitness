@@ -6,14 +6,14 @@ import { ArrowRight, Apple, Dumbbell, HeartPulse, LockKeyhole, PersonStanding, S
 import { outlineButton, reveal, shell } from "./facilities-shared";
 
 const zones = [
-  { title: "Strength Zone", text: "Premium strength equipment for building raw power and muscle.", icon: Dumbbell, image: "bg-[url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=90')]" },
-  { title: "Functional Zone", text: "Improve mobility, agility and overall performance with functional training.", icon: PersonStanding, image: "bg-[url('https://images.unsplash.com/photo-1534368420009-621bfab424a8?auto=format&fit=crop&w=1000&q=90')]" },
-  { title: "Cardio Zone", text: "Boost endurance, burn calories and level up your stamina.", icon: HeartPulse, image: "bg-[url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1000&q=90')]" },
-  { title: "Recovery Zone", text: "Relax, recover and come back stronger every day.", icon: Waves, image: "bg-[url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1000&q=90')]" },
-  { title: "Group Class Studio", text: "High-energy group classes that keep you motivated.", icon: UsersRound, image: "bg-[url('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1000&q=90')]" },
-  { title: "Boxing Zone", text: "Unleash your power, speed and confidence.", icon: Shield, image: "bg-[url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=1000&q=90')]" },
-  { title: "Locker & Changing", text: "Spacious, secure and comfortable lockers with modern amenities.", icon: LockKeyhole, image: "bg-[url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=1000&q=90')]" },
-  { title: "Nutrition Bar", text: "Fuel your body with healthy drinks and protein snacks.", icon: Apple, image: "bg-[url('https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=1000&q=90')]" },
+  { slug: "strength-zone", title: "Strength Zone", text: "Premium strength equipment for building raw power and muscle.", icon: Dumbbell, image: "bg-[url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=90')]" },
+  { slug: "functional-zone", title: "Functional Zone", text: "Improve mobility, agility and overall performance with functional training.", icon: PersonStanding, image: "bg-[url('https://images.unsplash.com/photo-1534368420009-621bfab424a8?auto=format&fit=crop&w=1000&q=90')]" },
+  { slug: "cardio-zone", title: "Cardio Zone", text: "Boost endurance, burn calories and level up your stamina.", icon: HeartPulse, image: "bg-[url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1000&q=90')]" },
+  { slug: "recovery-zone", title: "Recovery Zone", text: "Relax, recover and come back stronger every day.", icon: Waves, image: "bg-[url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1000&q=90')]" },
+  { slug: "group-class-studio", title: "Group Class Studio", text: "High-energy group classes that keep you motivated.", icon: UsersRound, image: "bg-[url('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1000&q=90')]" },
+  { slug: "boxing-zone", title: "Boxing Zone", text: "Unleash your power, speed and confidence.", icon: Shield, image: "bg-[url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=1000&q=90')]" },
+  { slug: "locker-changing", title: "Locker & Changing", text: "Spacious, secure and comfortable lockers with modern amenities.", icon: LockKeyhole, image: "bg-[url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=1000&q=90')]" },
+  { slug: "nutrition-bar", title: "Nutrition Bar", text: "Fuel your body with healthy drinks and protein snacks.", icon: Apple, image: "bg-[url('https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=1000&q=90')]" },
 ] as const;
 
 export default function FacilityZonesSection() {
@@ -39,7 +39,7 @@ export default function FacilityZonesSection() {
                   <span className="grid size-11 place-items-center rounded-full border border-bazooka-lime bg-black/45 text-bazooka-lime transition group-hover:bg-bazooka-lime group-hover:text-black"><Icon className="size-5" /></span>
                   <h3 className="font-display mt-4 text-[19px] font-black uppercase leading-none text-white">{zone.title}</h3>
                   <p className="mt-2 max-w-[250px] text-[9px] leading-4 text-bazooka-text-secondary">{zone.text}</p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-[9px] font-black uppercase text-bazooka-lime">View Zone <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" /></span>
+                  <Link href={`/facilities/${zone.slug}`} className="mt-4 inline-flex items-center gap-2 text-[9px] font-black uppercase text-bazooka-lime transition hover:text-bazooka-lime-hover">View Zone <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" /></Link>
                 </div>
               </motion.article>
             );
