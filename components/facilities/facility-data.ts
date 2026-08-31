@@ -74,12 +74,12 @@ export const facilityDetails: readonly FacilityDetail[] = [
   },
   {
     slug: "nutrition-bar",
-    title: "Nutrition Bar",
-    eyebrow: "Fuel Your Goals",
-    summary: "A convenient nutrition stop for healthy drinks, protein-focused options and post-workout refuelling.",
-    description: "Support your training with convenient refreshments and recovery-friendly nutrition options available right inside the gym environment.",
+    title: "Cafe Bazooka",
+    eyebrow: "Fuel Better",
+    summary: "Bazooka Fitness' in-house cafe for healthy meals, protein-focused options, drinks and convenient post-workout refuelling.",
+    description: "Cafe Bazooka brings nutrition into the gym experience with wholesome meals, lighter bites, protein-friendly choices and refreshing beverages designed for members who want convenient, better-for-you food before or after training.",
     image: "https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=1800&q=90",
-    highlights: ["Healthy refreshments", "Protein-focused options", "Post-workout fuel", "Convenient in-gym access"],
+    highlights: ["Healthy meals & bowls", "Protein-focused options", "Fresh drinks & refreshments", "Convenient in-house dining"],
   },
 ];
 
