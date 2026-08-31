@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Camera, Instagram } from "lucide-react";
+import { ArrowRight, Camera } from "lucide-react";
+import { FaInstagram } from "react-icons/fa6";
 import { primaryButton, reveal, shell } from "./gallery-shared";
 
 export default function GalleryStoryCtaSection() {
@@ -20,7 +21,7 @@ export default function GalleryStoryCtaSection() {
             </div>
           </div>
           <Link href="https://www.instagram.com/" target="_blank" rel="noreferrer" className={primaryButton}>
-            <Instagram className="size-4" /> Follow Us On Instagram <ArrowRight className="size-4" />
+            <FaInstagram className="size-4" /> Follow Us On Instagram <ArrowRight className="size-4" />
           </Link>
         </motion.div>
       </div>
