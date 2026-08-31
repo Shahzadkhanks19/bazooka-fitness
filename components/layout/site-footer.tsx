@@ -24,7 +24,7 @@ function FooterLogo() {
 export default function SiteFooter() {
   return (
     <footer id="site-footer" className="bg-bazooka-soft-black">
-      <div className={`${shell} grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(5,1fr)_1.25fr]`}>
+      <div className={`${shell} grid gap-10 py-16 lg:pr-24 xl:pr-28 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(5,1fr)_1.25fr]`}>
         <div>
           <Link href="/" className="inline-block transition-transform hover:scale-[1.025]"><FooterLogo /></Link>
           <p className="mt-6 text-[12px] leading-6 text-bazooka-text-secondary">Stronger People.<br />A Healthier Jodhpur.</p>
@@ -54,7 +54,7 @@ export default function SiteFooter() {
       </div>
 
       <div className="border-t border-bazooka-border">
-        <div className={`${shell} flex flex-col gap-2 py-5 text-[9px] text-bazooka-muted sm:flex-row sm:justify-between`}>
+        <div className={`${shell} flex flex-col gap-2 py-5 lg:pr-24 xl:pr-28 text-[9px] text-bazooka-muted sm:flex-row sm:justify-between`}>
           <span>© 2026 Bazooka Fitness. All rights reserved.</span>
           <a href="https://builtbyshahzad.vercel.app" target="_blank" rel="noreferrer" className="transition hover:text-bazooka-lime">Designed &amp; Developed by Shahzad Khan <b className="text-bazooka-lime">♥</b></a>
         </div>
