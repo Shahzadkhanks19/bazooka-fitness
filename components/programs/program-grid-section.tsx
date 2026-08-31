@@ -44,7 +44,7 @@ export default function ProgramGridSection() {
           })}
         </div>
 
-        <div className="mt-6 flex justify-center"><Link href="#transformation-programs" className={`${outlineButton} h-10`}>View All Programs <ArrowRight className="size-4" /></Link></div>
+        <div className="mt-6 flex justify-center"><Link href="/programs/all" className={`${outlineButton} h-10`}>View All Programs <ArrowRight className="size-4" /></Link></div>
       </div>
     </section>
   );
