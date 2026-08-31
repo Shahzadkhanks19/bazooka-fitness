@@ -20,7 +20,7 @@ const stats = [
 
 export default function TransformationProgramsSection() {
   return (
-    <section className="border-b border-bazooka-border/70 py-14">
+    <section id="transformation-programs" className="scroll-mt-24 border-b border-bazooka-border/70 py-14">
       <div className={shell}>
         <motion.div {...reveal} className="grid gap-5 lg:grid-cols-[340px_1fr] lg:items-end">
           <div>
