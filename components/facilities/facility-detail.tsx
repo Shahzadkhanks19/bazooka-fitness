@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, CheckCircle2, Dumbbell, Gauge, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Dumbbell, Gauge, ShieldCheck, UsersRound } from "lucide-react";
 import type { FacilityDetail } from "./facility-data";
 import { facilityDetails } from "./facility-data";
 import { outlineButton, primaryButton, reveal, shell } from "./facilities-shared";
