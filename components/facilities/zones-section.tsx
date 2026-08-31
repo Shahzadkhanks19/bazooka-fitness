@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Apple, Dumbbell, HeartPulse, LockKeyhole, PersonStanding, Shield, UsersRound, Waves } from "lucide-react";
+import { ArrowRight, Coffee, Dumbbell, HeartPulse, LockKeyhole, PersonStanding, Shield, UsersRound, Waves } from "lucide-react";
 import { outlineButton, reveal, shell } from "./facilities-shared";
 
 const zones = [
@@ -13,7 +13,7 @@ const zones = [
   { slug: "group-class-studio", title: "Group Class Studio", text: "High-energy group classes that keep you motivated.", icon: UsersRound, image: "bg-[url('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1000&q=90')]" },
   { slug: "boxing-zone", title: "Boxing Zone", text: "Unleash your power, speed and confidence.", icon: Shield, image: "bg-[url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=1000&q=90')]" },
   { slug: "locker-changing", title: "Locker & Changing", text: "Spacious, secure and comfortable lockers with modern amenities.", icon: LockKeyhole, image: "bg-[url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=1000&q=90')]" },
-  { slug: "nutrition-bar", title: "Nutrition Bar", text: "Fuel your body with healthy drinks and protein snacks.", icon: Apple, image: "bg-[url('https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=1000&q=90')]" },
+  { slug: "nutrition-bar", title: "Cafe Bazooka", text: "In-house healthy meals, protein-focused options and refreshing post-workout fuel.", icon: Coffee, image: "bg-[url('https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=1000&q=90')]" },
 ] as const;
 
 export default function FacilityZonesSection() {
