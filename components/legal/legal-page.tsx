@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AlertCircle, ArrowRight, CalendarDays, Camera, CheckCircle2, Clock3, Cookie, Copyright, CreditCard, Dumbbell, Eye, FileCheck2, FilePenLine, Gavel, Headphones, Info, Link2, LockKeyhole, Mail, Phone, Scale, Settings2, ShieldCheck, Target, UserRound, UsersRound } from "lucide-react";
+import { AlertCircle, ArrowRight, CalendarDays, Camera, CheckCircle2, Cookie, Copyright, CreditCard, Dumbbell, Eye, FileCheck2, FilePenLine, Gavel, Headphones, Info, Link2, LockKeyhole, Mail, Phone, Scale, Settings2, ShieldCheck, Target, UserRound, UsersRound } from "lucide-react";
 
 export type LegalKind = "privacy" | "terms" | "cookie" | "disclaimer";
 type IconType = typeof UserRound;
