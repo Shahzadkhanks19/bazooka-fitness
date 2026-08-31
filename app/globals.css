@@ -21,19 +21,3 @@
   --color-bazooka-success: #22C55E;
   --font-display: "Arial Narrow", Impact, sans-serif;
 }
-
-html {
-  scroll-behavior: smooth;
-  background: #050505;
-}
-
-body {
-  margin: 0;
-  background: #050505;
-  color: #F5F5F3;
-}
-
-::selection {
-  background: #B6F000;
-  color: #050505;
-}
