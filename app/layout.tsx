@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className="scroll-smooth bg-bazooka-black">
+      <body className="m-0 bg-bazooka-black text-bazooka-text selection:bg-bazooka-lime selection:text-bazooka-black">{children}</body>
     </html>
   );
 }
