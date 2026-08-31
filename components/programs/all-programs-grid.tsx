@@ -20,7 +20,7 @@ const imageClasses: Record<string, string> = {
 
 export default function AllProgramsGrid() {
   return (
-    <section className="border-b border-bazooka-border/70 py-14 md:py-16">
+    <section id="all-programs" className="scroll-mt-[76px] border-b border-bazooka-border/70 py-14 md:py-16">
       <div className={shell}>
         <motion.div {...reveal} className="grid gap-5 lg:grid-cols-[360px_1fr] lg:items-end">
           <div>
