@@ -33,8 +33,8 @@ export default function FoundersSection() {
 
         <div className="grid gap-4 md:grid-cols-2">
           {founders.map((founder, index) => (
-            <motion.article key={founder.name} {...reveal} transition={{ duration: .5, delay: index * .08 }} className="grid min-h-[240px] overflow-hidden rounded-[5px] border border-bazooka-border-strong bg-bazooka-surface sm:grid-cols-[42%_58%]">
-              <div className={`${founder.image} bg-cover bg-center grayscale`} />
+            <motion.article key={founder.name} {...reveal} transition={{ duration: .5, delay: index * .08 }} className="grid overflow-hidden rounded-[5px] border border-bazooka-border-strong bg-bazooka-surface sm:min-h-[240px] sm:grid-cols-[42%_58%]">
+              <div className={`${founder.image} aspect-[4/3] bg-cover bg-center grayscale sm:aspect-auto`} />
               <div className="flex flex-col justify-center p-6">
                 <h3 className="font-display text-[20px] font-black uppercase">{founder.name}</h3>
                 <span className="mt-1 text-[8px] font-black uppercase text-bazooka-lime">{founder.role}</span>
