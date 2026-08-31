@@ -82,6 +82,33 @@ h4 {
   overflow-wrap: break-word;
 }
 
+/* Give touch devices the same sense of feedback desktop users get from hover. */
+a,
+button,
+article {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  a,
+  button,
+  article {
+    transition-property: transform, border-color, background-color, color, box-shadow, opacity;
+    transition-duration: 180ms;
+    transition-timing-function: ease-out;
+  }
+
+  a:active,
+  button:active {
+    transform: scale(0.97);
+  }
+
+  article:active {
+    transform: scale(0.99);
+    border-color: var(--color-bazooka-lime);
+  }
+}
+
 @media (max-width: 639px) {
   input,
   select,
