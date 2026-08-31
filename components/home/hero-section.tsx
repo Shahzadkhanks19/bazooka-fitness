@@ -11,7 +11,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534438097545-a2c22c57f2ad?auto=format&fit=crop&w=2200&q=90')] bg-cover bg-[65%_center] grayscale sm:bg-[center_34%]" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,#050505_0%,rgba(5,5,5,.96)_26%,rgba(5,5,5,.60)_49%,rgba(5,5,5,.08)_73%,rgba(5,5,5,.22)_100%),linear-gradient(0deg,#050505_0%,transparent_20%)]" />
       <div className={`${shell} relative flex min-h-[720px] flex-col pb-6 pt-12 sm:pt-16 lg:pt-20`}>
-        <motion.div initial={{ opacity: 0, x: -28 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.65 }} className="max-w-[440px]">
+        <motion.div initial={false} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.65 }} className="max-w-[440px]">
           <h1 className="font-display text-[44px] font-black uppercase leading-[.88] tracking-[-1px] min-[380px]:text-[50px] sm:text-[70px] sm:tracking-[-2px] lg:text-[82px]">Build Your <span className="block italic text-bazooka-lime">Strongest</span> Self</h1>
           <h2 className="mt-5 text-[11px] font-black sm:text-[13px]">STRONGER PEOPLE. A HEALTHIER JODHPUR.</h2>
           <p className="mt-3 max-w-[370px] text-[11px] leading-5 text-bazooka-text-secondary sm:text-[12px]">Strength training, Cardio, Personal training, Steam &amp; shower. More than a gym — a community that pushes you forward.</p>
