@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AirVent, BriefcaseMedical, Droplets, ParkingCircle, ShowerHead, Sparkles, ThermometerSun, Waves, Wifi } from "lucide-react";
+import { AirVent, BriefcaseMedical, Coffee, Droplets, ParkingCircle, ShowerHead, Sparkles, ThermometerSun, Waves, Wifi } from "lucide-react";
 import { reveal, shell } from "./facilities-shared";
 
 const amenities = [
@@ -14,6 +14,7 @@ const amenities = [
   [AirVent, "Air Conditioned"],
   [ThermometerSun, "Clean & Hygienic"],
   [BriefcaseMedical, "First Aid"],
+  [Coffee, "Cafe Bazooka"],
 ] as const;
 
 export default function AmenitiesSection() {
@@ -25,10 +26,10 @@ export default function AmenitiesSection() {
             <span className="text-[10px] font-black uppercase text-bazooka-lime">Premium Amenities</span>
             <h2 className="font-display mt-2 text-[38px] font-black uppercase leading-[.94] sm:text-[46px]">More Than <br /><span className="text-bazooka-lime">Just Equipment.</span></h2>
           </div>
-          <p className="max-w-[470px] text-[11px] leading-5 text-bazooka-text-secondary lg:justify-self-end">We’ve thought of every detail so you can focus on what matters — your progress.</p>
+          <p className="max-w-[470px] text-[11px] leading-5 text-bazooka-text-secondary lg:justify-self-end">We’ve thought of every detail so you can focus on what matters — your progress, recovery and better everyday nutrition.</p>
         </motion.div>
 
-        <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:grid-cols-9">
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-10">
           {amenities.map(([Icon, label], index) => (
             <motion.div key={label} {...reveal} transition={{ duration: .45, delay: index * .035 }} className="group flex min-h-[102px] flex-col items-center justify-center rounded-[5px] border border-bazooka-border-strong bg-bazooka-surface px-3 py-4 text-center transition-all duration-300 hover:-translate-y-1 hover:border-bazooka-lime">
               <Icon className="size-6 text-bazooka-lime transition-transform duration-300 group-hover:scale-110" />
