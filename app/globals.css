@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bazooka-lime: #B6F000;
-  --color-bazooka-lime-hover: #C8FF16;
-  --color-bazooka-lime-pressed: #96C900;
+  /* Warm Bazooka gold/orange matched to the Instagram DP ring and Story Highlights. */
+  --color-bazooka-lime: #FFB52E;
+  --color-bazooka-lime-hover: #FFC64A;
+  --color-bazooka-lime-pressed: #F59A16;
   --color-bazooka-black: #050505;
   --color-bazooka-soft-black: #0A0A0A;
   --color-bazooka-surface: #101112;
