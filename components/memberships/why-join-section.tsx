@@ -14,12 +14,15 @@ const reasons = [
 export default function WhyJoinSection() {
   return (
     <section className="border-b border-bazooka-border/70 py-14">
-      <div className={`${shell} grid gap-8 lg:grid-cols-[270px_1fr] lg:items-center`}>
-        <motion.div {...reveal}>
+      <div className={`${shell} grid gap-8 lg:grid-cols-[320px_1fr] lg:items-center xl:grid-cols-[350px_1fr]`}>
+        <motion.div {...reveal} className="min-w-0">
           <span className="text-[10px] font-black uppercase text-bazooka-lime">Why Join Bazooka</span>
-          <h2 className="font-display mt-2 text-[36px] font-black uppercase leading-[.95]">It’s More Than<br /><span className="text-bazooka-lime">A Membership.</span></h2>
+          <h2 className="font-display mt-2 text-[34px] font-black uppercase leading-[.94] sm:text-[38px] lg:text-[36px] xl:text-[40px]">
+            <span className="block">It’s More Than</span>
+            <span className="block whitespace-nowrap text-bazooka-lime">A Membership.</span>
+          </h2>
           <span className="mt-3 block h-[2px] w-8 bg-bazooka-lime" />
-          <p className="mt-4 text-[10px] leading-5 text-bazooka-text-secondary">At Bazooka, you’re not just a member — you’re part of a community that motivates, challenges and pushes you to be your best.</p>
+          <p className="mt-4 max-w-[320px] text-[10px] leading-5 text-bazooka-text-secondary">At Bazooka, you’re not just a member — you’re part of a community that motivates, challenges and pushes you to be your best.</p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4">
