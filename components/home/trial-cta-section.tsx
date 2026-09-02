@@ -14,21 +14,24 @@ const benefits = [
 
 export default function TrialCtaSection() {
   return (
-    <section className="relative overflow-hidden border-b border-bazooka-border/70 py-16">
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1900&q=90')] bg-cover bg-center grayscale" />
-      <div className="absolute inset-0 bg-black/72" />
-      <motion.div {...reveal} className={`${shell} relative flex flex-col gap-10 md:flex-row md:items-center md:justify-between`}>
-        <div className="md:pl-[220px]">
-          <h2 className="font-display text-[38px] font-black uppercase leading-[.96]">Your First<br /><span className="text-bazooka-lime">Workout Is On Us.</span></h2>
-          <div className="mt-6 grid grid-cols-2 gap-5 text-[9px] text-bazooka-text-secondary sm:grid-cols-4">
+    <section className="group relative overflow-hidden border-b border-bazooka-border/70 py-14 sm:py-16">
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1900&q=90')] bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.015]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,.94)_0%,rgba(5,5,5,.82)_48%,rgba(5,5,5,.62)_100%)]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/15" />
+      <motion.div {...reveal} className={`${shell} relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10`}>
+        <div className="min-w-0">
+          <span className="text-[9px] font-black uppercase tracking-[.08em] text-bazooka-lime">Experience Bazooka</span>
+          <h2 className="font-display mt-3 text-[34px] font-black uppercase leading-[.96] sm:text-[38px]">Your First<br /><span className="text-bazooka-lime">Workout Is On Us.</span></h2>
+          <p className="mt-4 max-w-[560px] text-[10px] leading-5 text-bazooka-text-secondary sm:text-[11px]">Step inside, meet the team and experience the training environment before choosing the membership that fits you.</p>
+          <div className="mt-6 grid gap-3 min-[420px]:grid-cols-2 sm:grid-cols-4 sm:gap-4">
             {benefits.map(([Icon, title, subtitle]) => (
-              <span key={title} className="flex gap-2"><Icon className="size-4 shrink-0 text-bazooka-lime" /><span><b className="block text-white">{title}</b><small>{subtitle}</small></span></span>
+              <span key={title} className="flex min-w-0 items-start gap-2 rounded-[5px] border border-white/10 bg-black/30 p-3 backdrop-blur-[2px] transition-all duration-300 hover:border-bazooka-lime/50 hover:bg-bazooka-lime/[.05]"><Icon className="mt-0.5 size-4 shrink-0 text-bazooka-lime" /><span className="min-w-0"><b className="block text-[9px] text-white">{title}</b><small className="mt-0.5 block text-[8px] leading-3 text-bazooka-text-secondary">{subtitle}</small></span></span>
             ))}
           </div>
         </div>
-        <div className="flex min-w-[205px] flex-col gap-3">
-          <Link href="/book-free-trial" className={primaryButton}>Book Free Trial <ArrowRight className="size-4" /></Link>
-          <Link href="/memberships" className={outlineButton}>Join Bazooka <ArrowRight className="size-4" /></Link>
+        <div className="flex w-full flex-col gap-3 lg:w-[220px]">
+          <Link href="/book-free-trial" className={`${primaryButton} w-full`}>Book Free Trial <ArrowRight className="size-4" /></Link>
+          <Link href="/memberships" className={`${outlineButton} w-full`}>View Memberships <ArrowRight className="size-4" /></Link>
         </div>
       </motion.div>
     </section>
