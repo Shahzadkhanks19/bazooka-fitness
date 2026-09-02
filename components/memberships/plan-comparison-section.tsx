@@ -45,12 +45,12 @@ export default function PlanComparisonSection() {
             <span className="text-[10px] font-black uppercase text-bazooka-lime">Compare Memberships</span>
             <h2 className="font-display mt-2 text-[34px] font-black uppercase leading-[.95] sm:text-[46px]">Find The Right<br /><span className="text-bazooka-lime">Membership.</span></h2>
           </div>
-          <p className="max-w-[560px] text-[11px] leading-5 text-bazooka-text-secondary lg:justify-self-end">Compare access, coaching support and added benefits across all three membership durations. These benefit differences are temporary placeholders and can be replaced when the final Bazooka plan inclusions are confirmed.</p>
+          <p className="max-w-[560px] text-[11px] leading-5 text-bazooka-text-secondary lg:justify-self-end">Compare access, coaching support and added benefits across all three membership durations, then book a free trial before you decide.</p>
         </motion.div>
 
         <div className="mt-7 grid gap-4 md:hidden">
           {plans.map((plan, planIndex) => (
-            <motion.article key={plan.name} {...reveal} className={`overflow-hidden rounded-[6px] border bg-bazooka-surface ${plan.bestValue ? "border-bazooka-lime" : "border-bazooka-border-strong"}`}>
+            <motion.article key={plan.name} {...reveal} className={`overflow-hidden rounded-[6px] border bg-bazooka-surface transition-all duration-300 hover:-translate-y-0.5 ${plan.bestValue ? "border-bazooka-lime" : "border-bazooka-border-strong hover:border-bazooka-lime"}`}>
               <div className={`p-5 ${plan.bestValue ? "bg-bazooka-lime/[0.045]" : ""}`}>
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
@@ -70,7 +70,7 @@ export default function PlanComparisonSection() {
                 ))}
               </div>
               <div className="border-t border-bazooka-border-strong p-4">
-                <Link href="/book-free-trial" className={`group inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-[4px] border px-4 text-[8px] font-black uppercase transition ${plan.bestValue ? "border-bazooka-lime bg-bazooka-lime text-black hover:bg-bazooka-lime-hover" : "border-bazooka-border-strong text-white hover:border-bazooka-lime hover:text-bazooka-lime"}`}>Choose Plan <ArrowRight className="size-3.5" /></Link>
+                <Link href="/book-free-trial" className={`group inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-[4px] border px-4 text-[8px] font-black uppercase transition-all duration-300 hover:-translate-y-0.5 active:scale-[.97] ${plan.bestValue ? "border-bazooka-lime bg-bazooka-lime text-black hover:bg-bazooka-lime-hover" : "border-bazooka-border-strong text-white hover:border-bazooka-lime hover:bg-bazooka-lime/10 hover:text-bazooka-lime"}`}>Book Free Trial <ArrowRight className="size-3.5" /></Link>
               </div>
             </motion.article>
           ))}
@@ -84,13 +84,13 @@ export default function PlanComparisonSection() {
                 <tr className="border-b border-bazooka-border/70 bg-black/15"><td className="px-5 py-4 text-[10px] font-bold text-white"><span className="inline-flex items-center gap-2"><Clock3 className="size-4 text-bazooka-lime"/> Duration</span></td>{plans.map((plan)=><td key={plan.name} className={`px-5 py-4 text-center text-[11px] font-black text-white ${plan.bestValue?"bg-bazooka-lime/[0.035]":""}`}>{plan.duration}</td>)}</tr>
                 <tr className="border-b border-bazooka-border/70 bg-black/15"><td className="px-5 py-4 text-[10px] font-bold text-white"><span className="inline-flex items-center gap-2"><IndianRupee className="size-4 text-bazooka-lime"/> Total Price</span></td>{plans.map((plan)=><td key={plan.name} className={`font-display px-5 py-4 text-center text-[19px] font-black text-bazooka-lime ${plan.bestValue?"bg-bazooka-lime/[0.035]":""}`}>{plan.price}</td>)}</tr>
                 {comparisonRows.map((row,index)=><tr key={row.label} className={index<comparisonRows.length-1?"border-b border-bazooka-border/60":""}><td className="px-5 py-4 text-[10px] font-semibold text-bazooka-text-secondary">{row.label}</td>{plans.map((plan,planIndex)=><td key={plan.name} className={`px-5 py-4 text-center ${plan.bestValue?"bg-bazooka-lime/[0.025]":""}`}><ValueCell value={row.values[planIndex]}/></td>)}</tr>)}
-                <tr className="border-t border-bazooka-border-strong bg-bazooka-soft-black"><td className="px-5 py-5 text-[10px] font-black uppercase text-white">Choose Your Membership</td>{plans.map((plan)=><td key={plan.name} className={`px-4 py-4 text-center ${plan.bestValue?"bg-bazooka-lime/[0.055]":""}`}><Link href="/book-free-trial" className={`group inline-flex h-9 items-center justify-center gap-2 rounded-[4px] border px-4 text-[8px] font-black uppercase transition ${plan.bestValue?"border-bazooka-lime bg-bazooka-lime text-black hover:bg-bazooka-lime-hover":"border-bazooka-border-strong text-white hover:border-bazooka-lime hover:text-bazooka-lime"}`}>Choose Plan <ArrowRight className="size-3"/></Link></td>)}</tr>
+                <tr className="border-t border-bazooka-border-strong bg-bazooka-soft-black"><td className="px-5 py-5 text-[10px] font-black uppercase text-white">Experience Bazooka First</td>{plans.map((plan)=><td key={plan.name} className={`px-4 py-4 text-center ${plan.bestValue?"bg-bazooka-lime/[0.055]":""}`}><Link href="/book-free-trial" className={`group inline-flex h-9 items-center justify-center gap-2 rounded-[4px] border px-4 text-[8px] font-black uppercase transition-all duration-300 hover:-translate-y-0.5 active:scale-[.97] ${plan.bestValue?"border-bazooka-lime bg-bazooka-lime text-black hover:bg-bazooka-lime-hover":"border-bazooka-border-strong text-white hover:border-bazooka-lime hover:bg-bazooka-lime/10 hover:text-bazooka-lime"}`}>Book Free Trial <ArrowRight className="size-3"/></Link></td>)}</tr>
               </tbody>
             </table>
           </div>
         </motion.div>
 
-        <p className="mt-4 text-center text-[9px] leading-4 text-bazooka-muted">Temporary comparison benefits for the redesign phase. Replace with final Bazooka membership inclusions before launch.</p>
+        <p className="mt-4 text-center text-[9px] leading-4 text-bazooka-muted">Membership benefits and pricing are subject to confirmation by the Bazooka Fitness team at the time of joining.</p>
       </div>
     </section>
   );
