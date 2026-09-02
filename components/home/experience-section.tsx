@@ -16,9 +16,19 @@ export default function ExperienceSection() {
           <Link href="/about" className={`${outlineButton} mt-7 border-bazooka-lime/70`}>Discover Bazooka <ArrowRight className="size-4" /></Link>
         </div>
       </motion.div>
-      <motion.div {...reveal} className="relative min-h-[430px] bg-[url('https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=1500&q=90')] bg-cover bg-center grayscale">
-        <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-transparent" />
-        <div className="font-display relative z-10 flex h-full items-center px-14 text-[44px] font-black uppercase leading-[.92] text-black/90">BETTER<br />PEOPLE.<br />A STRONGER<br />JODHPUR.</div>
+      <motion.div {...reveal} className="relative min-h-[430px] overflow-hidden bg-[url('https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=1500&q=90')] bg-cover bg-center">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/58 via-black/28 to-black/8" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/45 to-transparent" />
+        <div className="relative z-10 flex h-full items-center px-8 sm:px-12 lg:px-14">
+          <div className="max-w-[560px] rounded-[6px] border border-white/10 bg-black/28 px-5 py-5 backdrop-blur-[2px] sm:px-6 sm:py-6">
+            <div className="font-display text-[38px] font-black uppercase leading-[.9] tracking-[-.02em] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,.75)] sm:text-[44px] lg:text-[50px]">
+              Better <span className="text-bazooka-lime">People.</span><br />
+              A Stronger<br />
+              <span className="text-bazooka-lime">Jodhpur.</span>
+            </div>
+            <span className="mt-4 block h-0.5 w-12 bg-bazooka-lime" />
+          </div>
+        </div>
       </motion.div>
     </section>
   );
