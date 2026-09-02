@@ -1,8 +1,37 @@
 "use client";
+
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, CalendarCheck2, ChevronUp, MessageCircleMore, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
-function FloatingAction({label,children,className,href,onClick}:{label:string;children:React.ReactNode;className:string;href?:string;onClick?:()=>void}){const content=<>{children}</>;const shared=`group relative grid size-11 place-items-center rounded-full transition-all duration-300 hover:scale-105 sm:size-13 sm:hover:scale-110 ${className}`;if(href)return <Link href={href} className={shared} aria-label={label}>{content}</Link>;return <button type="button" onClick={onClick} className={shared} aria-label={label}>{content}</button>}
-export default function FloatingActions(){const[chatOpen,setChatOpen]=useState(false);const[showBackToTop,setShowBackToTop]=useState(false);useEffect(()=>{const update=()=>setShowBackToTop(window.scrollY>320);update();window.addEventListener("scroll",update,{passive:true});return()=>window.removeEventListener("scroll",update)},[]);return <><aside className="fixed bottom-3 right-3 z-[90] flex flex-col gap-2 sm:bottom-5 sm:right-5 sm:gap-3" aria-label="Quick actions"><FloatingAction label="Book Free Trial" href="/book-free-trial" className="border border-bazooka-lime bg-bazooka-lime text-bazooka-black shadow-[0_0_22px_rgba(255,181,46,.22)]"><CalendarCheck2 className="size-[18px] sm:size-5"/></FloatingAction><a href="https://wa.me/919116405151" target="_blank" rel="noreferrer" className="grid size-11 place-items-center rounded-full bg-bazooka-whatsapp text-white shadow-lg sm:size-13" aria-label="WhatsApp"><FaWhatsapp className="size-5 sm:size-6"/></a><FloatingAction label="Ask Bazooka" onClick={()=>setChatOpen(v=>!v)} className="border border-bazooka-border bg-bazooka-card text-bazooka-lime shadow-lg hover:border-bazooka-lime"><MessageCircleMore className="size-[18px] sm:size-5"/></FloatingAction><AnimatePresence initial={false}>{showBackToTop&&<motion.div key="back-to-top" initial={{opacity:0,scale:.8,y:8}} animate={{opacity:1,scale:1,y:0}} exit={{opacity:0,scale:.8,y:8}} transition={{duration:.2}}><FloatingAction label="Back To Top" onClick={()=>window.scrollTo({top:0,behavior:"smooth"})} className="border border-bazooka-border bg-bazooka-card text-white hover:border-bazooka-lime hover:text-bazooka-lime"><ChevronUp className="size-[18px] sm:size-5"/></FloatingAction></motion.div>}</AnimatePresence></aside>{chatOpen&&<motion.section initial={{opacity:0,scale:.96,y:15}} animate={{opacity:1,scale:1,y:0}} className="fixed bottom-16 left-3 right-[66px] z-[120] max-h-[min(70dvh,520px)] overflow-hidden rounded-xl border border-bazooka-border bg-bazooka-card shadow-2xl sm:bottom-[92px] sm:left-auto sm:right-[82px] sm:w-[min(calc(100%-32px),360px)]"><div className="flex items-center justify-between border-b border-bazooka-border bg-bazooka-surface px-4 py-3"><strong className="text-[11px] text-bazooka-lime">ASK BAZOOKA</strong><button type="button" onClick={()=>setChatOpen(false)} className="grid size-8 place-items-center" aria-label="Close chat"><X className="size-4"/></button></div><div className="p-4 text-[11px] leading-5 text-bazooka-text-secondary">Hey! Ask me about memberships, programs, trainers, Cafe Bazooka or your free trial.</div><div className="flex gap-2 border-t border-bazooka-border p-3"><input aria-label="Message" placeholder="Type your question..." className="min-w-0 flex-1 rounded-md border border-bazooka-border bg-bazooka-black px-3 py-2 text-[16px] outline-none focus:border-bazooka-lime"/><button type="button" className="grid size-10 shrink-0 place-items-center rounded-md bg-bazooka-lime text-black" aria-label="Send message"><ArrowRight className="size-4"/></button></div></motion.section>}</>}
+
+function FloatingAction({label,children,className,href,onClick}:{label:string;children:React.ReactNode;className:string;href?:string;onClick?:()=>void}) {
+  const shared=`group relative grid size-11 place-items-center rounded-full transition-all duration-300 hover:scale-105 sm:size-13 sm:hover:scale-110 ${className}`;
+  if(href) return <Link href={href} className={shared} aria-label={label}>{children}</Link>;
+  return <button type="button" onClick={onClick} className={shared} aria-label={label}>{children}</button>;
+}
+
+export default function FloatingActions() {
+  const [chatOpen,setChatOpen]=useState(false);
+  const [showBackToTop,setShowBackToTop]=useState(false);
+
+  useEffect(()=>{
+    const topMarker = document.getElementById("site-top");
+    if (!topMarker || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(([entry]) => setShowBackToTop(!entry.isIntersecting), { threshold: 0.01 });
+    observer.observe(topMarker);
+    return () => observer.disconnect();
+  },[]);
+
+  return <>
+    <aside className="fixed bottom-3 right-3 z-[90] flex flex-col gap-2 sm:bottom-5 sm:right-5 sm:gap-3" aria-label="Quick actions">
+      <FloatingAction label="Book Free Trial" href="/book-free-trial" className="border border-bazooka-lime bg-bazooka-lime text-bazooka-black shadow-[0_0_22px_rgba(255,181,46,.22)]"><CalendarCheck2 className="size-[18px] sm:size-5"/></FloatingAction>
+      <a href="https://wa.me/919116405151" target="_blank" rel="noreferrer" className="grid size-11 place-items-center rounded-full bg-bazooka-whatsapp text-white shadow-lg transition-all duration-300 hover:scale-105 sm:size-13 sm:hover:scale-110" aria-label="WhatsApp"><FaWhatsapp className="size-5 sm:size-6"/></a>
+      <FloatingAction label="Ask Bazooka" onClick={()=>setChatOpen(v=>!v)} className="border border-bazooka-border bg-bazooka-card text-bazooka-lime shadow-lg hover:border-bazooka-lime"><MessageCircleMore className="size-[18px] sm:size-5"/></FloatingAction>
+      <AnimatePresence initial={false}>{showBackToTop&&<motion.div key="back-to-top" initial={{opacity:0,scale:.8,y:8}} animate={{opacity:1,scale:1,y:0}} exit={{opacity:0,scale:.8,y:8}} transition={{duration:.2}}><Link href="#site-top" aria-label="Back To Top" className="group grid size-11 place-items-center rounded-full border border-bazooka-border bg-bazooka-card text-white shadow-lg transition-all duration-300 hover:scale-105 hover:border-bazooka-lime hover:text-bazooka-lime sm:size-13 sm:hover:scale-110"><ChevronUp className="size-[18px] sm:size-5"/></Link></motion.div>}</AnimatePresence>
+    </aside>
+
+    {chatOpen&&<motion.section initial={{opacity:0,scale:.96,y:15}} animate={{opacity:1,scale:1,y:0}} className="fixed bottom-16 left-3 right-[66px] z-[120] max-h-[min(70dvh,520px)] overflow-hidden rounded-xl border border-bazooka-border bg-bazooka-card shadow-2xl sm:bottom-[92px] sm:left-auto sm:right-[82px] sm:w-[min(calc(100%-32px),360px)]"><div className="flex items-center justify-between border-b border-bazooka-border bg-bazooka-surface px-4 py-3"><strong className="text-[11px] text-bazooka-lime">ASK BAZOOKA</strong><button type="button" onClick={()=>setChatOpen(false)} className="grid size-8 place-items-center rounded-full transition hover:bg-bazooka-card-hover" aria-label="Close chat"><X className="size-4"/></button></div><div className="p-4 text-[11px] leading-5 text-bazooka-text-secondary">Hey! Ask me about memberships, programs, trainers, Cafe Bazooka or your free trial.</div><div className="flex gap-2 border-t border-bazooka-border p-3"><input aria-label="Message" placeholder="Type your question..." className="min-w-0 flex-1 rounded-md border border-bazooka-border bg-bazooka-black px-3 py-2 text-[16px] outline-none transition focus:border-bazooka-lime"/><button type="button" className="grid size-10 shrink-0 place-items-center rounded-md bg-bazooka-lime text-black transition hover:bg-bazooka-lime-hover" aria-label="Send message"><ArrowRight className="size-4"/></button></div></motion.section>}
+  </>;
+}
