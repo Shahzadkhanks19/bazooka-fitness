@@ -10,9 +10,9 @@ export default function DetailCtaSection({ program }: { program: ProgramDetail }
   return (
     <section className="border-b border-bazooka-border/70 bg-bazooka-black py-14">
       <div className={shell}>
-        <motion.div {...reveal} className="relative overflow-hidden rounded-[5px] border border-bazooka-border-strong">
-          <div className="absolute inset-0 bg-cover bg-center grayscale" style={{ backgroundImage: `url(${program.heroImage})` }} />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/30" />
+        <motion.div {...reveal} className="group relative overflow-hidden rounded-[6px] border border-bazooka-border-strong">
+          <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.025]" style={{ backgroundImage: `url(${program.heroImage})` }} />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/84 to-black/24" />
           <div className="relative grid min-h-[250px] gap-7 px-7 py-9 md:px-10 lg:grid-cols-[1fr_auto] lg:items-center">
             <div className="max-w-[650px]">
               <span className="text-[9px] font-black uppercase tracking-[.04em] text-bazooka-lime">Start This Program</span>
@@ -20,7 +20,7 @@ export default function DetailCtaSection({ program }: { program: ProgramDetail }
               <p className="mt-4 max-w-[560px] text-[10px] leading-5 text-bazooka-text-secondary">Book your free trial, meet the coaching team and get a clear starting point for this program.</p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Link href="/book-free-trial" className={primaryButton}>Book Free Trial <ArrowRight className="size-4" /></Link>
+              <Link href="/book-free-trial" className={primaryButton}>Book Free Trial <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></Link>
               <Link href="/programs/all" className={outlineButton}>View All Programs <ArrowRight className="size-4" /></Link>
             </div>
           </div>
