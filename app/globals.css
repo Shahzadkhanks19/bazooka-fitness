@@ -78,7 +78,7 @@ label {
   overflow-wrap: break-word;
 }
 
-/* Headings should wrap between words, never split a word just to fit a narrow viewport. */
+/* Headings wrap between words only. The important flag protects this rule from legacy break-word utilities. */
 h1,
 h2,
 h3,
@@ -86,8 +86,8 @@ h4,
 h5,
 h6 {
   max-width: 100%;
-  overflow-wrap: normal;
-  word-break: normal;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
 }
 
 /* Give touch devices the same sense of feedback desktop users get from hover. */
