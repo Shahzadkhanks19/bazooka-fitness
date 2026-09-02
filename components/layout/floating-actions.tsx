@@ -44,6 +44,15 @@ export default function FloatingActions() {
     return () => observer.disconnect();
   }, []);
 
+  const scrollToTop = () => {
+    const topMarker = document.getElementById("site-top");
+    if (topMarker) {
+      topMarker.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    document.documentElement.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const sendMessage = (event?: FormEvent<HTMLFormElement>) => {
     event?.preventDefault();
     const trimmed = message.trim();
@@ -65,10 +74,9 @@ export default function FloatingActions() {
       <FloatingAction label="Ask Bazooka" onClick={() => setChatOpen(v => !v)} className="border border-bazooka-border bg-bazooka-card text-bazooka-lime shadow-lg hover:border-bazooka-lime"><MessageCircleMore className="size-[18px] sm:size-5" /></FloatingAction>
 
       <AnimatePresence initial={false}>{showBackToTop && <motion.div key="back-to-top" initial={{ opacity: 0, scale: .8, y: 8 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: .8, y: 8 }} transition={{ duration: .2 }}>
-        <Link href="#site-top" aria-label="Back To Top" className="group relative grid size-11 place-items-center rounded-full border border-bazooka-border bg-bazooka-card text-white shadow-lg transition-all duration-300 hover:scale-105 hover:border-bazooka-lime hover:text-bazooka-lime active:scale-95 sm:size-13 sm:hover:scale-110">
+        <FloatingAction label="Back To Top" onClick={scrollToTop} className="border border-bazooka-border bg-bazooka-card text-white shadow-lg hover:border-bazooka-lime hover:text-bazooka-lime">
           <ChevronUp className="size-[18px] sm:size-5" />
-          <span aria-hidden="true" className={tooltipClass}>Back To Top</span>
-        </Link>
+        </FloatingAction>
       </motion.div>}</AnimatePresence>
     </aside>
 
