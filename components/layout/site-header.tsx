@@ -7,8 +7,16 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const nav = [
-  ["Home", "/"], ["About", "/about"], ["Programs", "/programs"], ["Memberships", "/memberships"],
-  ["Transformations", "/transformations"], ["Facilities", "/facilities"], ["Cafe", "/cafe-bazooka"], ["Gallery", "/gallery"], ["Trainers", "/trainers"], ["Contact", "/contact"],
+  ["Home", "/"],
+  ["About", "/about"],
+  ["Memberships", "/memberships"],
+  ["Programs", "/programs"],
+  ["Trainers", "/trainers"],
+  ["Facilities", "/facilities"],
+  ["Transformations", "/transformations"],
+  ["Gallery", "/gallery"],
+  ["Cafe", "/cafe-bazooka"],
+  ["Contact", "/contact"],
 ] as const;
 
 const shell = "mx-auto w-[min(calc(100%-32px),1180px)] sm:w-[min(calc(100%-40px),1180px)] md:w-[min(calc(100%-64px),1180px)]";
