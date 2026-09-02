@@ -24,7 +24,7 @@ function FooterLogo() {
 export default function SiteFooter() {
   return (
     <footer id="site-footer" className="bg-bazooka-soft-black">
-      <div className={`${shell} grid gap-9 py-12 pr-[62px] sm:grid-cols-2 sm:gap-10 sm:py-16 sm:pr-[76px] lg:grid-cols-[1.4fr_repeat(5,1fr)_1.25fr] lg:pr-24 xl:pr-28`}>
+      <div className={`${shell} grid gap-9 py-12 sm:grid-cols-2 sm:gap-10 sm:py-16 lg:grid-cols-[1.4fr_repeat(5,1fr)_1.25fr] lg:pr-24 xl:pr-28`}>
         <div>
           <Link href="/" prefetch={false} className="inline-block max-w-full transition-transform hover:scale-[1.025]"><FooterLogo /></Link>
           <p className="mt-5 text-[12px] leading-6 text-bazooka-text-secondary sm:mt-6">Stronger People.<br />A Healthier Jodhpur.</p>
@@ -54,7 +54,7 @@ export default function SiteFooter() {
       </div>
 
       <div className="border-t border-bazooka-border">
-        <div className={`${shell} flex flex-col gap-2 py-5 pr-[62px] text-[9px] leading-4 text-bazooka-muted sm:pr-[76px] md:flex-row md:items-center md:justify-between lg:pr-24 xl:pr-28`}>
+        <div className={`${shell} flex flex-col gap-2 py-5 text-[9px] leading-4 text-bazooka-muted md:flex-row md:items-center md:justify-between lg:pr-24 xl:pr-28`}>
           <span>© 2026 Bazooka Fitness. All rights reserved.</span>
           <a href="https://builtbyshahzad.vercel.app" target="_blank" rel="noreferrer" className="group w-fit max-w-full transition-all duration-300 hover:text-white">Designed &amp; Developed by <span className="font-black text-bazooka-lime transition-all duration-300 group-hover:text-bazooka-lime-hover group-hover:drop-shadow-[0_0_8px_rgba(255,181,46,.55)]">Shahzad Khan</span> <b className="text-bazooka-lime">♥</b></a>
         </div>
