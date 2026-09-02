@@ -28,6 +28,9 @@ type Card = { title: string; text: string; bullets?: string[]; icon: IconType };
 const shell = "mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12";
 const gymImage = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=90";
 const plateImage = "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1000&q=90";
+const buttonBase = "group inline-flex min-h-11 items-center justify-center gap-3 rounded-[4px] border px-6 text-center text-[9px] font-black uppercase transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.97] active:translate-y-0";
+const primaryButton = `${buttonBase} border-bazooka-lime bg-bazooka-lime text-black hover:bg-bazooka-lime-hover hover:shadow-[0_0_26px_rgba(255,181,46,.22)] active:bg-bazooka-lime-pressed`;
+const outlineButton = `${buttonBase} border-bazooka-border-strong bg-black/45 text-white backdrop-blur-sm hover:border-bazooka-lime hover:bg-bazooka-lime/10 hover:text-bazooka-lime hover:shadow-[0_0_22px_rgba(255,181,46,.14)] active:border-bazooka-lime active:bg-bazooka-lime/10 active:text-bazooka-lime`;
 
 const membershipCards: Card[] = [
   { icon: UserRound, title: "Membership Eligibility", text: "Membership is open to individuals above 16 years of age. Members below 18 must have a parent or guardian’s consent." },
@@ -71,95 +74,52 @@ export default function PolicyPage({ kind }: { kind: PolicyKind }) {
 function MembershipTermsPage() {
   return <main className="min-h-screen bg-bazooka-black text-bazooka-text">
     <Hero crumb="Membership Terms" title="Membership" accent="Terms & Conditions" intro="Please read these terms carefully before becoming a part of the Bazooka Fitness community." />
-
     <section className="bg-bazooka-black py-7"><div className={shell}>
-      <div className="overflow-hidden rounded-[5px] border border-bazooka-border-strong bg-bazooka-surface">
-        <div className="grid md:grid-cols-2 xl:grid-cols-3">
-          {membershipCards.map((card,index)=><MembershipTermCard key={card.title} card={card} index={index}/>) }
-        </div>
-      </div>
-
-      <NotesPanel title="Important Notes" notes={[
-        "Timings and facilities are subject to change without prior notice.",
-        "Bazooka reserves the right to amend these terms and conditions at any time.",
-        "By purchasing a membership, you agree to abide by all the terms and policies of Bazooka Fitness.",
-      ]}/>
-
-      <div className="mt-4 grid items-center gap-5 rounded-[5px] border border-bazooka-lime bg-bazooka-surface px-6 py-5 lg:grid-cols-[1fr_auto_auto]">
-        <div className="flex items-center gap-4"><span className="grid size-12 shrink-0 place-items-center rounded-[4px] border border-bazooka-lime text-bazooka-lime"><CheckCircle2 className="size-6"/></span><div><h2 className="font-display text-[26px] font-black uppercase">Ready To Start <span className="text-bazooka-lime">Your Fitness Journey?</span></h2><p className="mt-1 max-w-[630px] text-[9px] leading-4 text-bazooka-text-secondary">Join Bazooka and experience world-class training, premium facilities and a supportive community.</p></div></div>
-        <Link href="/book-free-trial" className="inline-flex h-11 items-center justify-center gap-3 rounded-[4px] bg-bazooka-lime px-7 text-[9px] font-black uppercase text-black transition hover:bg-bazooka-lime-hover">Book Free Trial <ArrowRight className="size-4"/></Link>
-        <Link href="/memberships" className="inline-flex h-11 items-center justify-center gap-3 rounded-[4px] border border-bazooka-lime px-7 text-[9px] font-black uppercase text-white transition hover:bg-bazooka-lime hover:text-black">View Membership Plans <ArrowRight className="size-4"/></Link>
-      </div>
+      <div className="overflow-hidden rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface shadow-[0_18px_60px_rgba(0,0,0,.18)]"><div className="grid md:grid-cols-2 xl:grid-cols-3">{membershipCards.map((card,index)=><MembershipTermCard key={card.title} card={card} index={index}/>)}</div></div>
+      <NotesPanel title="Important Notes" notes={["Timings and facilities are subject to change without prior notice.","Bazooka reserves the right to amend these terms and conditions at any time.","By purchasing a membership, you agree to abide by all the terms and policies of Bazooka Fitness."]}/>
+      <div className="mt-4 grid items-center gap-5 rounded-[6px] border border-bazooka-lime/70 bg-bazooka-surface px-6 py-6 shadow-[0_0_30px_rgba(255,181,46,.05)] lg:grid-cols-[1fr_auto_auto]"><div className="flex items-center gap-4"><span className="grid size-12 shrink-0 place-items-center rounded-[4px] border border-bazooka-lime bg-bazooka-lime/5 text-bazooka-lime"><CheckCircle2 className="size-6"/></span><div><h2 className="font-display text-[25px] font-black uppercase sm:text-[26px]">Ready To Start <span className="text-bazooka-lime">Your Fitness Journey?</span></h2><p className="mt-1 max-w-[630px] text-[9px] leading-4 text-bazooka-text-secondary">Join Bazooka and experience world-class training, premium facilities and a supportive community.</p></div></div><Link href="/book-free-trial" className={`${primaryButton} w-full lg:w-auto`}>Book Free Trial <ArrowRight className="size-4 transition-transform group-hover:translate-x-1"/></Link><Link href="/memberships" className={`${outlineButton} w-full lg:w-auto`}>View Membership Plans <ArrowRight className="size-4 transition-transform group-hover:translate-x-1"/></Link></div>
     </div></section>
   </main>;
 }
 
 function CancellationPolicyPage() {
-  return <main className="min-h-screen bg-bazooka-black text-bazooka-text">
-    <Hero crumb="Cancellation Policy" title="Cancellation" accent="Policy" intro="We believe in transparency and fairness. Please read our cancellation policy carefully." />
-    <FeatureStrip items={[[ShieldCheck,"Transparent","No hidden terms."],[Handshake,"Fair & Flexible","Policies made for you."],[Clock3,"Timely Support","We’re here to help."],[UsersRound,"Member First","Your fitness journey matters."]]}/>
-    <PolicyCardsSection title="Our" accent="Cancellation Policy" subtitle="Please review the following terms before cancelling any membership or service." cards={cancellationCards}/>
-    <section className="bg-bazooka-black pb-8"><div className={shell}><NotesPanel title="Important Note" notes={["Bazooka Fitness reserves the right to modify this cancellation policy at any time without prior notice.","Any changes will be updated on our website and at the gym."]}/><HelpPanel copy="Reach out to us for any cancellation or membership related queries."/></div></section>
-  </main>;
+  return <main className="min-h-screen bg-bazooka-black text-bazooka-text"><Hero crumb="Cancellation Policy" title="Cancellation" accent="Policy" intro="We believe in transparency and fairness. Please read our cancellation policy carefully."/><FeatureStrip items={[[ShieldCheck,"Transparent","No hidden terms."],[Handshake,"Fair & Flexible","Policies made for you."],[Clock3,"Timely Support","We’re here to help."],[UsersRound,"Member First","Your fitness journey matters."]]}/><PolicyCardsSection title="Our" accent="Cancellation Policy" subtitle="Please review the following terms before cancelling any membership or service." cards={cancellationCards}/><section className="bg-bazooka-black pb-8"><div className={shell}><NotesPanel title="Important Note" notes={["Bazooka Fitness reserves the right to modify this cancellation policy at any time without prior notice.","Any changes will be updated on our website and at the gym."]}/><HelpPanel copy="Reach out to us for any cancellation or membership related queries."/></div></section></main>;
 }
 
 function RefundPolicyPage() {
-  return <main className="min-h-screen bg-bazooka-black text-bazooka-text">
-    <Hero crumb="Refund Policy" title="Refund" accent="Policy" intro="At Bazooka Fitness, we are committed to complete transparency and fairness in every transaction. Please read our refund policy carefully." />
-    <FeatureStrip items={[[ShieldCheck,"Transparent","Clear policies with no hidden terms."],[Handshake,"Fair & Honest","We treat every member fairly."],[Clock3,"Timely Process","Refunds processed within the promised time."],[UsersRound,"Member First","Your satisfaction is our priority."]]}/>
-    <PolicyCardsSection title="Our" accent="Refund Policy" cards={refundCards}/>
-    <section className="bg-bazooka-black pb-8"><div className={shell}><NotesPanel title="Important Notes" notes={["Refunds will be considered only in cases that fall under our Refund Policy.","Bazooka Fitness reserves the right to approve or decline any refund request.","This policy is subject to change at any time without prior notice."]}/><HelpPanel copy="Our team is here to assist you with any queries related to refunds and policies."/></div></section>
-  </main>;
+  return <main className="min-h-screen bg-bazooka-black text-bazooka-text"><Hero crumb="Refund Policy" title="Refund" accent="Policy" intro="At Bazooka Fitness, we are committed to complete transparency and fairness in every transaction. Please read our refund policy carefully."/><FeatureStrip items={[[ShieldCheck,"Transparent","Clear policies with no hidden terms."],[Handshake,"Fair & Honest","We treat every member fairly."],[Clock3,"Timely Process","Refunds processed within the promised time."],[UsersRound,"Member First","Your satisfaction is our priority."]]}/><PolicyCardsSection title="Our" accent="Refund Policy" cards={refundCards}/><section className="bg-bazooka-black pb-8"><div className={shell}><NotesPanel title="Important Notes" notes={["Refunds will be considered only in cases that fall under our Refund Policy.","Bazooka Fitness reserves the right to approve or decline any refund request.","This policy is subject to change at any time without prior notice."]}/><HelpPanel copy="Our team is here to assist you with any queries related to refunds and policies."/></div></section></main>;
 }
 
 function Hero({crumb,title,accent,intro}:{crumb:string;title:string;accent:string;intro:string}) {
-  return <section className="relative min-h-[410px] overflow-hidden border-b border-bazooka-border/70 bg-cover bg-center" style={{backgroundImage:`url(${gymImage})`}}>
-    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/88 to-black/20"/>
-    <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/20"/>
-    <div className={`${shell} relative z-10 flex min-h-[410px] items-center py-11`}><div className="max-w-[620px]">
-      <p className="text-[9px] text-bazooka-text-secondary">Home <span className="mx-2 text-bazooka-lime">›</span> {crumb}</p>
-      <h1 className="font-display mt-7 text-[52px] font-black uppercase leading-[.9] sm:text-[68px]">{title}<br/><span className="text-bazooka-lime">{accent}</span></h1>
-      <span className="mt-6 block h-[2px] w-10 bg-bazooka-lime"/>
-      <p className="mt-5 max-w-[500px] text-[11px] leading-6 text-bazooka-text-secondary">{intro}</p>
-    </div></div>
-  </section>;
+  return <section className="relative min-h-[400px] overflow-hidden border-b border-bazooka-border/70 bg-cover bg-center sm:min-h-[410px]" style={{backgroundImage:`url(${gymImage})`}}><div className="absolute inset-0 bg-gradient-to-r from-black via-black/82 to-black/16"/><div className="absolute inset-0 bg-gradient-to-t from-black/42 via-transparent to-black/18"/><div className={`${shell} relative z-10 flex min-h-[400px] items-center py-11 sm:min-h-[410px]`}><div className="max-w-[620px]"><p className="text-[9px] text-bazooka-text-secondary"><Link href="/" className="transition hover:text-bazooka-lime">Home</Link> <span className="mx-2 text-bazooka-lime">›</span> {crumb}</p><h1 className="font-display mt-7 break-words text-[44px] font-black uppercase leading-[.9] min-[380px]:text-[50px] sm:text-[68px]">{title}<br/><span className="text-bazooka-lime">{accent}</span></h1><span className="mt-6 block h-[2px] w-10 bg-bazooka-lime"/><p className="mt-5 max-w-[500px] text-[11px] leading-6 text-bazooka-text-secondary">{intro}</p></div></div></section>;
 }
 
 function MembershipTermCard({card,index}:{card:Card;index:number}) {
   const Icon=card.icon;
-  return <article className="grid min-h-[170px] grid-cols-[58px_1fr] gap-4 border-b border-bazooka-border p-5 md:border-r xl:[&:nth-child(3n)]:border-r-0 xl:[&:nth-last-child(-n+3)]:border-b-0">
-    <span className="grid size-12 place-items-center rounded-full border border-bazooka-border-strong text-bazooka-lime"><Icon className="size-6"/></span>
-    <div><span className="font-display text-[18px] font-black text-bazooka-lime">{String(index+1).padStart(2,"0")}.</span><h2 className="font-display mt-1 text-[16px] font-black uppercase">{card.title}</h2><p className="mt-3 text-[9px] leading-5 text-bazooka-text-secondary">{card.text}</p></div>
-  </article>;
+  return <article className="group grid min-h-[170px] grid-cols-[54px_1fr] gap-4 border-b border-bazooka-border p-5 transition-all duration-300 hover:bg-bazooka-lime/5 md:grid-cols-[58px_1fr] md:border-r xl:[&:nth-child(3n)]:border-r-0 xl:[&:nth-last-child(-n+3)]:border-b-0"><span className="grid size-12 place-items-center rounded-full border border-bazooka-border-strong text-bazooka-lime transition-all duration-300 group-hover:border-bazooka-lime group-hover:bg-bazooka-lime group-hover:text-black"><Icon className="size-6"/></span><div><span className="font-display text-[18px] font-black text-bazooka-lime">{String(index+1).padStart(2,"0")}.</span><h2 className="font-display mt-1 text-[16px] font-black uppercase">{card.title}</h2><p className="mt-3 text-[9px] leading-5 text-bazooka-text-secondary">{card.text}</p></div></article>;
 }
 
 function FeatureStrip({items}:{items:readonly (readonly [IconType,string,string])[]}) {
-  return <section className="bg-bazooka-black py-6"><div className={shell}><div className="grid overflow-hidden rounded-[5px] border border-bazooka-border-strong bg-bazooka-surface sm:grid-cols-2 lg:grid-cols-4">{items.map(([Icon,title,text],index)=><div key={title} className={`flex min-h-[105px] items-center gap-4 p-5 ${index<items.length-1?"lg:border-r lg:border-bazooka-border":""} ${index<2?"border-b border-bazooka-border lg:border-b-0":""}`}><Icon className="size-8 shrink-0 text-bazooka-lime"/><div><h2 className="font-display text-[16px] font-black uppercase">{title}</h2><p className="mt-1 text-[9px] leading-4 text-bazooka-text-secondary">{text}</p></div></div>)}</div></div></section>;
+  return <section className="bg-bazooka-black py-6"><div className={shell}><div className="grid overflow-hidden rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface sm:grid-cols-2 lg:grid-cols-4">{items.map(([Icon,title,text],index)=><div key={title} className={`group flex min-h-[105px] items-center gap-4 p-5 transition-colors duration-300 hover:bg-bazooka-lime/5 ${index<items.length-1?"lg:border-r lg:border-bazooka-border":""} ${index<2?"border-b border-bazooka-border lg:border-b-0":""}`}><Icon className="size-8 shrink-0 text-bazooka-lime transition-transform duration-300 group-hover:scale-110"/><div><h2 className="font-display text-[16px] font-black uppercase">{title}</h2><p className="mt-1 text-[9px] leading-4 text-bazooka-text-secondary">{text}</p></div></div>)}</div></div></section>;
 }
 
 function PolicyCardsSection({title,accent,subtitle,cards}:{title:string;accent:string;subtitle?:string;cards:Card[]}) {
-  return <section className="bg-bazooka-black pb-4"><div className={shell}><div className="rounded-[5px] border border-bazooka-border-strong bg-bazooka-surface p-5 sm:p-6"><h2 className="font-display text-[28px] font-black uppercase">{title} <span className="text-bazooka-lime">{accent}</span></h2>{subtitle&&<p className="mt-2 text-[9px] text-bazooka-text-secondary">{subtitle}</p>}<div className="mt-6 grid gap-4 lg:grid-cols-3">{cards.map((card,index)=><PolicyCard key={card.title} card={card} index={index}/>)}</div></div></div></section>;
+  return <section className="bg-bazooka-black pb-4"><div className={shell}><div className="rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface p-5 sm:p-6"><h2 className="font-display text-[28px] font-black uppercase">{title} <span className="text-bazooka-lime">{accent}</span></h2>{subtitle&&<p className="mt-2 text-[9px] text-bazooka-text-secondary">{subtitle}</p>}<div className="mt-6 grid gap-4 lg:grid-cols-3">{cards.map((card,index)=><PolicyCard key={card.title} card={card} index={index}/>)}</div></div></div></section>;
 }
 
 function PolicyCard({card,index}:{card:Card;index:number}) {
   const Icon=card.icon;
-  return <article className="min-h-[220px] rounded-[5px] border border-bazooka-border-strong bg-bazooka-black p-5"><div className="flex items-center gap-3"><Icon className="size-8 shrink-0 text-bazooka-lime"/><span className="font-display text-[18px] font-black text-bazooka-lime">{index+1}.</span><h3 className="font-display text-[16px] font-black uppercase">{card.title}</h3></div><p className="mt-4 text-[10px] leading-5 text-bazooka-text-secondary">{card.text}</p>{card.bullets?.map(item=><p key={item} className="mt-3 flex gap-2 text-[9px] leading-5 text-bazooka-text-secondary"><ArrowRight className="mt-1 size-3 shrink-0 text-bazooka-lime"/>{item}</p>)}</article>;
+  return <article className="group min-h-[220px] rounded-[5px] border border-bazooka-border-strong bg-bazooka-black p-5 transition-all duration-300 hover:-translate-y-1 hover:border-bazooka-lime/70 hover:bg-bazooka-lime/[.025] hover:shadow-[0_14px_35px_rgba(0,0,0,.22)]"><div className="flex items-center gap-3"><Icon className="size-8 shrink-0 text-bazooka-lime transition-transform duration-300 group-hover:scale-110"/><span className="font-display text-[18px] font-black text-bazooka-lime">{index+1}.</span><h3 className="font-display text-[16px] font-black uppercase">{card.title}</h3></div><p className="mt-4 text-[10px] leading-5 text-bazooka-text-secondary">{card.text}</p>{card.bullets?.map(item=><p key={item} className="mt-3 flex gap-2 text-[9px] leading-5 text-bazooka-text-secondary"><ArrowRight className="mt-1 size-3 shrink-0 text-bazooka-lime"/>{item}</p>)}</article>;
 }
 
 function NotesPanel({title,notes}:{title:string;notes:string[]}) {
-  return <div className="relative mt-4 min-h-[120px] overflow-hidden rounded-[5px] border border-bazooka-border-strong bg-bazooka-surface p-6"><div className="absolute inset-y-0 right-0 hidden w-[270px] bg-cover bg-center opacity-25 grayscale md:block" style={{backgroundImage:`linear-gradient(to right,#101112,transparent),url(${plateImage})`}}/><div className="relative z-10 flex max-w-[900px] gap-5"><span className="grid size-12 shrink-0 place-items-center rounded-full border border-bazooka-lime text-bazooka-lime"><AlertCircle className="size-7"/></span><div><h2 className="font-display text-[18px] font-black uppercase text-bazooka-lime">{title}</h2>{notes.map(note=><p key={note} className="mt-2 text-[9px] leading-4 text-bazooka-text-secondary">• {note}</p>)}</div></div></div>;
+  return <div className="relative mt-4 min-h-[120px] overflow-hidden rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface p-6"><div className="absolute inset-y-0 right-0 hidden w-[270px] bg-cover bg-center opacity-30 md:block" style={{backgroundImage:`linear-gradient(to right,#101112,transparent),url(${plateImage})`}}/><div className="relative z-10 flex max-w-[900px] gap-5"><span className="grid size-12 shrink-0 place-items-center rounded-full border border-bazooka-lime bg-bazooka-lime/5 text-bazooka-lime"><AlertCircle className="size-7"/></span><div><h2 className="font-display text-[18px] font-black uppercase text-bazooka-lime">{title}</h2>{notes.map(note=><p key={note} className="mt-2 text-[9px] leading-4 text-bazooka-text-secondary">• {note}</p>)}</div></div></div>;
 }
 
 function HelpPanel({copy}:{copy:string}) {
-  return <div className="mt-4 grid items-center gap-5 rounded-[5px] border border-bazooka-border-strong bg-bazooka-surface p-6 lg:grid-cols-[1.15fr_.75fr_.65fr_.75fr_auto]">
-    <div className="flex gap-4"><span className="grid size-14 shrink-0 place-items-center rounded-full border border-bazooka-lime text-bazooka-lime"><Headphones className="size-7"/></span><div><h2 className="font-display text-[24px] font-black uppercase">Need Help?</h2><p className="mt-1 max-w-[280px] text-[9px] leading-4 text-bazooka-text-secondary">{copy}</p></div></div>
-    <Info icon={MapPin} title="Visit Us" text="Bazooka Fitness · Sardarpura, Jodhpur"/>
-    <Info icon={Phone} title="Call Us" text="+91 91164 05151"/>
-    <Info icon={Mail} title="Email Us" text="info@bazooka.fit"/>
-    <Link href="/contact" className="inline-flex h-11 items-center justify-center gap-3 rounded-[4px] bg-bazooka-lime px-7 text-[9px] font-black uppercase text-black transition hover:bg-bazooka-lime-hover">Contact Us <ArrowRight className="size-4"/></Link>
-  </div>;
+  return <div className="mt-4 grid items-center gap-5 rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface p-6 lg:grid-cols-[1.15fr_.75fr_.65fr_.75fr_auto]"><div className="flex gap-4"><span className="grid size-14 shrink-0 place-items-center rounded-full border border-bazooka-lime bg-bazooka-lime/5 text-bazooka-lime"><Headphones className="size-7"/></span><div><h2 className="font-display text-[24px] font-black uppercase">Need Help?</h2><p className="mt-1 max-w-[280px] text-[9px] leading-4 text-bazooka-text-secondary">{copy}</p></div></div><Info icon={MapPin} title="Visit Us" text="Bazooka Fitness · Sardarpura, Jodhpur"/><Info icon={Phone} title="Call Us" text="+91 91164 05151"/><Info icon={Mail} title="Email Us" text="info@bazooka.fit"/><Link href="/contact" className={`${primaryButton} w-full lg:w-auto`}>Contact Us <ArrowRight className="size-4 transition-transform group-hover:translate-x-1"/></Link></div>;
 }
 
 function Info({icon:Icon,title,text}:{icon:IconType;title:string;text:string}) {
-  return <div className="border-l border-bazooka-border pl-5 text-[9px]"><Icon className="size-4 text-bazooka-lime"/><strong className="font-display mt-2 block text-[13px] uppercase">{title}</strong><p className="mt-1 leading-4 text-bazooka-text-secondary">{text}</p></div>;
+  return <div className="border-t border-bazooka-border pt-4 text-[9px] lg:border-l lg:border-t-0 lg:pl-5 lg:pt-0"><Icon className="size-4 text-bazooka-lime"/><strong className="font-display mt-2 block text-[13px] uppercase">{title}</strong><p className="mt-1 leading-4 text-bazooka-text-secondary">{text}</p></div>;
 }
