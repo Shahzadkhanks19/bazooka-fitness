@@ -36,7 +36,7 @@ export default function CafeBazookaHighlight({ compact = false }: { compact?: bo
               ))}
             </div>
 
-            <Link href="/facilities/nutrition-bar" className="mt-6 inline-flex h-10 w-fit items-center gap-3 rounded-[4px] bg-bazooka-lime px-5 text-[9px] font-black uppercase text-black transition hover:bg-bazooka-lime-hover">Explore Cafe Bazooka <ArrowRight className="size-4" /></Link>
+            <Link href="/cafe-bazooka" className="mt-6 inline-flex h-10 w-fit items-center gap-3 rounded-[4px] bg-bazooka-lime px-5 text-[9px] font-black uppercase text-black transition hover:bg-bazooka-lime-hover">Explore Cafe Bazooka <ArrowRight className="size-4" /></Link>
           </div>
 
           <div className="relative min-h-[300px] bg-[url('https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=1400&q=90')] bg-cover bg-center lg:min-h-full">
