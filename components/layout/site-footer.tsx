@@ -1,13 +1,12 @@
 import Link from "next/link";
-import { Clock3, MapPinned, Phone, UtensilsCrossed } from "lucide-react";
-import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
+import { Clock3, Mail, MapPinned, Phone, UtensilsCrossed } from "lucide-react";
 
 const shell = "mx-auto w-[min(calc(100%-32px),1180px)] sm:w-[min(calc(100%-40px),1180px)] md:w-[min(calc(100%-64px),1180px)]";
 
 const footerCols = [
   { title: "Quick Links", links: [["Home", "/"], ["About Us", "/about"], ["Memberships", "/memberships"], ["Facilities", "/facilities"], ["Cafe Bazooka", "/cafe-bazooka"], ["Trainers", "/trainers"], ["Transformations", "/transformations"], ["Gallery", "/gallery"], ["Contact", "/contact"]] },
-  { title: "Programs", links: [["Strength Training", "/programs"], ["Functional Training", "/programs"], ["Cardio & Endurance", "/programs"], ["Personal Training", "/programs"], ["Transformation Program", "/programs"], ["Recovery", "/programs"], ["Nutrition Guidance", "/programs"]] },
-  { title: "Membership", links: [["Plans & Pricing", "/memberships"], ["Join Bazooka", "/memberships"], ["Book Free Trial", "/book-free-trial"], ["Personal Training", "/programs"]] },
+  { title: "Programs", links: [["Strength Training", "/programs/strength-training"], ["Functional Training", "/programs/functional-training"], ["Cardio & Endurance", "/programs/cardio-endurance"], ["Personal Training", "/programs/personal-training"], ["Transformation Program", "/programs/transformation-program"], ["Recovery", "/programs/recovery-wellness"], ["Nutrition Guidance", "/cafe-bazooka"]] },
+  { title: "Membership", links: [["Plans & Pricing", "/memberships"], ["Join Bazooka", "/book-free-trial"], ["Book Free Trial", "/book-free-trial"], ["Personal Training", "/programs/personal-training"]] },
   { title: "Help", links: [["FAQ", "/faq"], ["Contact Us", "/contact"], ["Membership Terms", "/membership-terms"], ["Cancellation Policy", "/cancellation-policy"], ["Refund Policy", "/refund-policy"]] },
   { title: "Legal", links: [["Privacy Policy", "/privacy-policy"], ["Terms & Conditions", "/terms-and-conditions"], ["Cookie Policy", "/cookie-policy"], ["Disclaimer", "/disclaimer"]] },
 ] as const;
@@ -29,11 +28,9 @@ export default function SiteFooter() {
           <Link href="/" className="inline-block max-w-full transition-transform hover:scale-[1.025]"><FooterLogo /></Link>
           <p className="mt-5 text-[12px] leading-6 text-bazooka-text-secondary sm:mt-6">Stronger People.<br />A Healthier Jodhpur.</p>
           <Link href="/cafe-bazooka" className="mt-4 flex w-fit max-w-full items-start gap-2 text-[10px] text-bazooka-text-secondary transition hover:text-bazooka-lime"><UtensilsCrossed className="mt-0.5 size-4 shrink-0 text-bazooka-lime" /><span><b className="text-white">Cafe Bazooka</b><br />Healthy meals &amp; refreshments</span></Link>
-          <div className="mt-6 flex flex-wrap gap-3">
-            {[[FaInstagram, "Instagram"], [FaFacebookF, "Facebook"], [FaYoutube, "YouTube"]].map(([Icon, label], index) => {
-              const SocialIcon = Icon as typeof FaInstagram;
-              return <a key={index} href="#" aria-label={String(label)} className="grid size-10 place-items-center rounded-full border border-bazooka-border text-bazooka-text-secondary transition-all duration-300 hover:-translate-y-1 hover:border-bazooka-lime hover:bg-bazooka-lime hover:text-bazooka-black"><SocialIcon className="size-4" /></a>;
-            })}
+          <div className="mt-6 flex flex-wrap gap-2">
+            <a href="tel:+919116405151" className="inline-flex items-center gap-2 rounded-full border border-bazooka-border px-3 py-2 text-[9px] text-bazooka-text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:border-bazooka-lime hover:text-bazooka-lime"><Phone className="size-3.5" />Call</a>
+            <a href="mailto:info@bazooka.fit" className="inline-flex items-center gap-2 rounded-full border border-bazooka-border px-3 py-2 text-[9px] text-bazooka-text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:border-bazooka-lime hover:text-bazooka-lime"><Mail className="size-3.5" />Email</a>
           </div>
         </div>
 
@@ -49,6 +46,7 @@ export default function SiteFooter() {
         <div className="min-w-0 space-y-5 text-[10px] leading-5 text-bazooka-text-secondary sm:space-y-6">
           <a href="https://maps.app.goo.gl/ArEb2YaGdZq5qF8x7" target="_blank" rel="noreferrer" className="flex min-w-0 gap-3 transition hover:text-bazooka-lime"><MapPinned className="size-4 shrink-0 text-bazooka-lime" /><span className="min-w-0">Floor 6, Shanti One, Plot No. 39,<br />11th A Rd, Sardarpura, Jodhpur,<br />Rajasthan 342001</span></a>
           <a href="tel:+919116405151" className="flex gap-3 transition hover:text-bazooka-lime"><Phone className="size-4 shrink-0 text-bazooka-lime" /><span>+91 91164 05151</span></a>
+          <a href="mailto:info@bazooka.fit" className="flex gap-3 transition hover:text-bazooka-lime"><Mail className="size-4 shrink-0 text-bazooka-lime" /><span>info@bazooka.fit</span></a>
           <div className="flex gap-3"><Clock3 className="size-4 shrink-0 text-bazooka-lime" /><span>Mon – Sat: 5:30 AM – 10:00 PM<br />Sunday: Closed</span></div>
         </div>
       </div>
