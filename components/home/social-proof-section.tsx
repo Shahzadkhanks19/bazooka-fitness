@@ -21,8 +21,8 @@ export default function SocialProofSection() {
   const nextReview = () => setReviewIndex((current) => (current + 1) % reviews.length);
 
   useEffect(() => {
-    const timer = window.setInterval(nextReview, 5000);
-    return () => window.clearInterval(timer);
+    const timer = setInterval(() => setReviewIndex((current) => (current + 1) % reviews.length), 5000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -45,28 +45,12 @@ export default function SocialProofSection() {
           <Link href="/trainers" className={`${outlineButton} mt-5 h-9 w-fit border-bazooka-lime/70 px-5 text-[9px]`}>Meet All Trainers <ArrowRight className="size-3.5" /></Link>
         </motion.div>
 
-        <motion.article
-          key={reviewIndex}
-          initial={{ opacity: 0, x: 24 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.18}
-          onDragEnd={(_, info) => {
-            if (info.offset.x <= -45) nextReview();
-            if (info.offset.x >= 45) previousReview();
-          }}
-          className="relative touch-pan-y cursor-grab rounded-[6px] border border-bazooka-border bg-[#111214] p-6 active:cursor-grabbing"
-        >
+        <motion.article key={reviewIndex} initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.35, ease: "easeOut" }} drag="x" dragConstraints={{ left: 0, right: 0 }} dragElastic={0.18} onDragEnd={(_, info) => { if (info.offset.x <= -45) nextReview(); if (info.offset.x >= 45) previousReview(); }} className="relative touch-pan-y cursor-grab rounded-[6px] border border-bazooka-border bg-[#111214] p-6 active:cursor-grabbing">
           <div className="flex items-start justify-between"><FcGoogle className="size-7" /><div className="flex gap-0.5 text-[#fbbc04]">{Array.from({ length: 5 }).map((_, index) => <Star key={index} className="size-3 fill-current" />)}</div></div>
           <p className="mt-5 min-h-[72px] text-[12px] leading-5 text-bazooka-text-secondary">“{review.text}”</p>
           <div className="mt-5 flex items-center gap-3"><span className="grid size-10 place-items-center rounded-full bg-bazooka-surface text-sm font-black text-bazooka-lime">{review.name.charAt(0)}</span><div><strong className="block text-[10px]">{review.name}</strong><small className="text-[8px] text-bazooka-text-secondary">{review.meta}</small><span className="mt-1 flex items-center gap-1 text-[7px] text-bazooka-lime"><ShieldCheck className="size-3" /> Verified Google Review</span></div></div>
-          <div className="absolute bottom-5 right-5 flex gap-2">
-            <button type="button" onClick={previousReview} aria-label="Previous review" className="grid size-9 place-items-center rounded border border-bazooka-border transition-all duration-200 hover:border-bazooka-lime active:scale-90 active:border-bazooka-lime active:text-bazooka-lime"><ChevronLeft className="size-4" /></button>
-            <button type="button" onClick={nextReview} aria-label="Next review" className="grid size-9 place-items-center rounded border border-bazooka-border transition-all duration-200 hover:border-bazooka-lime active:scale-90 active:border-bazooka-lime active:text-bazooka-lime"><ChevronRight className="size-4" /></button>
-          </div>
-          <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">{reviews.map((_, index) => <button type="button" aria-label={`Show review ${index + 1}`} onClick={() => setReviewIndex(index)} key={index} className={`size-1.5 rounded-full transition-all ${index === reviewIndex ? "bg-bazooka-lime scale-125" : "bg-bazooka-border-strong"}`} />)}</div>
+          <div className="absolute bottom-5 right-5 flex gap-2"><button type="button" onClick={previousReview} aria-label="Previous review" className="grid size-9 place-items-center rounded border border-bazooka-border transition-all duration-200 hover:border-bazooka-lime active:scale-90 active:border-bazooka-lime active:text-bazooka-lime"><ChevronLeft className="size-4" /></button><button type="button" onClick={nextReview} aria-label="Next review" className="grid size-9 place-items-center rounded border border-bazooka-border transition-all duration-200 hover:border-bazooka-lime active:scale-90 active:border-bazooka-lime active:text-bazooka-lime"><ChevronRight className="size-4" /></button></div>
+          <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">{reviews.map((_, index) => <button type="button" aria-label={`Show review ${index + 1}`} onClick={() => setReviewIndex(index)} key={index} className={`size-1.5 rounded-full transition-all ${index === reviewIndex ? "scale-125 bg-bazooka-lime" : "bg-bazooka-border-strong"}`} />)}</div>
         </motion.article>
       </div>
     </section>
