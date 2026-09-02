@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Clock3, Mail, MapPinned, Phone, UtensilsCrossed } from "lucide-react";
+import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 const shell = "mx-auto w-[min(calc(100%-32px),1180px)] sm:w-[min(calc(100%-40px),1180px)] md:w-[min(calc(100%-64px),1180px)]";
 
@@ -31,6 +32,11 @@ export default function SiteFooter() {
           <div className="mt-6 flex flex-wrap gap-2">
             <a href="tel:+919116405151" className="inline-flex items-center gap-2 rounded-full border border-bazooka-border px-3 py-2 text-[9px] text-bazooka-text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:border-bazooka-lime hover:text-bazooka-lime"><Phone className="size-3.5" />Call</a>
             <a href="mailto:info@bazooka.fit" className="inline-flex items-center gap-2 rounded-full border border-bazooka-border px-3 py-2 text-[9px] text-bazooka-text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:border-bazooka-lime hover:text-bazooka-lime"><Mail className="size-3.5" />Email</a>
+          </div>
+          <div className="mt-5 flex items-center gap-2.5" aria-label="Bazooka Fitness social links">
+            <a href="https://www.facebook.com/bazooka.fitness" target="_blank" rel="noreferrer" aria-label="Bazooka Fitness on Facebook" className="group grid size-9 place-items-center rounded-full bg-[#1877F2] text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_8px_22px_rgba(24,119,242,.28)] active:translate-y-0 active:scale-95"><FaFacebookF className="size-4 transition-transform duration-300 group-hover:scale-110" /></a>
+            <a href="https://www.instagram.com/bazookafitnessjodhpur/" target="_blank" rel="noreferrer" aria-label="Bazooka Fitness on Instagram" className="group grid size-9 place-items-center rounded-full bg-[linear-gradient(135deg,#833AB4_0%,#E1306C_52%,#FCAF45_100%)] text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_8px_22px_rgba(225,48,108,.28)] active:translate-y-0 active:scale-95"><FaInstagram className="size-[18px] transition-transform duration-300 group-hover:scale-110" /></a>
+            <a href="https://wa.me/919116405151" target="_blank" rel="noreferrer" aria-label="Chat with Bazooka Fitness on WhatsApp" className="group grid size-9 place-items-center rounded-full bg-[#25D366] text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_8px_22px_rgba(37,211,102,.25)] active:translate-y-0 active:scale-95"><FaWhatsapp className="size-[18px] transition-transform duration-300 group-hover:scale-110" /></a>
           </div>
         </div>
 
