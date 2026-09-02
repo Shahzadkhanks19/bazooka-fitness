@@ -4,9 +4,9 @@ import { Clock3, Mail, MapPinned, Phone, UtensilsCrossed } from "lucide-react";
 const shell = "mx-auto w-[min(calc(100%-32px),1180px)] sm:w-[min(calc(100%-40px),1180px)] md:w-[min(calc(100%-64px),1180px)]";
 
 const footerCols = [
-  { title: "Quick Links", links: [["Home", "/"], ["About Us", "/about"], ["Memberships", "/memberships"], ["Facilities", "/facilities"], ["Cafe Bazooka", "/cafe-bazooka"], ["Trainers", "/trainers"], ["Transformations", "/transformations"], ["Gallery", "/gallery"], ["Contact", "/contact"]] },
-  { title: "Programs", links: [["Strength Training", "/programs/strength-training"], ["Functional Training", "/programs/functional-training"], ["Cardio & Endurance", "/programs/cardio-endurance"], ["Personal Training", "/programs/personal-training"], ["Transformation Program", "/programs/transformation-program"], ["Recovery", "/programs/recovery-wellness"], ["Nutrition Guidance", "/cafe-bazooka"]] },
-  { title: "Membership", links: [["Plans & Pricing", "/memberships"], ["Join Bazooka", "/book-free-trial"], ["Book Free Trial", "/book-free-trial"], ["Personal Training", "/programs/personal-training"]] },
+  { title: "Explore", links: [["Home", "/"], ["About Us", "/about"], ["Memberships", "/memberships"], ["Programs", "/programs"], ["Trainers", "/trainers"], ["Facilities", "/facilities"], ["Transformations", "/transformations"], ["Gallery", "/gallery"], ["Cafe Bazooka", "/cafe-bazooka"], ["Contact", "/contact"]] },
+  { title: "Membership", links: [["Plans & Pricing", "/memberships"], ["Book Free Trial", "/book-free-trial"], ["Personal Training", "/programs/personal-training"], ["Meet Our Trainers", "/trainers"]] },
+  { title: "Programs", links: [["Strength Training", "/programs/strength-training"], ["Personal Training", "/programs/personal-training"], ["Functional Training", "/programs/functional-training"], ["Cardio & Endurance", "/programs/cardio-endurance"], ["Transformation Program", "/programs/transformation-program"], ["Recovery", "/programs/recovery-wellness"], ["Nutrition Guidance", "/cafe-bazooka"]] },
   { title: "Help", links: [["FAQ", "/faq"], ["Contact Us", "/contact"], ["Membership Terms", "/membership-terms"], ["Cancellation Policy", "/cancellation-policy"], ["Refund Policy", "/refund-policy"]] },
   { title: "Legal", links: [["Privacy Policy", "/privacy-policy"], ["Terms & Conditions", "/terms-and-conditions"], ["Cookie Policy", "/cookie-policy"], ["Disclaimer", "/disclaimer"]] },
 ] as const;
