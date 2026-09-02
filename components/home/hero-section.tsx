@@ -8,7 +8,7 @@ import { outlineButton, primaryButton, shell } from "./home-shared";
 export default function HeroSection() {
   return (
     <section className="relative overflow-hidden border-b border-bazooka-border/70">
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534438097545-a2c22c57f2ad?auto=format&fit=crop&w=2200&q=90')] bg-cover bg-[65%_center] grayscale sm:bg-[center_34%]" />
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534438097545-a2c22c57f2ad?auto=format&fit=crop&w=2200&q=90')] bg-cover bg-[65%_center] sm:bg-[center_34%]" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,#050505_0%,rgba(5,5,5,.96)_26%,rgba(5,5,5,.60)_49%,rgba(5,5,5,.08)_73%,rgba(5,5,5,.22)_100%),linear-gradient(0deg,#050505_0%,transparent_20%)]" />
       <div className={`${shell} relative flex min-h-[720px] flex-col pb-6 pt-12 sm:pt-16 lg:pt-20`}>
         <motion.div initial={false} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.65 }} className="max-w-[440px]">
