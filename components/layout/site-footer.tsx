@@ -26,14 +26,10 @@ export default function SiteFooter() {
     <footer id="site-footer" className="bg-bazooka-soft-black">
       <div className={`${shell} grid gap-9 py-12 pr-[62px] sm:grid-cols-2 sm:gap-10 sm:py-16 sm:pr-[76px] lg:grid-cols-[1.4fr_repeat(5,1fr)_1.25fr] lg:pr-24 xl:pr-28`}>
         <div>
-          <Link href="/" className="inline-block max-w-full transition-transform hover:scale-[1.025]"><FooterLogo /></Link>
+          <Link href="/" prefetch={false} className="inline-block max-w-full transition-transform hover:scale-[1.025]"><FooterLogo /></Link>
           <p className="mt-5 text-[12px] leading-6 text-bazooka-text-secondary sm:mt-6">Stronger People.<br />A Healthier Jodhpur.</p>
-          <Link href="/cafe-bazooka" className="mt-4 flex w-fit max-w-full items-start gap-2 text-[10px] text-bazooka-text-secondary transition hover:text-bazooka-lime"><UtensilsCrossed className="mt-0.5 size-4 shrink-0 text-bazooka-lime" /><span><b className="text-white">Cafe Bazooka</b><br />Healthy meals &amp; refreshments</span></Link>
-          <div className="mt-6 flex flex-wrap gap-2">
-            <a href="tel:+919116405151" className="inline-flex items-center gap-2 rounded-full border border-bazooka-border px-3 py-2 text-[9px] text-bazooka-text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:border-bazooka-lime hover:text-bazooka-lime"><Phone className="size-3.5" />Call</a>
-            <a href="mailto:info@bazooka.fit" className="inline-flex items-center gap-2 rounded-full border border-bazooka-border px-3 py-2 text-[9px] text-bazooka-text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:border-bazooka-lime hover:text-bazooka-lime"><Mail className="size-3.5" />Email</a>
-          </div>
-          <div className="mt-5 flex items-center gap-2.5" aria-label="Bazooka Fitness social links">
+          <Link href="/cafe-bazooka" prefetch={false} className="mt-4 flex w-fit max-w-full items-start gap-2 text-[10px] text-bazooka-text-secondary transition hover:text-bazooka-lime"><UtensilsCrossed className="mt-0.5 size-4 shrink-0 text-bazooka-lime" /><span><b className="text-white">Cafe Bazooka</b><br />Healthy meals &amp; refreshments</span></Link>
+          <div className="mt-6 flex items-center gap-2.5" aria-label="Bazooka Fitness social links">
             <a href="https://www.facebook.com/bazooka.fitness" target="_blank" rel="noreferrer" aria-label="Bazooka Fitness on Facebook" className="group grid size-9 place-items-center rounded-full bg-[#1877F2] text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_8px_22px_rgba(24,119,242,.28)] active:translate-y-0 active:scale-95"><FaFacebookF className="size-4 transition-transform duration-300 group-hover:scale-110" /></a>
             <a href="https://www.instagram.com/bazookafitnessjodhpur/" target="_blank" rel="noreferrer" aria-label="Bazooka Fitness on Instagram" className="group grid size-9 place-items-center rounded-full bg-[linear-gradient(135deg,#833AB4_0%,#E1306C_52%,#FCAF45_100%)] text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_8px_22px_rgba(225,48,108,.28)] active:translate-y-0 active:scale-95"><FaInstagram className="size-[18px] transition-transform duration-300 group-hover:scale-110" /></a>
             <a href="https://wa.me/919116405151" target="_blank" rel="noreferrer" aria-label="Chat with Bazooka Fitness on WhatsApp" className="group grid size-9 place-items-center rounded-full bg-[#25D366] text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_8px_22px_rgba(37,211,102,.25)] active:translate-y-0 active:scale-95"><FaWhatsapp className="size-[18px] transition-transform duration-300 group-hover:scale-110" /></a>
@@ -44,7 +40,7 @@ export default function SiteFooter() {
           <div key={column.title} className="min-w-0">
             <h3 className="mb-4 text-[11px] font-black uppercase text-bazooka-text sm:mb-5">{column.title}</h3>
             <div className="space-y-3">
-              {column.links.map(([label, href]) => <Link key={label} href={href} className="group flex w-fit max-w-full items-center gap-1 text-[10px] text-bazooka-text-secondary transition-all duration-300 hover:translate-x-1 hover:text-bazooka-lime"><span className="h-px w-0 shrink-0 bg-bazooka-lime transition-all duration-300 group-hover:w-2" />{label}</Link>)}
+              {column.links.map(([label, href]) => <Link key={label} href={href} prefetch={false} className="group flex w-fit max-w-full items-center gap-1 text-[10px] text-bazooka-text-secondary transition-all duration-300 hover:translate-x-1 hover:text-bazooka-lime"><span className="h-px w-0 shrink-0 bg-bazooka-lime transition-all duration-300 group-hover:w-2" />{label}</Link>)}
             </div>
           </div>
         ))}
@@ -52,7 +48,7 @@ export default function SiteFooter() {
         <div className="min-w-0 space-y-5 text-[10px] leading-5 text-bazooka-text-secondary sm:space-y-6">
           <a href="https://maps.app.goo.gl/ArEb2YaGdZq5qF8x7" target="_blank" rel="noreferrer" className="flex min-w-0 gap-3 transition hover:text-bazooka-lime"><MapPinned className="size-4 shrink-0 text-bazooka-lime" /><span className="min-w-0">Floor 6, Shanti One, Plot No. 39,<br />11th A Rd, Sardarpura, Jodhpur,<br />Rajasthan 342001</span></a>
           <a href="tel:+919116405151" className="flex gap-3 transition hover:text-bazooka-lime"><Phone className="size-4 shrink-0 text-bazooka-lime" /><span>+91 91164 05151</span></a>
-          <a href="mailto:info@bazooka.fit" className="flex gap-3 transition hover:text-bazooka-lime"><Mail className="size-4 shrink-0 text-bazooka-lime" /><span>info@bazooka.fit</span></a>
+          <a href="mailto:store@bazooka.fit" className="flex gap-3 transition hover:text-bazooka-lime"><Mail className="size-4 shrink-0 text-bazooka-lime" /><span>store@bazooka.fit</span></a>
           <div className="flex gap-3"><Clock3 className="size-4 shrink-0 text-bazooka-lime" /><span>Mon – Sat: 5:30 AM – 10:00 PM<br />Sunday: Closed</span></div>
         </div>
       </div>
