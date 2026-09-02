@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { ArrowRight, Clock3, Coffee, Mail, MapPin, Phone, Send } from "lucide-react";
 import CustomCheckbox from "@/components/ui/custom-checkbox";
 import CustomSelect from "@/components/ui/custom-select";
@@ -26,7 +26,7 @@ export default function ContactMainSection() {
   const [preferredContactTime, setPreferredContactTime] = useState("");
   const [agreed, setAgreed] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitted(false);
     setFormError("");
@@ -68,14 +68,14 @@ export default function ContactMainSection() {
             <h2 className="font-display text-[32px] font-black uppercase">Send Us <span className="text-bazooka-lime">A Message</span></h2>
             <p className="mt-2 text-[9px] text-bazooka-text-secondary">Fill out the form below and our team will get back to you soon.</p>
             <form noValidate onSubmit={handleSubmit} className="mt-5 space-y-3">
-              <div className="grid gap-3 sm:grid-cols-2"><input name="name" className={fieldClass} placeholder="Your Name *" /><input name="phone" className={fieldClass} placeholder="Phone Number *" inputMode="tel" maxLength={10} /></div>
-              <div className="grid gap-3 sm:grid-cols-2"><input name="email" type="email" className={fieldClass} placeholder="Email Address *" /><input name="subject" className={fieldClass} placeholder="Subject *" /></div>
-              <textarea name="message" className={textareaClass} placeholder="How can we help you? *" />
-              <CustomSelect value={preferredContactTime} onChange={setPreferredContactTime} options={contactTimes} placeholder="Preferred Time to Contact" />
+              <div className="grid gap-3 sm:grid-cols-2"><input name="name" autoComplete="name" aria-label="Your name" className={fieldClass} placeholder="Your Name *" /><input name="phone" autoComplete="tel" aria-label="Phone number" className={fieldClass} placeholder="Phone Number *" inputMode="tel" maxLength={10} /></div>
+              <div className="grid gap-3 sm:grid-cols-2"><input name="email" type="email" autoComplete="email" aria-label="Email address" className={fieldClass} placeholder="Email Address *" /><input name="subject" aria-label="Subject" className={fieldClass} placeholder="Subject *" /></div>
+              <textarea name="message" aria-label="Message" className={textareaClass} placeholder="How can we help you? *" />
+              <CustomSelect value={preferredContactTime} onChange={setPreferredContactTime} options={contactTimes} placeholder="Preferred Time to Contact" ariaLabel="Preferred time to contact" />
               <CustomCheckbox checked={agreed} onChange={setAgreed} required label={<span>I agree to the <Link href="/terms-and-conditions" className="text-bazooka-lime">Terms & Conditions</Link> and <Link href="/privacy-policy" className="text-bazooka-lime">Privacy Policy</Link>.</span>} />
               <button type="submit" className={`${buttonClass} w-full`}>Send Message <Send className="size-4" /></button>
               {formError && <p role="alert" className="rounded-[4px] border border-bazooka-warning/40 bg-bazooka-warning/5 p-3 text-center text-[9px] leading-4 text-bazooka-warning">{formError}</p>}
-              {submitted && <p className="rounded-[4px] border border-bazooka-lime/40 bg-bazooka-lime/5 p-3 text-center text-[9px] text-bazooka-lime">Thanks — your message has been captured. Our team will get back to you soon.</p>}
+              {submitted && <p role="status" className="rounded-[4px] border border-bazooka-lime/40 bg-bazooka-lime/5 p-3 text-center text-[9px] text-bazooka-lime">Thanks — your message has been captured. Our team will get back to you soon.</p>}
             </form>
           </div>
 
