@@ -10,7 +10,7 @@ import { buttonClass, fieldClass, shell, textareaClass } from "./contact-shared"
 const contactInfo = [
   [MapPin, "Visit Our Gym", "Floor 6, Shanti One, Plot No. 39, 11th A Rd, Sardarpura, Jodhpur, Rajasthan 342001"],
   [Phone, "Call Us", "+91 91164 05151"],
-  [Mail, "Email Us", "info@bazooka.fit"],
+  [Mail, "Email Us", "store@bazooka.fit"],
   [Clock3, "Working Hours", "Mon–Sat: 5:30 AM–10 PM · Sunday: Closed"],
 ] as const;
 
