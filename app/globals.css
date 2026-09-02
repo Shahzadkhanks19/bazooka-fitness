@@ -63,6 +63,12 @@ canvas {
   height: auto;
 }
 
+/* Bazooka photography must always remain full-colour. This also neutralizes any legacy grayscale utility that may still exist in old markup. */
+*[class~="grayscale"],
+*[class*="grayscale-"] {
+  filter: none !important;
+}
+
 input,
 textarea,
 button {
