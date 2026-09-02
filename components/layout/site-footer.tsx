@@ -5,7 +5,7 @@ import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 const shell = "mx-auto w-[min(calc(100%-32px),1180px)] sm:w-[min(calc(100%-40px),1180px)] md:w-[min(calc(100%-64px),1180px)]";
 
 const footerCols = [
-  { title: "Quick Links", links: [["Home", "/"], ["About Us", "/about"], ["Memberships", "/memberships"], ["Facilities", "/facilities"], ["Cafe Bazooka", "/facilities/nutrition-bar"], ["Trainers", "/trainers"], ["Transformations", "/transformations"], ["Gallery", "/gallery"], ["Contact", "/contact"]] },
+  { title: "Quick Links", links: [["Home", "/"], ["About Us", "/about"], ["Memberships", "/memberships"], ["Facilities", "/facilities"], ["Cafe Bazooka", "/cafe-bazooka"], ["Trainers", "/trainers"], ["Transformations", "/transformations"], ["Gallery", "/gallery"], ["Contact", "/contact"]] },
   { title: "Programs", links: [["Strength Training", "/programs"], ["Functional Training", "/programs"], ["Cardio & Endurance", "/programs"], ["Personal Training", "/programs"], ["Transformation Program", "/programs"], ["Recovery", "/programs"], ["Nutrition Guidance", "/programs"]] },
   { title: "Membership", links: [["Plans & Pricing", "/memberships"], ["Join Bazooka", "/memberships"], ["Book Free Trial", "/book-free-trial"], ["Personal Training", "/programs"]] },
   { title: "Help", links: [["FAQ", "/faq"], ["Contact Us", "/contact"], ["Membership Terms", "/membership-terms"], ["Cancellation Policy", "/cancellation-policy"], ["Refund Policy", "/refund-policy"]] },
@@ -28,7 +28,7 @@ export default function SiteFooter() {
         <div>
           <Link href="/" className="inline-block max-w-full transition-transform hover:scale-[1.025]"><FooterLogo /></Link>
           <p className="mt-5 text-[12px] leading-6 text-bazooka-text-secondary sm:mt-6">Stronger People.<br />A Healthier Jodhpur.</p>
-          <Link href="/facilities/nutrition-bar" className="mt-4 flex w-fit max-w-full items-start gap-2 text-[10px] text-bazooka-text-secondary transition hover:text-bazooka-lime"><UtensilsCrossed className="mt-0.5 size-4 shrink-0 text-bazooka-lime" /><span><b className="text-white">Cafe Bazooka</b><br />Healthy meals &amp; refreshments</span></Link>
+          <Link href="/cafe-bazooka" className="mt-4 flex w-fit max-w-full items-start gap-2 text-[10px] text-bazooka-text-secondary transition hover:text-bazooka-lime"><UtensilsCrossed className="mt-0.5 size-4 shrink-0 text-bazooka-lime" /><span><b className="text-white">Cafe Bazooka</b><br />Healthy meals &amp; refreshments</span></Link>
           <div className="mt-6 flex flex-wrap gap-3">
             {[[FaInstagram, "Instagram"], [FaFacebookF, "Facebook"], [FaYoutube, "YouTube"]].map(([Icon, label], index) => {
               const SocialIcon = Icon as typeof FaInstagram;
@@ -56,7 +56,7 @@ export default function SiteFooter() {
       <div className="border-t border-bazooka-border">
         <div className={`${shell} flex flex-col gap-2 py-5 pr-[62px] text-[9px] leading-4 text-bazooka-muted sm:pr-[76px] md:flex-row md:items-center md:justify-between lg:pr-24 xl:pr-28`}>
           <span>© 2026 Bazooka Fitness. All rights reserved.</span>
-          <a href="https://builtbyshahzad.vercel.app" target="_blank" rel="noreferrer" className="group w-fit max-w-full transition-all duration-300 hover:text-white">Designed &amp; Developed by <span className="font-black text-bazooka-lime transition-all duration-300 group-hover:text-bazooka-lime-hover group-hover:drop-shadow-[0_0_8px_rgba(182,240,0,.55)]">Shahzad Khan</span> <b className="text-bazooka-lime">♥</b></a>
+          <a href="https://builtbyshahzad.vercel.app" target="_blank" rel="noreferrer" className="group w-fit max-w-full transition-all duration-300 hover:text-white">Designed &amp; Developed by <span className="font-black text-bazooka-lime transition-all duration-300 group-hover:text-bazooka-lime-hover group-hover:drop-shadow-[0_0_8px_rgba(255,181,46,.55)]">Shahzad Khan</span> <b className="text-bazooka-lime">♥</b></a>
         </div>
       </div>
     </footer>
