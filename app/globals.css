@@ -63,6 +63,12 @@ canvas {
   height: auto;
 }
 
+/* Bazooka now uses full-colour photography everywhere. Neutralize any legacy grayscale utility without having to keep image-specific exceptions. */
+*[class~="grayscale"],
+*[class*="grayscale-"] {
+  filter: none !important;
+}
+
 input,
 select,
 textarea,
