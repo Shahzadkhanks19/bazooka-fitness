@@ -1,77 +1,98 @@
 "use client";
 
 import { useMemo, useState, type ReactNode } from "react";
-import { ArrowRight, Award, CalendarDays, CheckCircle2, Clock3, Dumbbell, Mail, Phone, ShieldCheck, Star, Target, TrendingUp, UserRound } from "lucide-react";
+import { ArrowRight, Award, CalendarDays, CheckCircle2, ChevronLeft, ChevronRight, Clock3, Dumbbell, Mail, Phone, ShieldCheck, Star, Target, TrendingUp, UserRound } from "lucide-react";
+import CustomSelect from "@/components/ui/custom-select";
 import type { TrainerProfile } from "@/components/trainers/trainer-data";
 import { fieldClass, primaryButton, shell, textareaClass } from "./booking-shared";
 
-const timeSlots = ["05:00 AM", "06:00 AM", "07:00 AM", "08:00 AM", "09:00 AM", "10:00 AM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM"] as const;
+const OPEN_MINUTES = 5 * 60 + 30;
+const CLOSE_MINUTES = 22 * 60;
+const SLOT_INTERVAL = 30;
 const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] as const;
 const heroFeatures = [[CalendarDays, "Personalized", "Training Plan"], [TrendingUp, "Track Your", "Progress"], [UserRound, "Expert", "Guidance"], [Target, "Better", "Results"]] as const;
 const whyItems = ["Customized workout plans based on your goals", "Focus on proper form & injury prevention", "Motivation and accountability", "Real progress with measurable results"] as const;
+const ages = Array.from({ length: 43 }, (_, i) => ({ label: String(i + 18), value: String(i + 18) }));
+const genders = [{ label: "Male", value: "Male" }, { label: "Female", value: "Female" }, { label: "Prefer not to say", value: "Prefer not to say" }] as const;
+const goals = [{ label: "Fat Loss", value: "Fat Loss" }, { label: "Muscle Gain", value: "Muscle Gain" }, { label: "Strength", value: "Strength" }, { label: "General Fitness", value: "General Fitness" }] as const;
 
-function startOfDay(date: Date) {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+function formatTime(minutes: number) {
+  const hour24 = Math.floor(minutes / 60);
+  const minute = minutes % 60;
+  const period = hour24 >= 12 ? "PM" : "AM";
+  const hour12 = hour24 % 12 || 12;
+  return `${String(hour12).padStart(2, "0")}:${String(minute).padStart(2, "0")} ${period}`;
 }
 
-function startOfMonth(date: Date) {
-  return new Date(date.getFullYear(), date.getMonth(), 1);
-}
+const timeSlots = Array.from({ length: Math.floor((CLOSE_MINUTES - OPEN_MINUTES) / SLOT_INTERVAL) }, (_, index) => {
+  const minutes = OPEN_MINUTES + index * SLOT_INTERVAL;
+  return { label: formatTime(minutes), minutes };
+});
 
-function addDays(date: Date, amount: number) {
-  const next = new Date(date);
-  next.setDate(next.getDate() + amount);
-  return next;
-}
+function startOfDay(date: Date) { return new Date(date.getFullYear(), date.getMonth(), date.getDate()); }
+function startOfMonth(date: Date) { return new Date(date.getFullYear(), date.getMonth(), 1); }
+function addDays(date: Date, amount: number) { const next = new Date(date); next.setDate(next.getDate() + amount); return next; }
+function addMonths(date: Date, amount: number) { return new Date(date.getFullYear(), date.getMonth() + amount, 1); }
+function sameDay(a: Date, b: Date) { return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); }
+function buildCalendarDays(month: Date) { const first = startOfMonth(month); const gridStart = addDays(first, -first.getDay()); return Array.from({ length: 42 }, (_, index) => addDays(gridStart, index)); }
+function formatSelectedDate(date: Date) { return new Intl.DateTimeFormat("en-IN", { weekday: "short", day: "2-digit", month: "short", year: "numeric" }).format(date); }
+function isSunday(date: Date) { return date.getDay() === 0; }
 
-function addMonths(date: Date, amount: number) {
-  return new Date(date.getFullYear(), date.getMonth() + amount, 1);
-}
-
-function sameDay(a: Date, b: Date) {
-  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
-}
-
-function slotToMinutes(slot: string) {
-  const [time, meridiem] = slot.split(" ");
-  const [rawHour, minute] = time.split(":").map(Number);
-  let hour = rawHour % 12;
-  if (meridiem === "PM") hour += 12;
-  return hour * 60 + minute;
-}
-
-function buildCalendarDays(month: Date) {
-  const first = startOfMonth(month);
-  const gridStart = addDays(first, -first.getDay());
-  return Array.from({ length: 42 }, (_, index) => addDays(gridStart, index));
-}
-
-function formatSelectedDate(date: Date) {
-  return new Intl.DateTimeFormat("en-IN", { weekday: "short", day: "2-digit", month: "short", year: "numeric" }).format(date);
+function nextBookableDate(today: Date) {
+  let candidate = addDays(today, 1);
+  while (isSunday(candidate)) candidate = addDays(candidate, 1);
+  return candidate;
 }
 
 export default function BookSessionPage({ trainer }: { trainer: TrainerProfile }) {
   const today = useMemo(() => startOfDay(new Date()), []);
-  const initialDate = useMemo(() => addDays(today, 1), [today]);
+  const initialDate = useMemo(() => nextBookableDate(today), [today]);
   const [calendarMonth, setCalendarMonth] = useState(() => startOfMonth(initialDate));
   const [selectedDate, setSelectedDate] = useState(initialDate);
-  const [slot, setSlot] = useState<string>("08:00 AM");
+  const [slot, setSlot] = useState("08:00 AM");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [goal, setGoal] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [formError, setFormError] = useState("");
   const firstName = trainer.name.split(" ")[0];
   const days = useMemo(() => buildCalendarDays(calendarMonth), [calendarMonth]);
   const now = new Date();
   const currentMinutes = now.getHours() * 60 + now.getMinutes();
   const previousMonthDisabled = addMonths(calendarMonth, -1) < startOfMonth(today);
 
-  const isSlotDisabled = (time: string) => sameDay(selectedDate, today) && slotToMinutes(time) <= currentMinutes;
+  const isSlotDisabled = (minutes: number) => isSunday(selectedDate) || (sameDay(selectedDate, today) && minutes <= currentMinutes);
 
   const selectDate = (date: Date) => {
-    if (date < today) return;
     const normalized = startOfDay(date);
+    if (normalized < today || isSunday(normalized)) return;
     setSelectedDate(normalized);
     setCalendarMonth(startOfMonth(normalized));
-    const nextAvailable = timeSlots.find((time) => !(sameDay(normalized, today) && slotToMinutes(time) <= currentMinutes));
-    setSlot(nextAvailable ?? "");
+    const nextAvailable = timeSlots.find((time) => !isSlotDisabledForDate(time.minutes, normalized));
+    setSlot(nextAvailable?.label ?? "");
+    setSubmitted(false);
+  };
+
+  const isSlotDisabledForDate = (minutes: number, date: Date) => isSunday(date) || (sameDay(date, today) && minutes <= currentMinutes);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitted(false);
+    setFormError("");
+    const data = new FormData(event.currentTarget);
+    const name = String(data.get("name") ?? "").trim();
+    const phone = String(data.get("phone") ?? "").replace(/\D/g, "");
+    const email = String(data.get("email") ?? "").trim();
+    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (name.length < 2 || phone.length !== 10 || !validEmail || !goal) {
+      setFormError("Please enter a valid name, 10-digit phone number, email and fitness goal.");
+      return;
+    }
+    if (!slot || isSunday(selectedDate)) {
+      setFormError("Please choose an available Monday–Saturday session slot.");
+      return;
+    }
+    setSubmitted(true);
   };
 
   return <>
@@ -84,15 +105,30 @@ export default function BookSessionPage({ trainer }: { trainer: TrainerProfile }
     </section>
 
     <section className="bg-bazooka-soft-black py-12"><div className={`${shell} grid gap-5 lg:grid-cols-[1fr_320px]`}>
-      <form onSubmit={(e) => { e.preventDefault(); if (!slot) return; setSubmitted(true); }} className="rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface p-5 sm:p-6">
+      <form noValidate onSubmit={handleSubmit} className="rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface p-5 sm:p-6">
         <SectionNumber n="1" title="Personal Details" text="Tell us a little about yourself so we can get you the best experience." />
-        <div className="mt-5 grid gap-3 md:grid-cols-2"><IconField icon={UserRound}><input required className={fieldClass} placeholder="Full Name *" /></IconField><IconField icon={Phone}><input required className={fieldClass} placeholder="Phone Number *" inputMode="tel" /></IconField><IconField icon={Mail}><input required type="email" className={fieldClass} placeholder="Email Address *" /></IconField><select className={fieldClass} defaultValue=""><option value="" disabled>Age</option>{[18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 35, 40].map(a => <option key={a}>{a}</option>)}</select><select className={fieldClass} defaultValue=""><option value="" disabled>Gender</option><option>Male</option><option>Female</option><option>Prefer not to say</option></select><select required className={fieldClass} defaultValue=""><option value="" disabled>Fitness Goal *</option><option>Fat Loss</option><option>Muscle Gain</option><option>Strength</option><option>General Fitness</option></select></div><textarea className={`${textareaClass} mt-3`} placeholder="Any specific goals or concerns? (Optional)" />
+        <div className="mt-5 grid gap-3 md:grid-cols-2">
+          <IconField icon={UserRound}><input name="name" className={fieldClass} placeholder="Full Name *" /></IconField>
+          <IconField icon={Phone}><input name="phone" className={fieldClass} placeholder="Phone Number *" inputMode="tel" maxLength={10} /></IconField>
+          <IconField icon={Mail}><input name="email" type="email" className={fieldClass} placeholder="Email Address *" /></IconField>
+          <CustomSelect value={age} onChange={setAge} options={ages} placeholder="Age" />
+          <CustomSelect value={gender} onChange={setGender} options={genders} placeholder="Gender" />
+          <CustomSelect value={goal} onChange={setGoal} options={goals} placeholder="Fitness Goal *" required />
+        </div>
+        <textarea className={`${textareaClass} mt-3`} placeholder="Any specific goals or concerns? (Optional)" />
 
-        <div className="my-7 border-t border-bazooka-border" /><SectionNumber n="2" title="Select Date & Time" text="Choose a convenient future date and an available time for your session." />
-        <div className="mt-5 grid gap-5 xl:grid-cols-[300px_1fr]"><div className="rounded-[5px] border border-bazooka-border-strong bg-bazooka-black p-4"><div className="mb-4 flex items-center justify-between text-[10px] font-bold"><button type="button" aria-label="Previous month" disabled={previousMonthDisabled} onClick={() => setCalendarMonth(addMonths(calendarMonth, -1))} className="grid size-8 place-items-center rounded-full hover:bg-bazooka-card-hover disabled:cursor-not-allowed disabled:opacity-25">‹</button><span>{new Intl.DateTimeFormat("en-IN", { month: "long", year: "numeric" }).format(calendarMonth)}</span><button type="button" aria-label="Next month" onClick={() => setCalendarMonth(addMonths(calendarMonth, 1))} className="grid size-8 place-items-center rounded-full hover:bg-bazooka-card-hover">›</button></div><div className="grid grid-cols-7 gap-1 text-center text-[8px] text-bazooka-text-muted">{weekDays.map(d => <span key={d}>{d}</span>)}{days.map((date) => { const past = date < today; const outside = date.getMonth() !== calendarMonth.getMonth(); const selected = sameDay(date, selectedDate); return <button type="button" key={date.toISOString()} disabled={past} onClick={() => selectDate(date)} className={`mx-auto mt-2 grid size-7 place-items-center rounded-full text-[9px] transition ${selected ? "bg-bazooka-lime font-black text-black" : past ? "cursor-not-allowed text-bazooka-disabled opacity-35" : outside ? "text-bazooka-text-muted hover:bg-bazooka-card-hover" : "text-bazooka-text-secondary hover:bg-bazooka-card-hover hover:text-bazooka-lime"}`}>{date.getDate()}</button>; })}</div></div><div><h3 className="text-[11px] font-black uppercase">Available Time Slots</h3><p className="mt-2 text-[9px] text-bazooka-text-secondary"><span className="mr-2 text-bazooka-lime">●</span>{formatSelectedDate(selectedDate)}</p><div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">{timeSlots.map(t => { const disabled = isSlotDisabled(t); return <button type="button" key={t} disabled={disabled} onClick={() => setSlot(t)} className={`h-9 rounded-[4px] border text-[9px] transition ${disabled ? "cursor-not-allowed border-bazooka-border text-bazooka-disabled opacity-35" : slot === t ? "border-bazooka-lime bg-bazooka-lime/10 text-bazooka-lime" : "border-bazooka-border-strong text-bazooka-text-secondary hover:border-bazooka-lime"}`}>{t}</button>; })}</div>{!timeSlots.some(t => !isSlotDisabled(t)) && <p className="mt-4 rounded-[4px] border border-bazooka-warning/40 bg-bazooka-warning/5 p-3 text-[9px] text-bazooka-warning">No session slots remain today. Please choose a future date.</p>}<p className="mt-3 text-[8px] text-bazooka-text-muted">Past dates and elapsed time slots are unavailable. All timings are IST.</p></div></div>
+        <div className="my-7 border-t border-bazooka-border" /><SectionNumber n="2" title="Select Date & Time" text="Choose a convenient Monday–Saturday date and an available time for your session." />
+        <div className="mt-5 grid gap-5 xl:grid-cols-[300px_1fr]">
+          <div className="rounded-[5px] border border-bazooka-border-strong bg-bazooka-black p-4"><div className="mb-4 flex items-center justify-between text-[10px] font-bold"><button type="button" aria-label="Previous month" disabled={previousMonthDisabled} onClick={() => setCalendarMonth(addMonths(calendarMonth, -1))} className="grid size-8 place-items-center rounded-full border border-transparent transition hover:border-bazooka-lime/50 hover:bg-bazooka-card-hover disabled:cursor-not-allowed disabled:opacity-25"><ChevronLeft className="size-4" /></button><span>{new Intl.DateTimeFormat("en-IN", { month: "long", year: "numeric" }).format(calendarMonth)}</span><button type="button" aria-label="Next month" onClick={() => setCalendarMonth(addMonths(calendarMonth, 1))} className="grid size-8 place-items-center rounded-full border border-transparent transition hover:border-bazooka-lime/50 hover:bg-bazooka-card-hover"><ChevronRight className="size-4" /></button></div><div className="grid grid-cols-7 gap-1 text-center text-[8px] text-bazooka-text-muted">{weekDays.map(d => <span key={d}>{d}</span>)}{days.map((date) => { const past = date < today; const sunday = isSunday(date); const outside = date.getMonth() !== calendarMonth.getMonth(); const selected = sameDay(date, selectedDate); const disabled = past || sunday; return <button type="button" key={date.toISOString()} disabled={disabled} onClick={() => selectDate(date)} className={`mx-auto mt-2 grid size-8 place-items-center rounded-full text-[9px] transition ${selected ? "bg-bazooka-lime font-black text-black" : disabled ? "cursor-not-allowed text-bazooka-disabled opacity-25" : outside ? "text-bazooka-text-muted hover:bg-bazooka-card-hover" : "text-bazooka-text-secondary hover:bg-bazooka-card-hover hover:text-bazooka-lime"}`}>{date.getDate()}</button>; })}</div></div>
+          <div><h3 className="text-[11px] font-black uppercase">Available Time Slots</h3><p className="mt-2 text-[9px] text-bazooka-text-secondary"><span className="mr-2 text-bazooka-lime">●</span>{formatSelectedDate(selectedDate)}</p><div className="mt-4 grid max-h-[260px] grid-cols-2 gap-2 overflow-y-auto pr-1 sm:grid-cols-3">{timeSlots.map(({ label, minutes }) => { const disabled = isSlotDisabled(minutes); return <button type="button" key={label} disabled={disabled} onClick={() => { setSlot(label); setSubmitted(false); }} className={`min-h-10 rounded-[4px] border text-[9px] transition-all ${disabled ? "cursor-not-allowed border-bazooka-border text-bazooka-disabled opacity-30" : slot === label ? "border-bazooka-lime bg-bazooka-lime text-black" : "border-bazooka-border-strong text-bazooka-text-secondary hover:border-bazooka-lime hover:text-bazooka-lime"}`}>{label}</button>; })}</div><p className="mt-3 text-[8px] leading-4 text-bazooka-text-muted">Open Monday–Saturday, 5:30 AM–10:00 PM. Sunday closed. Past slots are automatically unavailable.</p></div>
+        </div>
 
         <div className="my-7 border-t border-bazooka-border" /><SectionNumber n="3" title="Additional Information" text="Let us know anything else that will help us prepare for your session." />
-        <textarea className={`${textareaClass} mt-5`} placeholder="e.g. Injuries, medical conditions, preferred training style, etc. (Optional)" /><button className={`${primaryButton} mt-4 w-full disabled:cursor-not-allowed disabled:opacity-40`} disabled={!slot} type="submit">Book Your Session <ArrowRight className="size-4" /></button>{submitted && <p className="mt-3 rounded-[4px] border border-bazooka-lime/40 bg-bazooka-lime/5 p-3 text-center text-[9px] text-bazooka-lime">Thanks — your session request has been captured. We’ll confirm the selected slot with you.</p>}<p className="mt-3 text-center text-[8px] text-bazooka-text-muted"><ShieldCheck className="mr-1 inline size-3 text-bazooka-lime" />Your information is safe with us.</p>
+        <textarea className={`${textareaClass} mt-5`} placeholder="e.g. Injuries, medical conditions, preferred training style, etc. (Optional)" />
+        <button className={`${primaryButton} mt-4 w-full disabled:cursor-not-allowed disabled:opacity-40`} disabled={!slot} type="submit">Book Your Session <ArrowRight className="size-4" /></button>
+        {formError && <p role="alert" className="mt-3 rounded-[4px] border border-bazooka-warning/40 bg-bazooka-warning/5 p-3 text-center text-[9px] leading-4 text-bazooka-warning">{formError}</p>}
+        {submitted && <p className="mt-3 rounded-[4px] border border-bazooka-lime/40 bg-bazooka-lime/5 p-3 text-center text-[9px] text-bazooka-lime">Thanks — your session request has been captured. We’ll confirm the selected slot with you.</p>}
+        <p className="mt-3 text-center text-[8px] text-bazooka-text-muted"><ShieldCheck className="mr-1 inline size-3 text-bazooka-lime" />Your information is safe with us.</p>
       </form>
       <aside className="space-y-4"><div className="rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface p-5"><h2 className="font-display text-[22px] font-black uppercase">Why Train With {firstName}?</h2><div className="mt-5 space-y-4 text-[10px] text-bazooka-text-secondary">{whyItems.map(x => <p key={x} className="flex gap-3"><CheckCircle2 className="size-5 shrink-0 text-bazooka-lime" />{x}</p>)}</div></div><div className="rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface p-5"><span className="font-display text-[48px] leading-none text-bazooka-lime">“</span><p className="text-[10px] leading-5 text-bazooka-text-secondary">{firstName}’s training style is focused, supportive and structured around measurable progress.</p><p className="mt-4 text-[9px] font-black">— Bazooka Member</p></div><div className="relative min-h-[300px] overflow-hidden rounded-[6px] border border-bazooka-border-strong bg-[url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=90')] bg-cover bg-center"><div className="absolute inset-0 bg-black/45" /><div className="font-display absolute bottom-6 left-6 text-[32px] font-black uppercase leading-[.9] text-bazooka-lime">Discipline<br />Builds<br />Freedom</div></div></aside>
       </div></section>
