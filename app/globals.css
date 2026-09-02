@@ -63,12 +63,6 @@ canvas {
   height: auto;
 }
 
-/* Bazooka now uses full-colour photography everywhere. Neutralize any legacy grayscale utility without having to keep image-specific exceptions. */
-*[class~="grayscale"],
-*[class*="grayscale-"] {
-  filter: none !important;
-}
-
 input,
 textarea,
 button {
@@ -80,12 +74,20 @@ a,
 span,
 strong,
 small,
-label,
+label {
+  overflow-wrap: break-word;
+}
+
+/* Headings should wrap between words, never split a word just to fit a narrow viewport. */
 h1,
 h2,
 h3,
-h4 {
-  overflow-wrap: break-word;
+h4,
+h5,
+h6 {
+  max-width: 100%;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 /* Give touch devices the same sense of feedback desktop users get from hover. */
@@ -123,12 +125,6 @@ article {
 
   table {
     font-size: 0.75rem;
-  }
-
-  /* Keep dynamic hero titles and long names inside narrow viewports. */
-  h1.font-display {
-    max-width: 100%;
-    overflow-wrap: anywhere;
   }
 
   /* Prevent long CTA labels from forcing horizontal overflow. */
