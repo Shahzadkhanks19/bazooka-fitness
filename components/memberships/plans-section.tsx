@@ -57,7 +57,7 @@ export default function MembershipPlansSection() {
               key={plan.duration}
               {...reveal}
               transition={{ duration: .5, delay: index * .05 }}
-              className={`relative flex min-h-[430px] flex-col rounded-[5px] border bg-bazooka-surface p-6 transition-all duration-300 hover:-translate-y-1 ${plan.popular ? "border-bazooka-lime shadow-[0_0_30px_rgba(182,240,0,.08)]" : "border-bazooka-border-strong hover:border-bazooka-lime"}`}
+              className={`relative flex min-h-[430px] flex-col rounded-[5px] border bg-bazooka-surface p-6 transition-all duration-300 hover:-translate-y-1 ${plan.popular ? "border-bazooka-lime shadow-[0_0_30px_rgba(255,181,46,.10)]" : "border-bazooka-border-strong hover:border-bazooka-lime hover:shadow-[0_0_22px_rgba(255,181,46,.08)]"}`}
             >
               {plan.popular && <span className="absolute inset-x-0 top-0 rounded-t-[4px] bg-bazooka-lime py-1.5 text-center text-[8px] font-black uppercase text-black">Best Value</span>}
               <div className={plan.popular ? "pt-5" : ""}>
@@ -68,7 +68,7 @@ export default function MembershipPlansSection() {
                   {plan.features.map((feature) => <li key={feature} className="flex items-start gap-2.5 text-[9px] leading-4 text-bazooka-text-secondary"><CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-bazooka-lime" />{feature}</li>)}
                 </ul>
               </div>
-              <Link href="/book-free-trial" className={`mt-auto inline-flex h-10 items-center justify-center gap-3 rounded-[4px] border text-[9px] font-black uppercase transition-all duration-300 ${plan.popular ? "border-bazooka-lime bg-bazooka-lime text-black hover:bg-bazooka-lime-hover" : "border-bazooka-lime text-white hover:bg-bazooka-lime hover:text-black"}`}>Choose Plan <ArrowRight className="size-3.5" /></Link>
+              <Link href="/book-free-trial" className={`mt-auto inline-flex h-10 items-center justify-center gap-3 rounded-[4px] border text-[9px] font-black uppercase transition-all duration-300 hover:-translate-y-0.5 active:scale-[.97] ${plan.popular ? "border-bazooka-lime bg-bazooka-lime text-black hover:bg-bazooka-lime-hover" : "border-bazooka-lime text-white hover:bg-bazooka-lime/10 hover:text-bazooka-lime"}`}>Try Bazooka First <ArrowRight className="size-3.5" /></Link>
             </motion.article>
           ))}
         </div>
