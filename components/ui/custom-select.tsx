@@ -28,16 +28,12 @@ export default function CustomSelect({
   ariaLabel?: string;
   className?: string;
 }) {
+  const selectedIndex = options.findIndex((option) => option.value === value);
   const [open, setOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(() => Math.max(0, options.findIndex((option) => option.value === value)));
+  const [activeIndex, setActiveIndex] = useState(() => Math.max(0, selectedIndex));
   const listId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
-  const selected = options.find((option) => option.value === value);
-
-  useEffect(() => {
-    const selectedIndex = options.findIndex((option) => option.value === value);
-    if (selectedIndex >= 0) setActiveIndex(selectedIndex);
-  }, [options, value]);
+  const selected = selectedIndex >= 0 ? options[selectedIndex] : undefined;
 
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent) => {
@@ -62,6 +58,12 @@ export default function CustomSelect({
     setOpen(false);
   };
 
+  const toggleOpen = () => {
+    if (disabled) return;
+    if (!open) setActiveIndex(Math.max(0, selectedIndex));
+    setOpen((current) => !current);
+  };
+
   const handleTriggerKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>) => {
     if (disabled) return;
     if (event.key === "ArrowDown" || event.key === "ArrowUp") {
@@ -70,7 +72,8 @@ export default function CustomSelect({
       setOpen(true);
       setActiveIndex((current) => {
         if (!options.length) return 0;
-        return (current + direction + options.length) % options.length;
+        const baseIndex = open ? current : Math.max(0, selectedIndex);
+        return (baseIndex + direction + options.length) % options.length;
       });
       return;
     }
@@ -81,7 +84,7 @@ export default function CustomSelect({
   };
 
   return (
-    <div ref={rootRef} className={`relative min-w-0 ${className}`}>
+    <div ref={rootRef} className={`relative min-w-0 ${className}`} data-required={required || undefined}>
       <button
         type="button"
         disabled={disabled}
@@ -89,8 +92,7 @@ export default function CustomSelect({
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={listId}
-        aria-required={required || undefined}
-        onClick={() => setOpen((current) => !current)}
+        onClick={toggleOpen}
         onKeyDown={handleTriggerKeyDown}
         className={`flex h-11 w-full min-w-0 items-center justify-between gap-3 rounded-[4px] border bg-bazooka-black px-4 text-left text-[10px] outline-none transition-all duration-200 focus-visible:border-bazooka-lime focus-visible:ring-2 focus-visible:ring-bazooka-lime/20 ${
           disabled
