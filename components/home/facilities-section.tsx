@@ -16,8 +16,8 @@ export default function FacilitiesSection() {
     <section className="border-b border-bazooka-border/70 bg-bazooka-soft-black py-14 sm:py-16">
       <div className={`${shell} grid gap-8 lg:grid-cols-[260px_1fr] lg:items-center`}>
         <motion.div {...reveal} className="min-w-0">
-          <h2 className="font-display text-[34px] font-black uppercase leading-[.95] sm:text-[38px]">World-Class<br /><span className="text-bazooka-lime">Facilities</span></h2>
-          <p className="mt-4 max-w-[260px] text-[11px] leading-5 text-bazooka-text-secondary">Premium equipment, dedicated zones and a clean, motivating environment to train your best.</p>
+          <h2 className="font-display text-[34px] font-black uppercase leading-[.95] sm:text-[38px]">Training<br /><span className="text-bazooka-lime">Facilities</span></h2>
+          <p className="mt-4 max-w-[270px] text-[11px] leading-5 text-bazooka-text-secondary">Explore strength, cardio and the post-workout amenities available at Bazooka Fitness.</p>
           <Link href="/facilities" className={`${outlineButton} mt-6 w-full border-bazooka-lime/70 sm:w-fit`}>Explore Our Gym <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></Link>
         </motion.div>
         <div className="grid gap-4 sm:grid-cols-3">
