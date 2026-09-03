@@ -6,10 +6,10 @@ import { ArrowRight, Dumbbell, MapPin, ShieldCheck, Star, Users } from "lucide-r
 import { outlineButton, primaryButton, shell } from "./home-shared";
 
 const stats = [
-  [Users, "500+", "MEMBERS"],
-  [Dumbbell, "3+", "TRAINING ZONES"],
-  [ShieldCheck, "100%", "COMMITMENT"],
-  [Star, "1", "STRONGER JODHPUR"],
+  [Users, "COMMUNITY", "TRAIN TOGETHER"],
+  [Dumbbell, "STRENGTH", "WEIGHT TRAINING"],
+  [ShieldCheck, "AMENITIES", "STEAM & SHOWER"],
+  [Star, "JODHPUR", "SARDARPURA"],
 ] as const;
 
 export default function HeroSection() {
@@ -34,9 +34,9 @@ export default function HeroSection() {
           {stats.map(([Icon, value, label], index) => {
             const StatIcon = Icon as typeof Users;
             return (
-              <div key={label} className="group/stat relative grid min-h-[84px] grid-cols-[34px_auto] items-center gap-2 px-3 transition-colors duration-300 hover:bg-bazooka-lime/[0.06] sm:min-h-[98px] sm:grid-cols-[48px_auto] sm:px-7">
-                <StatIcon className="size-5 text-bazooka-lime transition-transform duration-300 group-hover/stat:scale-110 sm:size-7" />
-                <div className="min-w-0"><strong className="font-display block text-[20px] leading-none text-white sm:text-[27px]">{value}</strong><small className="mt-1 block text-[7px] leading-3 text-bazooka-text-secondary sm:mt-2 sm:text-[9px]">{label}</small></div>
+              <div key={label} className="group/stat relative grid min-h-[84px] grid-cols-[30px_1fr] items-center gap-2 px-3 transition-colors duration-300 hover:bg-bazooka-lime/[0.06] sm:min-h-[98px] sm:grid-cols-[42px_1fr] sm:px-5 lg:px-6">
+                <StatIcon className="size-5 text-bazooka-lime transition-transform duration-300 group-hover/stat:scale-110 sm:size-6" />
+                <div className="min-w-0"><strong className="font-display block text-[13px] leading-none text-white min-[380px]:text-[14px] sm:text-[17px] lg:text-[19px]">{value}</strong><small className="mt-1.5 block text-[7px] leading-3 text-bazooka-text-secondary sm:text-[8px]">{label}</small></div>
                 {index < stats.length - 1 && <span className="absolute right-0 top-1/2 hidden h-12 w-px -translate-y-1/2 bg-bazooka-border md:block" />}
               </div>
             );
