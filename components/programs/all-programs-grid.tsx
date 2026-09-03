@@ -23,11 +23,12 @@ export default function AllProgramsGrid() {
     <section id="all-programs" className="scroll-mt-[76px] border-b border-bazooka-border/70 py-14 md:py-16">
       <div className={shell}>
         <motion.div {...reveal} className="grid gap-5 lg:grid-cols-[360px_1fr] lg:items-end">
-          <div>
+          <div className="min-w-0">
             <span className="text-[10px] font-black uppercase text-bazooka-lime">Complete Program Library</span>
-            <h2 className="font-display mt-2 text-[38px] font-black uppercase leading-[.96] md:text-[46px]">Every Goal.<br /><span className="text-bazooka-lime">One Place.</span></h2>
+            <h2 className="font-display mt-2 max-w-full text-[34px] font-black uppercase leading-[.95] min-[380px]:text-[38px] md:text-[46px]">Every Goal.<br /><span className="text-bazooka-lime">One Place.</span></h2>
+            <span className="mt-3 block h-[2px] w-8 bg-bazooka-lime" />
           </div>
-          <p className="max-w-[560px] text-[11px] leading-5 text-bazooka-text-secondary lg:justify-self-end">Explore every Bazooka program, compare the focus of each option and open the full details page to find the right fit for your goal.</p>
+          <p className="max-w-[560px] text-[10px] leading-5 text-bazooka-text-secondary sm:text-[11px] lg:justify-self-end">Browse every Bazooka training option, compare the focus of each program and open the detail page to see what fits your goals best.</p>
         </motion.div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -36,16 +37,16 @@ export default function AllProgramsGrid() {
               key={program.slug}
               {...reveal}
               transition={{ duration: .5, delay: index * .04 }}
-              className={`group relative min-h-[280px] overflow-hidden rounded-[5px] border border-bazooka-border-strong bg-cover bg-center ${imageClasses[program.slug] ?? "bg-bazooka-surface"} transition-all duration-500 hover:-translate-y-1 hover:border-bazooka-lime hover:shadow-[0_0_26px_rgba(182,240,0,.08)]`}
+              className={`group relative min-h-[300px] min-w-0 overflow-hidden rounded-[6px] border border-bazooka-border-strong bg-cover bg-center ${imageClasses[program.slug] ?? "bg-bazooka-surface"} transition-all duration-500 hover:-translate-y-1 hover:border-bazooka-lime hover:shadow-[0_0_26px_rgba(255,181,46,.08)]`}
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/30 to-black/95" />
-              <div className="absolute inset-x-0 bottom-0 p-5">
+              <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/28 to-black/95" />
+              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
                 <span className="text-[9px] font-black uppercase tracking-[.08em] text-bazooka-lime">{program.eyebrow}</span>
-                <h3 className="font-display mt-2 text-[23px] font-black uppercase leading-[.95] text-white">{program.title}</h3>
-                <p className="mt-3 max-w-[300px] text-[9px] leading-4 text-bazooka-text-secondary">{program.summary}</p>
+                <h3 className="font-display mt-2 text-[21px] font-black uppercase leading-[.95] text-white sm:text-[23px]">{program.title}</h3>
+                <p className="mt-3 max-w-[310px] text-[9px] leading-4 text-bazooka-text-secondary">{program.summary}</p>
                 <div className="mt-4 flex flex-wrap gap-2 text-[8px] uppercase text-bazooka-text-secondary">
-                  <span className="rounded-[3px] border border-bazooka-border-strong bg-black/40 px-2.5 py-1.5">{program.duration}</span>
-                  <span className="rounded-[3px] border border-bazooka-border-strong bg-black/40 px-2.5 py-1.5">{program.level}</span>
+                  <span className="rounded-[3px] border border-bazooka-border-strong bg-black/45 px-2.5 py-1.5">{program.duration}</span>
+                  <span className="rounded-[3px] border border-bazooka-border-strong bg-black/45 px-2.5 py-1.5">{program.level}</span>
                 </div>
                 <Link href={`/programs/${program.slug}`} className="mt-5 inline-flex items-center gap-2 text-[9px] font-black uppercase text-bazooka-lime transition hover:text-bazooka-lime-hover">View Program <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" /></Link>
               </div>
