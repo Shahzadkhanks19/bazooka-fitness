@@ -2,40 +2,22 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  Beef,
-  Clock3,
-  Coffee,
-  Dumbbell,
-  GlassWater,
-  Leaf,
-  MapPin,
-  Salad,
-  Sparkles,
-  UtensilsCrossed,
-} from "lucide-react";
+import { ArrowRight, Beef, Clock3, Coffee, Dumbbell, GlassWater, Leaf, MapPin, Salad, Sparkles, UtensilsCrossed } from "lucide-react";
 
-const shell = "mx-auto w-[min(calc(100%-40px),1180px)] md:w-[min(calc(100%-64px),1180px)]";
-
-const reveal = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.08 },
-  transition: { duration: 0.55, ease: "easeOut" as const },
-};
+const shell = "mx-auto w-[min(calc(100%-32px),1180px)] sm:w-[min(calc(100%-40px),1180px)] md:w-[min(calc(100%-64px),1180px)]";
+const reveal = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.08 }, transition: { duration: 0.55, ease: "easeOut" as const } };
 
 const categories = [
-  [Beef, "Protein Meals", "High-protein meals built to support recovery, muscle gain and everyday training."],
-  [GlassWater, "Shakes & Smoothies", "Refreshing protein shakes, smoothies and quick post-workout refuel options."],
-  [Salad, "Fresh & Light", "Balanced bowls, salads and lighter choices for members who want to stay on track."],
-  [Coffee, "Coffee & Refreshments", "Coffee, hydration and convenient refreshments before, during or after training."],
+  [Beef, "Protein Meals", "Protein-focused meal options designed to fit naturally around an active training routine."],
+  [GlassWater, "Shakes & Smoothies", "Refreshing shakes, smoothies and convenient options for before or after training."],
+  [Salad, "Fresh & Light", "Balanced bowls, salads and lighter choices when you want something fresh and practical."],
+  [Coffee, "Coffee & Refreshments", "Coffee, hydration and easy refreshments without having to leave the club."],
 ] as const;
 
 const benefits = [
-  [Dumbbell, "Built Around Training", "Food and drinks selected for people who actually train — not just another generic cafe menu."],
-  [Leaf, "Smarter Everyday Choices", "Fresh, practical options that make eating better easier without making it complicated."],
-  [Sparkles, "One Complete Experience", "Train, cool down, refuel and catch up without leaving Bazooka Fitness."],
+  [Dumbbell, "Built Around Training", "A convenient cafe experience positioned around the way members train, recover and spend time at the club."],
+  [Leaf, "Everyday Choices", "A mix of practical meal, drink and lighter options for different moments around your workout."],
+  [Sparkles, "Under One Roof", "Train, cool down, grab something to eat or drink and continue your day from the same location."],
 ] as const;
 
 const gallery = [
@@ -45,109 +27,28 @@ const gallery = [
 ];
 
 export default function CafeBazookaPage() {
-  return (
-    <main className="min-h-screen overflow-x-hidden bg-bazooka-black text-bazooka-text">
-      <section className="relative min-h-[650px] overflow-hidden border-b border-bazooka-border/70 sm:min-h-[700px]">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=1800&q=90')] bg-cover bg-center" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-bazooka-black via-transparent to-black/20" />
-        <div className={`${shell} relative z-10 flex min-h-[650px] items-end pb-16 pt-36 sm:min-h-[700px] sm:pb-20 lg:items-center lg:pb-0`}>
-          <motion.div {...reveal} className="max-w-[760px]">
-            <span className="inline-flex items-center gap-2 rounded-full border border-bazooka-lime/40 bg-bazooka-lime/10 px-4 py-2 text-[9px] font-black uppercase tracking-[.12em] text-bazooka-lime backdrop-blur-sm"><UtensilsCrossed className="size-4" /> Inside Bazooka Fitness</span>
-            <h1 className="font-display mt-5 text-[54px] font-black uppercase leading-[.84] tracking-[-2px] sm:text-[74px] md:text-[88px]">Cafe <span className="text-bazooka-lime">Bazooka.</span></h1>
-            <p className="mt-5 max-w-[620px] text-[12px] leading-6 text-bazooka-text-secondary sm:text-[13px]">Train hard. Refuel smart. Cafe Bazooka brings healthy meals, protein-focused food, shakes and refreshing options into the same performance-first environment.</p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a href="#menu" className="inline-flex h-11 items-center gap-3 rounded-[4px] bg-bazooka-lime px-6 text-[10px] font-black uppercase text-black transition hover:bg-bazooka-lime-hover active:scale-[.98]">Explore The Cafe <ArrowRight className="size-4" /></a>
-              <Link href="/contact" className="inline-flex h-11 items-center gap-3 rounded-[4px] border border-white/20 bg-black/35 px-6 text-[10px] font-black uppercase text-white backdrop-blur-sm transition hover:border-bazooka-lime hover:text-bazooka-lime active:scale-[.98]">Ask About Nutrition</Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+  return <main className="min-h-screen overflow-x-hidden bg-bazooka-black text-bazooka-text">
+    <section className="relative min-h-[620px] overflow-hidden border-b border-bazooka-border/70 sm:min-h-[680px]">
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=1800&q=90')] bg-cover bg-center" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/25" /><div className="absolute inset-0 bg-gradient-to-t from-bazooka-black via-transparent to-black/20" />
+      <div className={`${shell} relative z-10 flex min-h-[620px] items-end pb-12 pt-32 sm:min-h-[680px] sm:pb-16 lg:items-center lg:pb-0`}>
+        <motion.div {...reveal} className="max-w-[760px]">
+          <span className="inline-flex items-center gap-2 rounded-full border border-bazooka-lime/40 bg-black/45 px-3.5 py-2 text-[8px] font-black uppercase tracking-[.1em] text-bazooka-lime backdrop-blur-sm sm:px-4 sm:text-[9px]"><UtensilsCrossed className="size-4"/> Inside Bazooka Fitness</span>
+          <h1 className="font-display mt-5 max-w-full text-[48px] font-black uppercase leading-[.84] tracking-[-1.5px] min-[380px]:text-[54px] sm:text-[74px] md:text-[88px]">Cafe <span className="text-bazooka-lime">Bazooka.</span></h1>
+          <p className="mt-5 max-w-[620px] text-[11px] leading-6 text-bazooka-text-secondary sm:text-[13px]">Train, recharge and refuel without leaving the club. Cafe Bazooka brings food, shakes, lighter choices, coffee and refreshments into the Bazooka Fitness experience.</p>
+          <div className="mt-7 grid gap-3 sm:flex sm:flex-wrap"><a href="#menu" className="inline-flex h-11 w-full items-center justify-center gap-3 rounded-[4px] bg-bazooka-lime px-6 text-[10px] font-black uppercase text-black transition hover:bg-bazooka-lime-hover active:scale-[.98] sm:w-auto">Explore The Cafe <ArrowRight className="size-4"/></a><Link href="/contact" className="inline-flex h-11 w-full items-center justify-center gap-3 rounded-[4px] border border-white/20 bg-black/45 px-6 text-[10px] font-black uppercase text-white backdrop-blur-sm transition hover:border-bazooka-lime hover:text-bazooka-lime active:scale-[.98] sm:w-auto">Contact Bazooka</Link></div>
+        </motion.div>
+      </div>
+    </section>
 
-      <section className="border-b border-bazooka-border/70 bg-bazooka-soft-black py-16 md:py-20">
-        <div className={`${shell} grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center`}>
-          <motion.div {...reveal}>
-            <span className="text-[9px] font-black uppercase tracking-[.14em] text-bazooka-lime">More Than A Gym Cafe</span>
-            <h2 className="font-display mt-3 text-[40px] font-black uppercase leading-[.9] sm:text-[52px]">Fuel That Fits<br />Your Training.</h2>
-            <p className="mt-5 max-w-[560px] text-[11px] leading-6 text-bazooka-text-secondary">Cafe Bazooka is designed around an active lifestyle. Whether you need something before training, protein after a heavy session, a lighter meal or simply a place to recharge, the cafe keeps everything conveniently under one roof.</p>
-          </motion.div>
-          <motion.div {...reveal} className="grid gap-3 sm:grid-cols-3">
-            {benefits.map(([Icon, title, text]) => (
-              <article key={title} className="rounded-[6px] border border-bazooka-border bg-bazooka-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-bazooka-lime">
-                <div className="grid size-10 place-items-center rounded-full bg-bazooka-lime/10 text-bazooka-lime"><Icon className="size-5" /></div>
-                <h3 className="font-display mt-4 text-[16px] font-black uppercase">{title}</h3>
-                <p className="mt-3 text-[9px] leading-5 text-bazooka-text-secondary">{text}</p>
-              </article>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+    <section className="border-b border-bazooka-border/70 bg-bazooka-soft-black py-14 sm:py-16 md:py-20"><div className={`${shell} grid gap-9 lg:grid-cols-[.9fr_1.1fr] lg:items-center`}><motion.div {...reveal}><span className="text-[9px] font-black uppercase tracking-[.12em] text-bazooka-lime">More Than A Gym Cafe</span><h2 className="font-display mt-3 text-[36px] font-black uppercase leading-[.9] min-[380px]:text-[40px] sm:text-[52px]">Fuel That Fits<br/>Your Routine.</h2><p className="mt-5 max-w-[560px] text-[10px] leading-6 text-bazooka-text-secondary sm:text-[11px]">Whether you want something around your workout, a lighter meal, a shake, coffee or simply somewhere to recharge, Cafe Bazooka keeps it conveniently inside the fitness club.</p></motion.div><motion.div {...reveal} className="grid gap-3 sm:grid-cols-3">{benefits.map(([Icon,title,text])=><article key={title} className="rounded-[6px] border border-bazooka-border bg-bazooka-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-bazooka-lime"><div className="grid size-10 place-items-center rounded-full bg-bazooka-lime/10 text-bazooka-lime"><Icon className="size-5"/></div><h3 className="font-display mt-4 text-[16px] font-black uppercase">{title}</h3><p className="mt-3 text-[9px] leading-5 text-bazooka-text-secondary">{text}</p></article>)}</motion.div></div></section>
 
-      <section id="menu" className="border-b border-bazooka-border/70 bg-bazooka-black py-16 md:py-20">
-        <div className={shell}>
-          <motion.div {...reveal} className="max-w-[700px]">
-            <span className="text-[9px] font-black uppercase tracking-[.14em] text-bazooka-lime">What You’ll Find</span>
-            <h2 className="font-display mt-3 text-[40px] font-black uppercase leading-[.9] sm:text-[52px]">Built For Before.<br />During. After.</h2>
-          </motion.div>
-          <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {categories.map(([Icon, title, text], index) => (
-              <motion.article key={title} {...reveal} transition={{ duration: .5, delay: index * .05 }} className="group rounded-[6px] border border-bazooka-border bg-bazooka-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:border-bazooka-lime hover:bg-bazooka-card-hover">
-                <Icon className="size-6 text-bazooka-lime transition-transform duration-300 group-hover:scale-110" />
-                <h3 className="font-display mt-5 text-[19px] font-black uppercase">{title}</h3>
-                <p className="mt-3 text-[9px] leading-5 text-bazooka-text-secondary">{text}</p>
-              </motion.article>
-            ))}
-          </div>
-          <p className="mt-5 text-[8px] uppercase tracking-[.08em] text-bazooka-muted">Menu availability may vary. Ask the Cafe Bazooka team for today’s options.</p>
-        </div>
-      </section>
+    <section id="menu" className="scroll-mt-24 border-b border-bazooka-border/70 bg-bazooka-black py-14 sm:py-16 md:py-20"><div className={shell}><motion.div {...reveal} className="max-w-[700px]"><span className="text-[9px] font-black uppercase tracking-[.12em] text-bazooka-lime">What You’ll Find</span><h2 className="font-display mt-3 text-[36px] font-black uppercase leading-[.9] min-[380px]:text-[40px] sm:text-[52px]">Before. During.<br/>After Training.</h2><p className="mt-4 max-w-[560px] text-[10px] leading-5 text-bazooka-text-secondary">Explore the types of food and refreshments Cafe Bazooka is built around. Exact items can vary by day.</p></motion.div><div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{categories.map(([Icon,title,text],index)=><motion.article key={title} {...reveal} transition={{duration:.5,delay:index*.05}} className="group rounded-[6px] border border-bazooka-border bg-bazooka-surface p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-bazooka-lime hover:bg-bazooka-card-hover"><Icon className="size-6 text-bazooka-lime transition-transform duration-300 group-hover:scale-110"/><h3 className="font-display mt-5 text-[19px] font-black uppercase">{title}</h3><p className="mt-3 text-[9px] leading-5 text-bazooka-text-secondary">{text}</p></motion.article>)}</div><div className="mt-5 rounded-[4px] border border-bazooka-border/70 bg-bazooka-surface/50 px-4 py-3 text-[8px] uppercase leading-4 tracking-[.06em] text-bazooka-muted">Menu availability may vary. Ask the Cafe Bazooka team for today’s options.</div></div></section>
 
-      <section className="border-b border-bazooka-border/70 bg-bazooka-soft-black py-16 md:py-20">
-        <div className={shell}>
-          <motion.div {...reveal} className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div><span className="text-[9px] font-black uppercase tracking-[.14em] text-bazooka-lime">The Cafe Experience</span><h2 className="font-display mt-3 text-[40px] font-black uppercase leading-[.9] sm:text-[52px]">Eat Well.<br />Recover Better.</h2></div>
-            <span className="max-w-[350px] text-[9px] leading-5 text-bazooka-text-secondary">A clean, convenient space designed to extend the Bazooka experience beyond your workout.</span>
-          </motion.div>
-          <div className="mt-9 grid gap-4 md:grid-cols-[1.2fr_.8fr_.8fr]">
-            {gallery.map((image, index) => (
-              <motion.div key={image} {...reveal} className={`overflow-hidden rounded-[6px] border border-bazooka-border bg-bazooka-card ${index === 0 ? "min-h-[360px]" : "min-h-[280px] md:min-h-[360px]"}`}>
-                <div className="h-full min-h-[inherit] bg-cover bg-center transition-transform duration-700 hover:scale-[1.035]" style={{ backgroundImage: `url(${image})` }} />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+    <section className="border-b border-bazooka-border/70 bg-bazooka-soft-black py-14 sm:py-16 md:py-20"><div className={shell}><motion.div {...reveal} className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div><span className="text-[9px] font-black uppercase tracking-[.12em] text-bazooka-lime">The Cafe Experience</span><h2 className="font-display mt-3 text-[36px] font-black uppercase leading-[.9] min-[380px]:text-[40px] sm:text-[52px]">Eat. Recharge.<br/>Get Back To It.</h2></div><span className="max-w-[350px] text-[9px] leading-5 text-bazooka-text-secondary">A convenient extension of the Bazooka experience beyond the training floor.</span></motion.div><div className="mt-8 grid gap-4 md:grid-cols-[1.2fr_.8fr_.8fr]">{gallery.map((image,index)=><motion.div key={image} {...reveal} className={`overflow-hidden rounded-[6px] border border-bazooka-border bg-bazooka-card ${index===0?"min-h-[320px]":"min-h-[250px] md:min-h-[320px]"}`}><div className="h-full min-h-[inherit] bg-cover bg-center transition-transform duration-700 hover:scale-[1.035]" style={{backgroundImage:`url(${image})`}}/></motion.div>)}</div></div></section>
 
-      <section className="border-b border-bazooka-border/70 bg-bazooka-black py-16 md:py-20">
-        <div className={`${shell} grid gap-5 md:grid-cols-2`}>
-          <motion.article {...reveal} className="rounded-[7px] border border-bazooka-border bg-bazooka-card p-6 sm:p-8">
-            <Clock3 className="size-6 text-bazooka-lime" /><span className="mt-5 block text-[8px] font-black uppercase tracking-[.12em] text-bazooka-muted">Cafe Access</span><h3 className="font-display mt-2 text-[27px] font-black uppercase">Visit During Your Workout.</h3><p className="mt-3 text-[10px] leading-5 text-bazooka-text-secondary">Cafe availability follows the club environment. Ask reception for today’s operating hours and available items.</p>
-          </motion.article>
-          <motion.article {...reveal} className="rounded-[7px] border border-bazooka-border bg-bazooka-card p-6 sm:p-8">
-            <MapPin className="size-6 text-bazooka-lime" /><span className="mt-5 block text-[8px] font-black uppercase tracking-[.12em] text-bazooka-muted">Location</span><h3 className="font-display mt-2 text-[27px] font-black uppercase">Inside Bazooka Fitness.</h3><p className="mt-3 text-[10px] leading-5 text-bazooka-text-secondary">Floor 6, Shanti One, Plot No. 39, 11th A Road, Sardarpura, Jodhpur, Rajasthan 342001.</p>
-          </motion.article>
-        </div>
-      </section>
+    <section className="border-b border-bazooka-border/70 bg-bazooka-black py-14 sm:py-16"><div className={`${shell} grid gap-4 md:grid-cols-2`}><motion.article {...reveal} className="rounded-[7px] border border-bazooka-border bg-bazooka-card p-6 sm:p-8"><Clock3 className="size-6 text-bazooka-lime"/><span className="mt-5 block text-[8px] font-black uppercase tracking-[.12em] text-bazooka-muted">Cafe Access</span><h3 className="font-display mt-2 text-[25px] font-black uppercase leading-none sm:text-[27px]">Check Today’s Availability.</h3><p className="mt-3 text-[10px] leading-5 text-bazooka-text-secondary">Ask the team at the club for current Cafe Bazooka operating hours and available items.</p></motion.article><motion.article {...reveal} className="rounded-[7px] border border-bazooka-border bg-bazooka-card p-6 sm:p-8"><MapPin className="size-6 text-bazooka-lime"/><span className="mt-5 block text-[8px] font-black uppercase tracking-[.12em] text-bazooka-muted">Location</span><h3 className="font-display mt-2 text-[25px] font-black uppercase leading-none sm:text-[27px]">Inside Bazooka Fitness.</h3><p className="mt-3 text-[10px] leading-5 text-bazooka-text-secondary">Floor 6, Shanti One, Plot No. 39, 11th A Road, Sardarpura, Jodhpur, Rajasthan 342001.</p></motion.article></div></section>
 
-      <section className="border-b border-bazooka-border/70 bg-bazooka-black py-7">
-        <div className={shell}>
-          <motion.div {...reveal} className="relative overflow-hidden rounded-[6px] border border-bazooka-border-strong">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=1600&q=90')] bg-cover bg-center" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/92 to-black/45" />
-            <div className="relative z-10 grid min-h-[220px] gap-7 px-6 py-8 lg:grid-cols-[1fr_auto] lg:items-center lg:px-8">
-              <div>
-                <span className="text-[9px] font-black uppercase tracking-[.14em] text-bazooka-lime">Train • Refuel • Recover</span>
-                <h2 className="font-display mt-2 text-[34px] font-black uppercase leading-[.92] sm:text-[42px]">Make Cafe Bazooka<br /><span className="text-bazooka-lime">Part Of Your Routine.</span></h2>
-                <p className="mt-3 max-w-[520px] text-[10px] leading-5 text-bazooka-text-secondary">Experience the cafe as part of your complete Bazooka Fitness routine.</p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-                <Link href="/book-free-trial" className="inline-flex h-11 items-center justify-center gap-3 rounded-[4px] border border-bazooka-lime bg-bazooka-lime px-6 text-[9px] font-black uppercase text-black transition hover:bg-bazooka-lime-hover active:scale-[.98]">Book Free Trial <ArrowRight className="size-4" /></Link>
-                <Link href="/contact" className="inline-flex h-11 items-center justify-center gap-3 rounded-[4px] border border-bazooka-border-strong bg-black/35 px-6 text-[9px] font-black uppercase text-white transition hover:border-bazooka-lime hover:text-bazooka-lime active:scale-[.98]">Contact Bazooka</Link>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-    </main>
-  );
+    <section className="border-b border-bazooka-border/70 bg-bazooka-black py-7"><div className={shell}><motion.div {...reveal} className="relative overflow-hidden rounded-[6px] border border-bazooka-border-strong"><div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=1600&q=90')] bg-cover bg-center"/><div className="absolute inset-0 bg-gradient-to-r from-black via-black/92 to-black/45"/><div className="relative z-10 grid min-h-[230px] gap-7 px-5 py-8 sm:px-7 lg:grid-cols-[1fr_auto] lg:items-center lg:px-8"><div><span className="text-[9px] font-black uppercase tracking-[.12em] text-bazooka-lime">Train • Recharge • Refuel</span><h2 className="font-display mt-2 text-[30px] font-black uppercase leading-[.92] min-[380px]:text-[34px] sm:text-[42px]">Make Cafe Bazooka<br/><span className="text-bazooka-lime">Part Of Your Visit.</span></h2><p className="mt-3 max-w-[520px] text-[10px] leading-5 text-bazooka-text-secondary">Discover the cafe while you experience Bazooka Fitness for yourself.</p></div><div className="grid gap-3 sm:flex lg:grid"><Link href="/book-free-trial" className="inline-flex h-11 w-full items-center justify-center gap-3 rounded-[4px] border border-bazooka-lime bg-bazooka-lime px-6 text-[9px] font-black uppercase text-black transition hover:bg-bazooka-lime-hover active:scale-[.98] sm:w-auto">Book Free Trial <ArrowRight className="size-4"/></Link><Link href="/contact" className="inline-flex h-11 w-full items-center justify-center gap-3 rounded-[4px] border border-bazooka-border-strong bg-black/45 px-6 text-[9px] font-black uppercase text-white transition hover:border-bazooka-lime hover:text-bazooka-lime active:scale-[.98] sm:w-auto">Contact Bazooka</Link></div></div></motion.div></div></section>
+  </main>;
 }
