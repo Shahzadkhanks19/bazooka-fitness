@@ -7,7 +7,7 @@ import FacilityZonesSection from "@/components/facilities/zones-section";
 
 export const metadata: Metadata = {
   title: "Facilities | Bazooka Fitness",
-  description: "Explore Bazooka Fitness training zones, premium equipment, recovery spaces and member amenities.",
+  description: "Explore Bazooka Fitness training zones, cardio and strength areas, steam, shower and other club amenities.",
 };
 
 export default function FacilitiesPage() {
