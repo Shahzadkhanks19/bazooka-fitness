@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronLeft, ChevronRight, ShieldCheck, Star } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { outlineButton, reveal, shell } from "./home-shared";
 
 const reviews = [
-  { name: "Rishabh", meta: "Local Guide · 46 reviews", text: "This is a fantastic gym!! By far the best facility around. Bazooka Fitness is an amazing state-of-the-art facility and the staff is super helpful, encouraging, and friendly." },
+  { name: "Rishabh", meta: "Google reviewer", text: "This is a fantastic gym!! By far the best facility around. Bazooka Fitness is an amazing state-of-the-art facility and the staff is super helpful, encouraging, and friendly." },
   { name: "Lovejeet Verma", meta: "Google reviewer", text: "Spacious, well-maintained, clean and motivating atmosphere. Most importantly, trainers are incredibly helpful, friendly and motivating." },
   { name: "Ashok Pareek", meta: "Google reviewer", text: "A team that transformed my life from a sedentary person to a marathon runner in my 60s. Every aspect of this club is consumer centric." },
 ];
@@ -34,16 +34,16 @@ export default function SocialProofSection() {
       <div className={`${shell} grid gap-8 lg:grid-cols-[310px_360px_1fr] lg:items-stretch`}>
         <motion.div {...reveal} className="flex min-h-[300px] flex-col justify-between rounded-[6px] border border-bazooka-border bg-bazooka-black/35 p-7 sm:p-8 lg:min-h-0">
           <div>
-            <div className="flex items-center gap-3"><FcGoogle className="size-8 shrink-0"/><span className="text-[24px] font-medium sm:text-[27px]">Google</span></div>
-            <div className="mt-7 flex items-end gap-3"><strong className="font-display text-[58px] leading-none sm:text-[64px]">4.9</strong><span className="pb-1 text-[9px] font-bold uppercase tracking-[.04em] text-bazooka-text-secondary">out of 5</span></div>
+            <div className="flex items-center gap-3"><FcGoogle className="size-8 shrink-0"/><span className="text-[24px] font-medium sm:text-[27px]">Google Reviews</span></div>
+            <h2 className="font-display mt-7 text-[34px] font-black uppercase leading-[.95] text-white sm:text-[40px]">Member <span className="text-bazooka-lime">Feedback.</span></h2>
             <div className="mt-5 flex gap-2 text-[#fbbc04]">{Array.from({ length: 5 }).map((_, index) => <Star key={index} className="size-5 fill-current" />)}</div>
-            <p className="mt-5 max-w-[220px] text-[10px] leading-5 text-bazooka-text-secondary">Based on 250+ Google reviews from members and visitors.</p>
+            <p className="mt-5 max-w-[230px] text-[10px] leading-5 text-bazooka-text-secondary">Read a selection of Google review comments currently featured on the site.</p>
           </div>
-          <small className="mt-7 flex items-center gap-2.5 border-t border-bazooka-border/70 pt-5 text-[8px] font-black uppercase tracking-[.08em] text-white"><ShieldCheck className="size-[18px] shrink-0 text-bazooka-lime" /> Verified Reviews</small>
+          <small className="mt-7 border-t border-bazooka-border/70 pt-5 text-[8px] font-black uppercase tracking-[.08em] text-bazooka-text-secondary">Google review highlights</small>
         </motion.div>
 
         <motion.div {...reveal} className="flex min-w-0 flex-col justify-center">
-          <h2 className="font-display text-[28px] font-black uppercase">Meet Our Experts</h2>
+          <h2 className="font-display text-[28px] font-black uppercase">Meet Our Trainers</h2>
           <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
             {featuredTrainers.map((trainer) => (
               <Link key={trainer.name} href={trainer.href} className="group flex min-w-0 items-center gap-3 rounded-[5px] border border-bazooka-border bg-bazooka-black/30 p-3 transition-all duration-300 hover:border-bazooka-lime/70 hover:bg-bazooka-lime/[.04] active:scale-[.985]">
@@ -59,7 +59,7 @@ export default function SocialProofSection() {
         <motion.article key={reviewIndex} initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.35, ease: "easeOut" }} drag="x" dragConstraints={{ left: 0, right: 0 }} dragElastic={0.18} onDragEnd={(_, info) => { if (info.offset.x <= -45) nextReview(); if (info.offset.x >= 45) previousReview(); }} className="relative min-h-[300px] touch-pan-y cursor-grab rounded-[6px] border border-bazooka-border bg-[#111214] p-6 pb-16 sm:p-8 sm:pb-16 active:cursor-grabbing">
           <div className="flex items-start justify-between"><FcGoogle className="size-8" /><div className="flex gap-1 text-[#fbbc04]">{Array.from({ length: 5 }).map((_, index) => <Star key={index} className="size-3.5 fill-current" />)}</div></div>
           <p className="mt-7 min-h-[88px] text-[12px] leading-6 text-bazooka-text-secondary sm:text-[13px]">“{review.text}”</p>
-          <div className="mt-7 flex min-w-0 items-center gap-3"><span className="grid size-11 shrink-0 place-items-center rounded-full bg-bazooka-surface text-sm font-black text-bazooka-lime">{review.name.charAt(0)}</span><div className="min-w-0"><strong className="block text-[10px]">{review.name}</strong><small className="text-[8px] text-bazooka-text-secondary">{review.meta}</small><span className="mt-1 flex items-center gap-1 text-[7px] text-bazooka-lime"><ShieldCheck className="size-3" /> Verified Google Review</span></div></div>
+          <div className="mt-7 flex min-w-0 items-center gap-3"><span className="grid size-11 shrink-0 place-items-center rounded-full bg-bazooka-surface text-sm font-black text-bazooka-lime">{review.name.charAt(0)}</span><div className="min-w-0"><strong className="block text-[10px]">{review.name}</strong><small className="text-[8px] text-bazooka-text-secondary">{review.meta}</small><span className="mt-1 block text-[7px] text-bazooka-lime">Google Review</span></div></div>
           <div className="absolute bottom-4 right-4 flex gap-2"><button type="button" onClick={previousReview} aria-label="Previous review" className="grid size-10 place-items-center rounded border border-bazooka-border transition-all duration-200 hover:border-bazooka-lime hover:text-bazooka-lime active:scale-90"><ChevronLeft className="size-4" /></button><button type="button" onClick={nextReview} aria-label="Next review" className="grid size-10 place-items-center rounded border border-bazooka-border transition-all duration-200 hover:border-bazooka-lime hover:text-bazooka-lime active:scale-90"><ChevronRight className="size-4" /></button></div>
           <div className="absolute bottom-5 left-6 flex gap-1.5 sm:left-8">{reviews.map((_, index) => <button type="button" aria-label={`Show review ${index + 1}`} onClick={() => setReviewIndex(index)} key={index} className={`h-1.5 rounded-full transition-all ${index === reviewIndex ? "w-5 bg-bazooka-lime" : "w-1.5 bg-bazooka-border-strong hover:bg-bazooka-muted"}`} />)}</div>
         </motion.article>
