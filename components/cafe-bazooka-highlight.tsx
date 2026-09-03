@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Coffee, Leaf, Salad, UtensilsCrossed } from "lucide-react";
+import { ArrowRight, Coffee, GlassWater, UtensilsCrossed } from "lucide-react";
 
 const highlights = [
-  [Salad, "Healthy Meals", "Balanced meal options built around an active lifestyle."],
-  [Leaf, "Fresh Ingredients", "Fresh, lighter choices for everyday nutrition."],
-  [Coffee, "Drinks & Refreshments", "Convenient drinks and refreshments before or after training."],
+  [UtensilsCrossed, "Cafe Food", "Ask the cafe team about the food options available during your visit."],
+  [GlassWater, "Drinks & Refreshments", "Choose from the drinks and refreshments currently available at the cafe."],
+  [Coffee, "Inside The Club", "Stop by Cafe Bazooka without leaving the fitness club."],
 ] as const;
 
 export default function CafeBazookaHighlight({ compact = false }: { compact?: boolean }) {
@@ -22,9 +22,9 @@ export default function CafeBazookaHighlight({ compact = false }: { compact?: bo
           className={`grid overflow-hidden rounded-[7px] border border-bazooka-border-strong bg-bazooka-surface shadow-[0_18px_55px_rgba(0,0,0,.18)] ${compact ? "lg:grid-cols-[1fr_390px]" : "lg:grid-cols-[1.05fr_.95fr]"}`}
         >
           <div className="flex min-w-0 flex-col justify-center p-5 sm:p-8 lg:p-10">
-            <span className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.08em] text-bazooka-lime sm:text-[10px]"><UtensilsCrossed className="size-4 shrink-0" /> In-House Healthy Cafe</span>
-            <h2 className="font-display mt-3 text-[32px] font-black uppercase leading-[.92] sm:text-[46px]">Train Strong.<br /><span className="text-bazooka-lime">Fuel Smarter.</span></h2>
-            <p className="mt-4 max-w-[560px] text-[10px] leading-5 text-bazooka-text-secondary">Cafe Bazooka brings healthy meals, protein-focused food and refreshing options into the Bazooka experience, so members can train, recover and refuel in one place.</p>
+            <span className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[.08em] text-bazooka-lime sm:text-[10px]"><UtensilsCrossed className="size-4 shrink-0" /> In-House Cafe</span>
+            <h2 className="font-display mt-3 text-[32px] font-black uppercase leading-[.92] sm:text-[46px]">Train. Recharge.<br /><span className="text-bazooka-lime">Stop By The Cafe.</span></h2>
+            <p className="mt-4 max-w-[560px] text-[10px] leading-5 text-bazooka-text-secondary">Cafe Bazooka adds food, drinks and refreshments to the club experience. Exact menu items and availability may vary.</p>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
               {highlights.map(([Icon, title, text]) => (
@@ -43,7 +43,7 @@ export default function CafeBazookaHighlight({ compact = false }: { compact?: bo
             <div className="absolute inset-0 bg-gradient-to-r from-bazooka-surface/72 via-black/8 to-transparent lg:from-bazooka-surface/48" />
             <div className="absolute bottom-5 left-5 right-5 rounded-[5px] border border-white/15 bg-black/62 px-4 py-3 backdrop-blur-sm sm:bottom-6 sm:left-6 sm:right-auto">
               <span className="font-display block text-[18px] font-black uppercase text-white">Cafe <span className="text-bazooka-lime">Bazooka</span></span>
-              <span className="mt-1 block text-[8px] uppercase tracking-[.1em] text-bazooka-text-secondary">Eat Well • Recover Better • Perform Stronger</span>
+              <span className="mt-1 block text-[8px] uppercase tracking-[.1em] text-bazooka-text-secondary">Food • Drinks • Refreshments</span>
             </div>
           </div>
         </motion.div>
