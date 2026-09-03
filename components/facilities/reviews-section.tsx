@@ -16,7 +16,6 @@ const reviews = [
 export default function FacilitiesReviewsSection() {
   const [reviewIndex, setReviewIndex] = useState(0);
   const review = reviews[reviewIndex];
-
   const previousReview = () => setReviewIndex((current) => (current - 1 + reviews.length) % reviews.length);
   const nextReview = () => setReviewIndex((current) => (current + 1) % reviews.length);
 
@@ -33,16 +32,16 @@ export default function FacilitiesReviewsSection() {
           <h2 className="font-display mt-2 max-w-full text-[32px] font-black uppercase leading-[.94] min-[380px]:text-[36px] sm:text-[46px]">What Members Say About <span className="text-bazooka-lime">The Facility.</span></h2>
         </motion.div>
 
-        <div className="mx-auto mt-8 grid max-w-[980px] gap-5 md:grid-cols-[220px_1fr] md:items-stretch">
-          <motion.div {...reveal} className="flex flex-col justify-center rounded-[6px] border border-bazooka-border bg-bazooka-black/35 p-5 sm:p-6">
-            <div className="flex items-center gap-2"><FcGoogle className="size-6" /><span className="text-[20px] font-medium sm:text-[23px]">Google</span></div>
-            <strong className="font-display mt-2 text-[42px] sm:text-[46px]">4.9</strong>
-            <div className="flex gap-1 text-[#fbbc04]">{Array.from({ length: 5 }).map((_, index) => <Star key={index} className="size-4 fill-current" />)}</div>
-            <p className="mt-2 text-[9px] text-bazooka-text-secondary">Member feedback</p>
-            <small className="mt-4 inline-flex items-center gap-2 text-[8px] text-bazooka-text-secondary"><ShieldCheck className="size-4 text-bazooka-lime" /> GOOGLE REVIEWS</small>
+        <div className="mx-auto mt-8 grid max-w-[1040px] gap-6 md:grid-cols-[270px_1fr] md:items-stretch">
+          <motion.div {...reveal} className="flex min-h-[250px] flex-col justify-center rounded-[6px] border border-bazooka-border bg-bazooka-black/35 p-6 sm:p-7 md:min-h-0 md:px-8">
+            <div className="flex items-center gap-3"><FcGoogle className="size-7 shrink-0" /><span className="text-[22px] font-medium sm:text-[25px]">Google</span></div>
+            <strong className="font-display mt-5 text-[48px] leading-none sm:text-[54px]">4.9</strong>
+            <div className="mt-4 flex gap-1.5 text-[#fbbc04]">{Array.from({ length: 5 }).map((_, index) => <Star key={index} className="size-[18px] fill-current" />)}</div>
+            <p className="mt-4 text-[9px] leading-4 text-bazooka-text-secondary">Member feedback</p>
+            <small className="mt-6 inline-flex items-center gap-2.5 text-[8px] font-bold uppercase tracking-[.04em] text-bazooka-text-secondary"><ShieldCheck className="size-[18px] shrink-0 text-bazooka-lime" /> Google Reviews</small>
           </motion.div>
 
-          <motion.article key={reviewIndex} initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .35, ease: "easeOut" }} drag="x" dragConstraints={{ left: 0, right: 0 }} dragElastic={.18} onDragEnd={(_, info) => { if (info.offset.x <= -45) nextReview(); if (info.offset.x >= 45) previousReview(); }} className="relative touch-pan-y cursor-grab rounded-[6px] border border-bazooka-border bg-[#111214] p-5 pb-14 sm:p-6 sm:pb-14 active:cursor-grabbing">
+          <motion.article key={reviewIndex} initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .35, ease: "easeOut" }} drag="x" dragConstraints={{ left: 0, right: 0 }} dragElastic={.18} onDragEnd={(_, info) => { if (info.offset.x <= -45) nextReview(); if (info.offset.x >= 45) previousReview(); }} className="relative touch-pan-y cursor-grab rounded-[6px] border border-bazooka-border bg-[#111214] p-5 pb-14 sm:p-7 sm:pb-16 active:cursor-grabbing">
             <div className="flex items-start justify-between gap-4"><FcGoogle className="size-7 shrink-0" /><div className="flex gap-0.5 text-[#fbbc04]">{Array.from({ length: 5 }).map((_, index) => <Star key={index} className="size-3 fill-current" />)}</div></div>
             <p className="mt-5 min-h-[82px] text-[11px] leading-5 text-bazooka-text-secondary sm:text-[12px]">“{review.text}”</p>
             <div className="mt-5 flex min-w-0 items-center gap-3"><span className="grid size-10 shrink-0 place-items-center rounded-full bg-bazooka-surface text-sm font-black text-bazooka-lime">{review.name.charAt(0)}</span><div className="min-w-0"><strong className="block text-[10px]">{review.name}</strong><small className="text-[8px] text-bazooka-text-secondary">{review.meta}</small><span className="mt-1 flex items-center gap-1 text-[7px] text-bazooka-lime"><ShieldCheck className="size-3" /> Google Review</span></div></div>
