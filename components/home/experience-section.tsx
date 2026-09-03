@@ -6,9 +6,9 @@ import { ArrowRight, Dumbbell, Sparkles, Users } from "lucide-react";
 import { outlineButton, reveal } from "./home-shared";
 
 const highlights = [
-  [Dumbbell, "Premium Training"],
-  [Users, "Strong Community"],
-  [Sparkles, "Better Everyday Fitness"],
+  [Dumbbell, "Strength & Cardio"],
+  [Users, "Training Community"],
+  [Sparkles, "Steam & Shower"],
 ] as const;
 
 export default function ExperienceSection() {
@@ -22,7 +22,7 @@ export default function ExperienceSection() {
             <span className="block text-bazooka-lime">It’s A Movement.</span>
           </h2>
           <span className="mt-4 block h-0.5 w-12 bg-bazooka-lime" />
-          <p className="mt-5 max-w-[430px] text-[10px] leading-5 text-bazooka-text-secondary sm:text-[12px] sm:leading-6">World-class equipment, expert coaching and a community that keeps you accountable — all built to help you train with purpose and stay consistent.</p>
+          <p className="mt-5 max-w-[430px] text-[10px] leading-5 text-bazooka-text-secondary sm:text-[12px] sm:leading-6">Strength training, cardio, coaching options and club amenities come together in one training environment built around consistent routines.</p>
 
           <div className="mt-6 grid gap-2 sm:grid-cols-3 md:grid-cols-1 lg:grid-cols-3">
             {highlights.map(([Icon, label]) => (
@@ -49,7 +49,7 @@ export default function ExperienceSection() {
               <span className="text-bazooka-lime">Jodhpur.</span>
             </div>
             <span className="mt-4 block h-0.5 w-12 bg-bazooka-lime" />
-            <p className="mt-4 max-w-[360px] text-[9px] leading-5 text-white/75 sm:text-[10px]">Train better. Feel stronger. Carry that energy into everything outside the gym.</p>
+            <p className="mt-4 max-w-[360px] text-[9px] leading-5 text-white/75 sm:text-[10px]">Train consistently, build strength and make fitness part of your routine.</p>
           </div>
         </div>
       </motion.div>
