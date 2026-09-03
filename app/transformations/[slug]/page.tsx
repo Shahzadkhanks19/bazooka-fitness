@@ -18,11 +18,11 @@ export async function generateMetadata({ params }: TransformationPageProps): Pro
   const { slug } = await params;
   const story = getTransformationBySlug(slug);
 
-  if (!story) return { title: "Training Guide Not Found | Bazooka Fitness" };
+  if (!story) return { title: "Transformation Not Found | Bazooka Fitness" };
 
   return {
-    title: `${story.name} | Bazooka Fitness`,
-    description: `${story.result} Explore the Bazooka Fitness training direction for this goal.`,
+    title: `${story.name} Transformation | Bazooka Fitness`,
+    description: `${story.name} — ${story.result}. Read the complete Bazooka Fitness transformation story.`,
   };
 }
 
