@@ -7,7 +7,7 @@ import { useMemo, useState } from "react";
 import { trainers } from "./trainer-data";
 import { reveal, shell } from "./trainers-shared";
 
-const filters = ["All", "Strength", "Transformation", "Nutrition", "Yoga"] as const;
+const filters = ["All", "Strength", "Transformation", "Nutrition", "Conditioning"] as const;
 type Filter = (typeof filters)[number];
 
 export default function TrainersGridSection() {
