@@ -5,8 +5,8 @@ import TransformationCtaSection from "@/components/transformations/transformatio
 import TransformationReviewsSection from "@/components/transformations/reviews-section";
 
 export const metadata: Metadata = {
-  title: "Training Goal Guides | Bazooka Fitness",
-  description: "Explore Bazooka Fitness goal-based training guides for fat loss, strength, muscle gain, body recomposition and general fitness.",
+  title: "Transformations | Bazooka Fitness",
+  description: "Explore real Bazooka Fitness member transformation stories, progress and results.",
 };
 
 export default function TransformationsPage() {
