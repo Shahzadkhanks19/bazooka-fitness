@@ -2,7 +2,7 @@ export type TrainerProfile = {
   slug: string;
   name: string;
   role: string;
-  category: "Strength" | "Transformation" | "Nutrition" | "Yoga";
+  category: "Strength" | "Transformation" | "Nutrition" | "Conditioning";
   experience: string;
   specialties: readonly string[];
   certification: string;
@@ -84,7 +84,7 @@ export const trainers: readonly TrainerProfile[] = [
     slug: "karan-malhotra",
     name: "Karan Malhotra",
     role: "Endurance Coach",
-    category: "Yoga",
+    category: "Conditioning",
     experience: "6+ Years",
     specialties: ["Cardio & Conditioning", "HIIT Training"],
     certification: "ISSA Certified",
