@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronRight, Dumbbell, ShieldCheck, UsersRound } from "lucide-react";
+import { ArrowRight, CalendarRange, ChevronRight, Dumbbell, ShowerHead } from "lucide-react";
 import { outlineButton, primaryButton, reveal, shell } from "./memberships-shared";
 
 const highlights = [
-  [Dumbbell, "Premium training"],
-  [UsersRound, "Supportive community"],
-  [ShieldCheck, "Built for progress"],
+  [Dumbbell, "Strength & Cardio"],
+  [ShowerHead, "Steam & Shower"],
+  [CalendarRange, "3, 6 & 12 Months"],
 ] as const;
 
 export default function MembershipsHeroSection() {
@@ -25,12 +25,12 @@ export default function MembershipsHeroSection() {
             <span className="text-white">Memberships</span>
           </div>
           <h1 className="font-display max-w-full text-[36px] font-black uppercase leading-[.9] tracking-[-1px] min-[360px]:text-[39px] min-[390px]:text-[42px] sm:text-[58px] lg:text-[72px] xl:text-[76px]">
-            <span className="block">Memberships That</span>
-            <span className="block">Fuel Your</span>
-            <span className="block text-bazooka-lime">Transformation.</span>
+            <span className="block">Choose The Plan</span>
+            <span className="block">That Fits Your</span>
+            <span className="block text-bazooka-lime">Routine.</span>
           </h1>
           <span className="mt-4 block h-[2px] w-10 bg-bazooka-lime" />
-          <p className="mt-5 max-w-[560px] text-[11px] leading-5 text-bazooka-text-secondary sm:text-[12px] sm:leading-6">Choose the membership that fits your goals and lifestyle. One commitment today. A stronger you for life.</p>
+          <p className="mt-5 max-w-[560px] text-[11px] leading-5 text-bazooka-text-secondary sm:text-[12px] sm:leading-6">Compare the published 3, 6 and 12 month membership options and the core facilities included with each plan.</p>
 
           <div className="mt-5 grid gap-2 min-[430px]:grid-cols-3 sm:max-w-[620px]">
             {highlights.map(([Icon, label]) => (
