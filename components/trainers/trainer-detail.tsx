@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Award, BadgeCheck, BookOpen, CheckCircle2, Dumbbell, Target, TimerReset, TrendingUp } from "lucide-react";
+import { ArrowLeft, ArrowRight, Award, BadgeCheck, BookOpen, CheckCircle2, Dumbbell, Target, TimerReset, TrendingUp, type LucideIcon } from "lucide-react";
 import type { TrainerProfile } from "./trainer-data";
 import { outlineButton, primaryButton, reveal, shell } from "./trainers-shared";
 
@@ -16,6 +16,12 @@ const approach = [
 export default function TrainerDetailPage({ trainer }: { trainer: TrainerProfile }) {
   const firstName = trainer.name.split(" ")[0];
   const bookingHref = `/book-session?trainer=${encodeURIComponent(trainer.slug)}`;
+  const snapshots: Array<[LucideIcon, string, string]> = [
+    [TimerReset, trainer.experience, "Experience"],
+    [Target, trainer.category, "Coaching Focus"],
+    [Dumbbell, trainer.specialties[0], "Primary Specialty"],
+    [Award, trainer.certification, "Profile Credential"],
+  ];
 
   return <>
     <section className="relative min-h-[640px] overflow-hidden border-b border-bazooka-border/70 bg-cover bg-[58%_center] sm:bg-center" style={{ backgroundImage: `url(${trainer.image})` }}>
@@ -48,18 +54,12 @@ export default function TrainerDetailPage({ trainer }: { trainer: TrainerProfile
 
     <section className="border-b border-bazooka-border/70 bg-bazooka-black py-7">
       <div className={`${shell} grid gap-3 sm:grid-cols-2 lg:grid-cols-4`}>
-        {[
-          [TimerReset, trainer.experience, "Experience"],
-          [Target, trainer.category, "Coaching Focus"],
-          [Dumbbell, trainer.specialties[0], "Primary Specialty"],
-          [Award, trainer.certification, "Profile Credential"],
-        ].map(([Icon, value, label]) => {
-          const SnapshotIcon = Icon as typeof TimerReset;
-          return <div key={String(label)} className="group flex min-h-[104px] min-w-0 items-center gap-4 rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface px-5 py-4 transition-all duration-300 hover:border-bazooka-lime/70">
-            <span className="grid size-10 shrink-0 place-items-center rounded-full border border-bazooka-lime/40 bg-bazooka-lime/10 text-bazooka-lime"><SnapshotIcon className="size-5" /></span>
+        {snapshots.map(([Icon, value, label]) => (
+          <div key={label} className="group flex min-h-[104px] min-w-0 items-center gap-4 rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface px-5 py-4 transition-all duration-300 hover:border-bazooka-lime/70">
+            <span className="grid size-10 shrink-0 place-items-center rounded-full border border-bazooka-lime/40 bg-bazooka-lime/10 text-bazooka-lime"><Icon className="size-5" /></span>
             <div className="min-w-0"><strong className="font-display block text-[15px] font-black uppercase leading-tight text-white">{value}</strong><span className="mt-1 block text-[8px] uppercase text-bazooka-text-secondary">{label}</span></div>
-          </div>;
-        })}
+          </div>
+        ))}
       </div>
     </section>
 
