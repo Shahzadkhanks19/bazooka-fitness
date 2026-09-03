@@ -6,10 +6,10 @@ import { ArrowRight, Coffee, LockKeyhole, ShowerHead, Waves } from "lucide-react
 import { reveal, shell } from "./facilities-shared";
 
 const amenities = [
-  [Waves, "Recovery", "Steam and recovery-focused spaces to help you reset after training."],
+  [Waves, "Steam Access", "Use the steam facility after training as part of your club visit."],
   [ShowerHead, "Shower Access", "Freshen up after your workout with dedicated shower facilities."],
-  [LockKeyhole, "Changing Facilities", "A dedicated locker and changing area for everyday convenience."],
-  [Coffee, "Cafe Bazooka", "Healthy meals, protein-focused options and refreshing post-workout fuel."],
+  [LockKeyhole, "Changing Facilities", "Changing space is available; ask the team about current locker or storage availability."],
+  [Coffee, "Cafe Bazooka", "Food, drinks and refreshments available inside the Bazooka Fitness experience."],
 ] as const;
 
 export default function AmenitiesSection() {
@@ -22,7 +22,7 @@ export default function AmenitiesSection() {
             <h2 className="font-display mt-2 max-w-full text-[32px] font-black uppercase leading-[.94] min-[380px]:text-[36px] sm:text-[46px]">More Than <span className="text-bazooka-lime">Just Equipment.</span></h2>
             <span className="mt-3 block h-[2px] w-8 bg-bazooka-lime" />
           </div>
-          <p className="max-w-[520px] text-[10px] leading-5 text-bazooka-text-secondary sm:text-[11px] lg:justify-self-end">The gym experience goes beyond the training floor. Recover, freshen up and refuel without leaving Bazooka.</p>
+          <p className="max-w-[520px] text-[10px] leading-5 text-bazooka-text-secondary sm:text-[11px] lg:justify-self-end">The gym experience goes beyond the training floor. Freshen up, use the available amenities and visit Cafe Bazooka without leaving the club.</p>
         </motion.div>
 
         <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
