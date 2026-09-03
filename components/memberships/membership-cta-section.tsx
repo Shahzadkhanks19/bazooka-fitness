@@ -6,9 +6,9 @@ import { ArrowRight, BadgeCheck, Dumbbell, Sparkles } from "lucide-react";
 import { outlineButton, primaryButton, reveal, shell } from "./memberships-shared";
 
 const benefits = [
-  [Dumbbell, "Train before you commit"],
-  [BadgeCheck, "Get expert guidance"],
-  [Sparkles, "Find the right membership"],
+  [Dumbbell, "Explore the training floor"],
+  [BadgeCheck, "Speak with the Bazooka team"],
+  [Sparkles, "Compare membership options"],
 ] as const;
 
 export default function MembershipCtaSection() {
@@ -21,12 +21,12 @@ export default function MembershipCtaSection() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-black/10" />
           <div className="relative z-10 grid min-h-[260px] gap-7 px-5 py-8 sm:px-7 sm:py-10 md:px-9 lg:grid-cols-[1fr_auto] lg:items-center">
             <div className="min-w-0">
-              <span className="text-[9px] font-black uppercase tracking-[.06em] text-bazooka-lime">Start With Zero Pressure</span>
+              <span className="text-[9px] font-black uppercase tracking-[.06em] text-bazooka-lime">Experience Bazooka First</span>
               <h2 className="font-display mt-3 max-w-full text-[30px] font-black uppercase leading-[.92] min-[380px]:text-[33px] sm:text-[42px]">
-                <span className="block">Ready To Unlock</span>
-                <span className="block text-bazooka-lime">Your Strongest Self?</span>
+                <span className="block">Find The Membership</span>
+                <span className="block text-bazooka-lime">That Fits You.</span>
               </h2>
-              <p className="mt-3 max-w-[520px] text-[10px] leading-5 text-bazooka-text-secondary">Your transformation starts with the first step. Experience Bazooka before choosing your membership.</p>
+              <p className="mt-3 max-w-[520px] text-[10px] leading-5 text-bazooka-text-secondary">Visit the club, see the training environment and compare the available membership options before deciding.</p>
 
               <div className="mt-5 grid gap-2 sm:grid-cols-3 lg:max-w-[640px]">
                 {benefits.map(([Icon, label]) => (
@@ -39,7 +39,7 @@ export default function MembershipCtaSection() {
             </div>
             <div className="grid w-full gap-3 sm:flex sm:flex-wrap lg:w-auto lg:flex-col">
               <Link href="/book-free-trial" className={`${primaryButton} w-full sm:w-auto lg:min-w-[190px]`}>Book Free Trial <ArrowRight className="size-4" /></Link>
-              <Link href="/contact" className={`${outlineButton} w-full sm:w-auto lg:min-w-[190px]`}>Talk To Our Expert <ArrowRight className="size-4" /></Link>
+              <Link href="/contact" className={`${outlineButton} w-full sm:w-auto lg:min-w-[190px]`}>Contact Bazooka <ArrowRight className="size-4" /></Link>
             </div>
           </div>
         </motion.div>
