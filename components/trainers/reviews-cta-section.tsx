@@ -2,18 +2,50 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BadgeCheck, Dumbbell, Target } from "lucide-react";
 import { primaryButton, outlineButton, reveal, shell } from "./trainers-shared";
 
-const reviews = [
-  ["Saurabh Mehta", "The trainers at Bazooka are amazing! They truly care about your progress and push you to be better every day."],
-  ["Kavya Shekhawat", "I transformed my lifestyle with the guidance of my coach. Best gym and best team in Jodhpur!"],
-  ["Arjun Solanki", "Nutrition guidance and structured coaching changed the game for me. Highly recommended!"],
+const points = [
+  [Dumbbell, "Meet The Coaches", "Explore trainer profiles before choosing who you want to work with."],
+  [Target, "Talk About Your Goal", "Start with your current level, priorities and preferred training style."],
+  [BadgeCheck, "Choose Your Next Step", "Book a session, try the gym or compare memberships when you are ready."],
 ] as const;
 
 export default function TrainerReviewsCtaSection() {
-  return <>
-    <section className="border-b border-bazooka-border/70 bg-bazooka-black py-14 md:py-16"><div className={shell}><motion.h2 {...reveal} className="font-display text-center text-[34px] font-black uppercase sm:text-[42px]">Hear From Our <span className="text-bazooka-lime">Members</span></motion.h2><div className="mt-7 grid gap-4 md:grid-cols-3">{reviews.map(([name,text],index)=><motion.article key={name} {...reveal} transition={{duration:.45,delay:index*.05}} className="rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface p-5"><div className="flex items-center gap-3"><span className="grid size-8 place-items-center rounded-full bg-white font-black text-[#4285F4]">G</span><span className="tracking-[.12em] text-bazooka-lime">★★★★★</span></div><p className="mt-4 text-[10px] leading-5 text-bazooka-text-secondary">{text}</p><strong className="font-display mt-5 block text-[13px] font-black uppercase">{name}</strong><span className="text-[8px] text-bazooka-text-secondary">Bazooka Member</span></motion.article>)}</div></div></section>
-    <section className="border-b border-bazooka-border/70 bg-bazooka-soft-black py-10"><div className={shell}><motion.div {...reveal} className="relative overflow-hidden rounded-[6px] border border-bazooka-border-strong bg-[url('https://images.unsplash.com/photo-1549476464-37392f717541?auto=format&fit=crop&w=1800&q=90')] bg-cover bg-center px-6 py-10 sm:px-9"><div className="absolute inset-0 bg-gradient-to-r from-black via-black/84 to-black/20"/><div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between"><div><h2 className="font-display text-[34px] font-black uppercase leading-[.95]">Ready To Train With <span className="text-bazooka-lime">The Best?</span></h2><p className="mt-2 text-[10px] text-bazooka-text-secondary">Join thousands who trust our expert trainers.</p></div><div className="flex flex-wrap gap-3"><Link href="/book-free-trial" className={primaryButton}>Book Free Trial <ArrowRight className="size-4"/></Link><Link href="/memberships" className={outlineButton}>View Memberships <ArrowRight className="size-4"/></Link></div></div></motion.div></div></section>
-  </>;
+  return (
+    <section className="border-b border-bazooka-border/70 bg-bazooka-black py-14 sm:py-16">
+      <div className={shell}>
+        <motion.div {...reveal} className="mx-auto max-w-[760px] text-center">
+          <span className="text-[10px] font-black uppercase text-bazooka-lime">Start With The Right Fit</span>
+          <h2 className="font-display mt-2 max-w-full text-[32px] font-black uppercase leading-[.94] min-[380px]:text-[36px] sm:text-[46px]">Find A Coach Who Matches <span className="text-bazooka-lime">Your Goal.</span></h2>
+          <p className="mx-auto mt-4 max-w-[580px] text-[10px] leading-5 text-bazooka-text-secondary sm:text-[11px]">Explore the trainer profiles, understand their focus areas and take the next step when you find the coaching style that feels right for you.</p>
+        </motion.div>
+
+        <div className="mt-8 grid gap-3 md:grid-cols-3">
+          {points.map(([Icon, title, text], index) => (
+            <motion.article key={title} {...reveal} transition={{ duration: .45, delay: index * .05 }} className="group min-w-0 rounded-[6px] border border-bazooka-border-strong bg-bazooka-surface p-5 transition-all duration-300 hover:-translate-y-1 hover:border-bazooka-lime sm:p-6">
+              <span className="grid size-11 place-items-center rounded-full border border-bazooka-lime/50 bg-bazooka-lime/10 text-bazooka-lime transition-transform duration-300 group-hover:scale-105"><Icon className="size-5" /></span>
+              <h3 className="font-display mt-5 text-[17px] font-black uppercase text-white">{title}</h3>
+              <p className="mt-2 text-[9px] leading-4 text-bazooka-text-secondary">{text}</p>
+            </motion.article>
+          ))}
+        </div>
+
+        <motion.div {...reveal} className="relative mt-8 overflow-hidden rounded-[6px] border border-bazooka-border-strong bg-[url('https://images.unsplash.com/photo-1549476464-37392f717541?auto=format&fit=crop&w=1800&q=90')] bg-cover bg-center">
+          <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/30" />
+          <div className="relative z-10 grid min-h-[245px] gap-6 px-5 py-8 sm:px-8 sm:py-9 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div className="max-w-[620px]">
+              <span className="text-[9px] font-black uppercase tracking-[.04em] text-bazooka-lime">Ready When You Are</span>
+              <h2 className="font-display mt-3 max-w-full text-[31px] font-black uppercase leading-[.94] min-[380px]:text-[35px] sm:text-[43px]">Experience The Coaching <span className="text-bazooka-lime">First-Hand.</span></h2>
+              <p className="mt-3 max-w-[520px] text-[10px] leading-5 text-bazooka-text-secondary">Book a free trial to experience the gym or schedule a session when you are ready for more focused coaching.</p>
+            </div>
+            <div className="grid w-full gap-3 sm:flex sm:flex-wrap lg:w-auto lg:shrink-0">
+              <Link href="/book-free-trial" className={`${primaryButton} w-full sm:w-auto`}>Book Free Trial <ArrowRight className="size-4" /></Link>
+              <Link href="/book-session" className={`${outlineButton} w-full sm:w-auto`}>Book A Session <ArrowRight className="size-4" /></Link>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
 }
