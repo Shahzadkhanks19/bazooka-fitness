@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Check, Dumbbell, Sparkles, Users } from "lucide-react";
+import { ArrowRight, CalendarDays, Dumbbell, MapPin, Users } from "lucide-react";
 import { outlineButton, primaryButton, reveal, shell } from "./home-shared";
 
 const benefits = [
-  [Check, "No commitments", "Just show up"],
-  [Dumbbell, "Expert guidance", "From day one"],
-  [Users, "Feel the community", "Train together"],
-  [Sparkles, "Start your", "transformation"],
+  [CalendarDays, "Choose a time", "Plan your visit"],
+  [Dumbbell, "Explore the gym", "See the space"],
+  [Users, "Meet the team", "Ask your questions"],
+  [MapPin, "Visit Bazooka", "Sardarpura, Jodhpur"],
 ] as const;
 
 export default function TrialCtaSection() {
@@ -21,12 +21,10 @@ export default function TrialCtaSection() {
       <motion.div {...reveal} className={`${shell} relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10`}>
         <div className="min-w-0">
           <span className="text-[9px] font-black uppercase tracking-[.08em] text-bazooka-lime">Experience Bazooka</span>
-          <h2 className="font-display mt-3 text-[34px] font-black uppercase leading-[.96] sm:text-[38px]">Your First<br /><span className="text-bazooka-lime">Workout Is On Us.</span></h2>
-          <p className="mt-4 max-w-[560px] text-[10px] leading-5 text-bazooka-text-secondary sm:text-[11px]">Step inside, meet the team and experience the training environment before choosing the membership that fits you.</p>
+          <h2 className="font-display mt-3 text-[34px] font-black uppercase leading-[.96] sm:text-[38px]">See The Gym.<br /><span className="text-bazooka-lime">Book A Free Trial.</span></h2>
+          <p className="mt-4 max-w-[560px] text-[10px] leading-5 text-bazooka-text-secondary sm:text-[11px]">Visit Bazooka Fitness, explore the training environment, meet the team and learn about the membership options available to you.</p>
           <div className="mt-6 grid gap-3 min-[420px]:grid-cols-2 sm:grid-cols-4 sm:gap-4">
-            {benefits.map(([Icon, title, subtitle]) => (
-              <span key={title} className="flex min-w-0 items-start gap-2 rounded-[5px] border border-white/10 bg-black/30 p-3 backdrop-blur-[2px] transition-all duration-300 hover:border-bazooka-lime/50 hover:bg-bazooka-lime/[.05]"><Icon className="mt-0.5 size-4 shrink-0 text-bazooka-lime" /><span className="min-w-0"><b className="block text-[9px] text-white">{title}</b><small className="mt-0.5 block text-[8px] leading-3 text-bazooka-text-secondary">{subtitle}</small></span></span>
-            ))}
+            {benefits.map(([Icon, title, subtitle]) => <span key={title} className="flex min-w-0 items-start gap-2 rounded-[5px] border border-white/10 bg-black/30 p-3 backdrop-blur-[2px] transition-all duration-300 hover:border-bazooka-lime/50 hover:bg-bazooka-lime/[.05]"><Icon className="mt-0.5 size-4 shrink-0 text-bazooka-lime" /><span className="min-w-0"><b className="block text-[9px] text-white">{title}</b><small className="mt-0.5 block text-[8px] leading-3 text-bazooka-text-secondary">{subtitle}</small></span></span>)}
           </div>
         </div>
         <div className="flex w-full flex-col gap-3 lg:w-[220px]">
