@@ -19,10 +19,10 @@ export default function TransformationDetailHero({ story }: { story: Transformat
   return <section className="border-b border-bazooka-border/70 bg-bazooka-black py-7 sm:py-8 md:py-10">
     <div className={shell}>
       <div className="mb-6 flex flex-wrap items-center gap-2 text-[8px] font-black uppercase sm:text-[9px]"><Link href="/" className="text-bazooka-lime transition hover:text-bazooka-lime-hover">Home</Link><ChevronRight className="size-3 text-bazooka-text-muted"/><Link href="/transformations" className="text-bazooka-text-secondary transition hover:text-white">Transformations</Link><ChevronRight className="size-3 text-bazooka-text-muted"/><span className="max-w-full truncate text-white">{story.name}</span></div>
-      <div className="grid gap-7 lg:grid-cols-[360px_1fr] lg:items-stretch">
-        <motion.div {...reveal} className="flex min-w-0 flex-col justify-center py-2 sm:py-4">
+      <div className="grid gap-7 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:items-stretch xl:grid-cols-[440px_minmax(0,1fr)]">
+        <motion.div {...reveal} className="flex min-w-0 flex-col justify-center py-2 sm:py-4 lg:pr-2">
           <span className="text-[9px] font-black uppercase text-bazooka-lime sm:text-[10px]">Transformation Story</span>
-          <h1 className="font-display mt-3 break-words text-[40px] font-black uppercase leading-[.9] min-[380px]:text-[44px] sm:text-[56px] md:text-[64px]">{story.name}</h1>
+          <h1 className="font-display mt-3 max-w-full break-words text-[40px] font-black uppercase leading-[.9] [overflow-wrap:anywhere] min-[380px]:text-[44px] sm:text-[56px] md:text-[58px] xl:text-[64px]">{story.name}</h1>
           <h2 className="font-display mt-3 text-[27px] font-black uppercase leading-[.9] text-bazooka-lime sm:text-[32px] md:text-[34px]">Discipline Today,<br/>Strength Forever.</h2>
           <p className="mt-5 max-w-[340px] text-[11px] leading-5 text-bazooka-text-secondary sm:text-[12px] sm:leading-6">“{story.heroQuote}”</p>
           <div className="mt-6 grid grid-cols-1 gap-2 text-[8px] text-bazooka-text-secondary min-[420px]:grid-cols-3 min-[420px]:gap-3">
@@ -36,7 +36,7 @@ export default function TransformationDetailHero({ story }: { story: Transformat
           <div className="mt-7 grid gap-3 sm:flex sm:flex-wrap"><Link href="/book-free-trial" className={`${primaryButton} w-full sm:w-auto`}>Book Free Trial <ArrowRight className="size-4 transition-transform group-hover:translate-x-1"/></Link><Link href="/transformations" className={`${outlineButton} w-full sm:w-auto`}>View All Stories <ArrowRight className="size-4 transition-transform group-hover:translate-x-1"/></Link></div>
         </motion.div>
 
-        <motion.div {...reveal} className="relative grid min-h-[420px] overflow-hidden rounded-[6px] border border-bazooka-border-strong sm:min-h-[480px] sm:grid-cols-2">
+        <motion.div {...reveal} className="relative grid min-h-[420px] min-w-0 overflow-hidden rounded-[6px] border border-bazooka-border-strong sm:min-h-[480px] sm:grid-cols-2">
           <div className="relative min-h-[210px] bg-cover bg-center sm:min-h-0" style={{backgroundImage:`url(${story.beforeImage})`}}><div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10"/><span className="absolute left-4 top-4 rounded-[3px] border border-white/20 bg-black/75 px-3 py-1.5 text-[8px] font-black uppercase text-white">Before</span></div>
           <div className="relative min-h-[210px] bg-cover bg-center sm:min-h-0" style={{backgroundImage:`url(${story.afterImage})`}}><div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"/><span className="absolute right-4 top-4 rounded-[3px] bg-bazooka-lime px-3 py-1.5 text-[8px] font-black uppercase text-black">After</span></div>
           <span className="absolute left-1/2 top-1/2 grid size-10 -translate-x-1/2 -translate-y-1/2 rotate-90 place-items-center rounded-full border border-bazooka-lime bg-black/90 text-[18px] text-bazooka-lime shadow-[0_0_24px_rgba(255,181,46,.18)] sm:size-11 sm:rotate-0">›</span>
